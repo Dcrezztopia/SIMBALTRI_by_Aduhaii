@@ -31,7 +31,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="pl-4 nav-item">
-                        <a href="{{ url('/level') }}" class="nav-link text-light{{ $activeMenu == 'level' ? 'active' : '' }}">
+                        <a href="{{ url('/surat') }}" class="nav-link text-light{{ $activeMenu == 'surat' ? 'active' : '' }}">
                             <i class="fa fa-circle" aria-hidden="true"></i>
                             <p>Surat 1</p>
                         </a>
