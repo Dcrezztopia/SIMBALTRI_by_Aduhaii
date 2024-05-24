@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\LayoutController;
+use App\Http\Controllers\PengajuanSuratController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [LayoutController::class, 'all'])->name('layout.all');
+Route::get('/pengajuansurat/index', [PengajuanSuratController::class, 'index'])->name('pengajuansurat.index');
+Route::get('/pengajuansurat/riwayatsurat/index', [PengajuanSuratController::class, 'riwayatsurat'])->name('pengajuansurat.riwayatsurat.index');
+Route::get('/riwayatsurat', [PengajuanSuratController::class, 'riwayatsurat'])->name('riwayatsurat.index');
+Route::get('/hasilform', [PengajuanSuratController::class, 'hasilform'])->name('pengajuansurat.hasilform.index');
