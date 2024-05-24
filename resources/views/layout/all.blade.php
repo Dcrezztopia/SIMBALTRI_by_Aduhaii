@@ -1,0 +1,5 @@
+@include('layout.head')
+@include('layout.header')
+@include('layout.sidebar')
+@include('layout.isi')
+@include('layout.footer')

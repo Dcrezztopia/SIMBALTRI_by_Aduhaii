@@ -1,0 +1,5 @@
+@include('layout.head')
+@include('layout.header')
+@include('pengajuansurat.sidebar')
+@include('pengajuansurat.isi')
+@include('layout.footer')
