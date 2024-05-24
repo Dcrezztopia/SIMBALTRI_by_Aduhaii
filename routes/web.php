@@ -17,8 +17,14 @@ use App\Http\Controllers\PengajuanSuratController;
 |
 */
 
+// Akses Dashboard Ototmatis/ halaman utama (Sementara)
 Route::get('/', [LayoutController::class, 'all'])->name('layout.all');
+// Pengajuan Surat -- Pengajuan Surat
+
 Route::get('/pengajuansurat/index', [PengajuanSuratController::class, 'index'])->name('pengajuansurat.index');
-Route::get('/pengajuansurat/riwayatsurat/index', [PengajuanSuratController::class, 'riwayatsurat'])->name('pengajuansurat.riwayatsurat.index');
-Route::get('/riwayatsurat', [PengajuanSuratController::class, 'riwayatsurat'])->name('riwayatsurat.index');
+
+// PengajuanSurat -- PengajuanSurat (HasilForm ketika Save Simpan)
 Route::get('/hasilform', [PengajuanSuratController::class, 'hasilform'])->name('pengajuansurat.hasilform.index');
+
+// PengajuanSurat -- RiwayatSurat 
+Route::get('/riwayatsurat', [PengajuanSuratController::class, 'riwayatsurat'])->name('riwayatsurat.index');
