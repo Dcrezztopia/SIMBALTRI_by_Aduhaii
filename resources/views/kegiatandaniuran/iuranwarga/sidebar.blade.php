@@ -17,10 +17,10 @@
       
 
       <li class="nav-item">
-        <a class="nav-link collapsed active" data-bs-target="#pengajuan-surat-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-menu-button-wide"></i><span style="color: white;">Pengajuan Surat</span><i class="bi bi-chevron-down ms-auto"></i>
+        <a class="nav-link collapsed" data-bs-target="#pengajuan-surat-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>Pengajuan Surat</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="pengajuan-surat-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
+        <ul id="pengajuan-surat-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
           <li>
             <a class="nav-link" href="{{ route('pengajuansurat.index') }}">
               <i class="bi bi-circle"></i><span>Pengajuan Surat</span>
@@ -28,7 +28,7 @@
           </li>        
           <li>
             <a class="nav-link" href="{{ route('riwayatsurat.index') }}">
-              <i class="bi bi-circle"></i><span style="color: white">Riwayat Surat</span>
+              <i class="bi bi-circle"></i><span>Riwayat Surat</span>
             </a>
           </li>
         </ul>
@@ -41,7 +41,7 @@
         <ul id="pelaporan-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
           <li>
             <a class="nav-link" href="{{ route('pelaporan.index') }}">
-              <i class="bi bi-circle"></i><span>Pengajuan Lapor</span>
+              <i class="bi bi-circle"></i><span>Pengajuan lapor</span>
             </a>
           </li>
           <li>
@@ -54,22 +54,22 @@
       
       
       <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-target="#components-nav5" data-bs-toggle="collapse" href="#">
-              <i class="bi bi-menu-button-wide"></i><span>Kegiatan dan Iuran</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="components-nav5" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="components-alerts.html">
-                        <i class="bi bi-circle"></i><span>Kegiatan Warga</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-accordion.html">
-                        <i class="bi bi-circle"></i><span>Iuran Warga</span>
-                    </a>
-                </li>
-            </ul>
-        </li><!-- End Components Nav -->
+        <a class="nav-link collapsed active" data-bs-target="#components-nav5" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span style="color: white;">Kegiatan dan Iuran</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+          <ul id="components-nav5" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
+              <li>
+                <a class="nav-link" href="{{ route('kegiatandaniuran.index') }}">
+                  <i class="bi bi-circle"></i><span>Kegiatan Warga</span>
+                  </a>
+              </li>
+              <li>
+                <a class="nav-link" href="{{ route('iuranwarga.index') }}">
+                  <i class="bi bi-circle"></i><span style="color: white">Iuran Warga</span>
+                  </a>
+              </li>
+          </ul>
+      </li><!-- End Components Nav -->
         
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#components-nav34" data-bs-toggle="collapse" href="#">

@@ -1,0 +1,5 @@
+@include('layout.head')
+@include('layout.header')
+@include('kegiatandaniuran.sidebar')
+@include('kegiatandaniuran.isi')
+@include('layout.footer')

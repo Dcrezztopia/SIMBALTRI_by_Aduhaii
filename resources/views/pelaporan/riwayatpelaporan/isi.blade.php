@@ -1,7 +1,7 @@
 <main id="main" class="main">
   <nav>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item active">Home/Pengajuan Surat/ Pengajuan Surat</li>
+      <li class="breadcrumb-item active">Home/Pelaporan/ Riwayat Pelaporan</li>
     </ol>
   </nav>
   <div class="pagetitle text-center">
@@ -18,10 +18,8 @@
                 <th>No</th>
                 <th>NIM</th>
                 <th>Nama</th>
-                <th>Program Studi</th>
-                <th>Tahun Akademik</th>
-                <th>Status</th>
-                <th>Catatan</th>
+                <th>Tempat</th>
+                <th>Penanggung</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -31,10 +29,8 @@
                 <td>1</td>
                 <td>1234567890</td>
                 <td>John Doe</td>
-                <td>Manajemen</td>
-                <td>2023/2024</td>
-                <td>Disetujui</td>
-                <td>-</td>
+                <td>Balai RW</td>
+                <td>Bu Risa</td>
                 <td>
                   <!-- Tombol aksi disini -->
                   <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Delete</button>
