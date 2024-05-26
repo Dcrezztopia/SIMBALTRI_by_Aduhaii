@@ -2,12 +2,12 @@
 
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Pengajuan Surat</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Surat</li>
+            <li class="breadcrumb-item"><a href="#">Pelaporan</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Pengajuan Pelaporan</li>
         </ol>
     </nav>
     <div class="pagetitle text-center">
-        <h2 class="welcome-message-surat">Surat</h2>
+        <h2 class="welcome-message-surat">Laporan</h2>
     </div><!-- End Page Title -->
 
     <div class="container my-4">
@@ -16,7 +16,7 @@
                 <h5 class="mb-0">
                     <button class="btn-custom" data-bs-toggle="collapse" data-bs-target="#umumCollapse" aria-expanded="true" aria-controls="umumCollapse">
                         <i class="bi bi-chevron-down ms-auto">
-                            <span>Pengajuan Surat</span>
+                            <span>Pengajuan Laporan</span>
                         </i>
                     </button>
                 </h5>
@@ -102,4 +102,8 @@
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+
+
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>

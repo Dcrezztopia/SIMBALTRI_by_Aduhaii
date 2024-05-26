@@ -21,4 +21,3 @@ class PengajuanSuratController extends Controller
         return view('pengajuansurat.riwayatsurat.index');
     }
 }
-
