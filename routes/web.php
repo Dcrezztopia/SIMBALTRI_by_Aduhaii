@@ -44,7 +44,7 @@ Route::get('/riwayatpelaporan', [PelaporanController::class, 'riwayatpelaporan']
 
 
 
-
+    
 Route::get('/kegiatandaniuran/index', [KegiatandanIuranController::class, 'index'])->name('kegiatandaniuran.index');
 
 Route::get('/iuranwarga', [KegiatandanIuranController::class, 'iuranwarga'])->name('iuranwarga.index');
