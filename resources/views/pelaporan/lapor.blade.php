@@ -1,3 +1,6 @@
+@extends('layout.app')
+
+@section('content_body')
 <main id="main" class="main">
 
   <nav>
@@ -85,18 +88,18 @@
 </div>
 
 <script>
-  function showAlert() {
-    var alert = document.getElementById('customAlert');
-    alert.classList.add('show');
-  }
+    function showAlert() {
+        var alert = document.getElementById('customAlert');
+        alert.classList.add('show');
+    }
 
-  function closeAlert() {
-    var alert = document.getElementById('customAlert');
-    alert.classList.remove('show');
-  }
+    function closeAlert() {
+        var alert = document.getElementById('customAlert');
+        alert.classList.remove('show');
+    }
 
-  function acceptPengajuan() {
-    window.location.href = "{{ route('pelaporan.hasilform.index') }}";
+    function acceptPengajuan() {
+        window.location.href = "{{ route('pelaporan.hasilform.index') }}";
     }
 
 </script>
@@ -104,3 +107,4 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 
+@endsection

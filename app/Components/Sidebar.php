@@ -12,15 +12,15 @@ class Sidebar {
                 'label' => 'Pengajuan Surat',
                 'route' => null,
                 'children' => [
-                    [
+                    'pengajuan-surat' => [
                         'icon' => 'bi-circle',
                         'label' => 'Pengajuan Surat',
-                        'route' => 'pengajuansurat.index'
+                        'route' => 'surat.pengajuan'
                     ],
-                    [
+                    'riwayat' => [
                         'icon' => 'bi-circle',
                         'label' => 'Riwayat Surat',
-                        'route' => 'riwayatsurat.index'
+                        'route' => 'surat.riwayat'
                     ]
                 ]
             ],
@@ -29,15 +29,15 @@ class Sidebar {
                 'label' => 'Pelaporan',
                 'route' => null,
                 'children' => [
-                    [
+                    'lapor' => [
                         'icon' => 'bi-circle',
                         'label' => 'Pengajuan Lapor',
-                        'route' => 'pelaporan.index'
+                        'route' => 'pelaporan.lapor'
                     ],
-                    [
+                    'riwayat' => [
                         'icon' => 'bi-circle',
                         'label' => 'Riwayat Pelaporan',
-                        'route' => 'riwayatpelaporan.index'
+                        'route' => 'pelaporan.riwayat'
                     ]
                 ]
             ],
@@ -46,42 +46,42 @@ class Sidebar {
                 'label' => 'Kegiatan dan Iuran',
                 'route' => null,
                 'children' => [
-                    [
+                    'kegiatan' => [
                         'icon' => 'bi-circle',
                         'label' => 'Kegiatan Warga',
-                        'route' => 'kegiatandaniuran.index'
+                        'route' => 'kegiatan.index'
                     ],
-                    [
+                    'iuran' => [
                         'icon' => 'bi-circle',
                         'label' => 'Iuran Warga',
-                        'route' => 'iuranwarga.index'
+                        'route' => 'iuran.index'
                     ]
                 ]
             ],
-            'bantuan-sosial' => [
+            'bansos' => [
                 'icon' => 'bi-menu-button-wide',
                 'label' => 'Bantuan Sosial',
                 'route' => null,
                 'children' => [
-                    [
+                    'riwayat' => [
                         'icon' => 'bi-circle',
                         'label' => 'Riwayat Bansos',
-                        'route' => 'placeholder1'
+                        'route' => 'bansos.riwayat'
                     ],
-                    [
+                    'pengajuan' => [
                         'icon' => 'bi-circle',
                         'label' => 'Pengajuan Bansos',
-                        'route' => 'placeholder1'
+                        'route' => 'bansos.pengajuan',
                     ],
-                    [
+                    'permintaan' => [
                         'icon' => 'bi-circle',
                         'label' => 'Permintaan Bansos',
-                        'route' => 'placeholder1'
+                        'route' => 'bansos.permintaan'
                     ],
-                    [
+                    'data' => [
                         'icon' => 'bi-circle',
                         'label' => 'Data Bansos',
-                        'route' => 'placeholder1'
+                        'route' => 'bansos.data'
                     ],
                 ]
             ],

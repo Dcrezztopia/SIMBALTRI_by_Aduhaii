@@ -1,3 +1,6 @@
+@extends('layout.app')
+
+@section('content_body')
 <main id="main" class="main">
     <nav>
       <ol class="breadcrumb">
@@ -7,7 +10,7 @@
     <div class="pagetitle text-center">
       <h2 class="welcome-message-surat">Surat Pernyataan</h2>
     </div><!-- End Page Title -->
-  
+
     <div class="container my-4">
       <div class="card">
         <div class="card-body">
@@ -47,7 +50,7 @@
         </div>
       </div>
     </div>
-  
+
     <section class="section dashboard">
       <div class="row">
         <!-- Left side columns -->
@@ -55,4 +58,5 @@
       </div>
     </section>
   </main><!-- End #main -->
-  
+
+@endsection

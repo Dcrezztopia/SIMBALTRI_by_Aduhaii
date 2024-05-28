@@ -1,5 +1,0 @@
-@include('layout.head')
-@include('layout.header')
-@include('pelaporan.sidebar')
-@include('pelaporan.isi')
-@include('layout.footer')

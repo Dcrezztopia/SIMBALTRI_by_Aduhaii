@@ -7,7 +7,6 @@
     @endif
 @stop
 
-@vite('resources/js/app.js')
 
 {{-- Extend and customize the page content header --}}
 @section('content_header')

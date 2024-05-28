@@ -1,11 +1,15 @@
+
+@extends('layout.app')
+
+@section('content_body')
 <main id="main" class="main">
   <nav>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item active">Home/Pengajuan Surat/ Pengajuan Surat</li>
+      <li class="breadcrumb-item active">Home/Kegiatan dan Iuran/ Iuran Warga</li>
     </ol>
   </nav>
   <div class="pagetitle text-center">
-    <h2 class="welcome-message-surat">Riwayat Surat</h2>
+    <h2 class="welcome-message-surat">Kegiatan Warga</h2>
   </div><!-- End Page Title -->
 
   <section class="section dashboard">
@@ -16,13 +20,10 @@
             <thead>
               <tr>
                 <th>No</th>
-                <th>NIM</th>
-                <th>Nama</th>
-                <th>Program Studi</th>
-                <th>Tahun Akademik</th>
-                <th>Status</th>
-                <th>Catatan</th>
-                <th>Action</th>
+                <th>Nama Kegiatan</th>
+                <th>Tanggal Pelaksanaan</th>
+                <th>Tempat</th>
+                <th>Penanggung Jawab</th>
               </tr>
             </thead>
             <tbody>
@@ -31,14 +32,8 @@
                 <td>1</td>
                 <td>1234567890</td>
                 <td>John Doe</td>
-                <td>Manajemen</td>
-                <td>2023/2024</td>
-                <td>Disetujui</td>
-                <td>-</td>
-                <td>
-                  <!-- Tombol aksi disini -->
-                  <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Delete</button>
-                </td>
+                <td>Balai RW</td>
+                <td>Bu Risa</td>
               </tr>
               <!-- Akhir data tabel -->
             </tbody>
@@ -48,3 +43,4 @@
     </div>
   </section>
 </main><!-- End #main -->
+@endsection

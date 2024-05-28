@@ -16,14 +16,19 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\User::factory()
             ->createMany([
+                // [
+                //     'username' => 'ikan',
+                //     'role' => 'admin',
+                //     'password' => bcrypt('12345')
+                // ],
+                // [
+                //     'username' => 'budi',
+                //     'role' => 'user',
+                //     'password' => bcrypt('12345')
+                // ]
                 [
-                    'username' => 'ikan',
-                    'role' => 'admin',
-                    'password' => bcrypt('12345')
-                ],
-                [
-                    'username' => 'budi',
-                    'role' => 'user',
+                    'username' => 'warga',
+                    'role' => 'warga',
                     'password' => bcrypt('12345')
                 ]
             ]);

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Components\Sidebar;
 // use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class WargaController extends Controller
 {
     private $sidebarItems;
     private $activeSidebarItem;
@@ -49,7 +49,7 @@ class AdminController extends Controller
     public function index()
     {
         $this->activeSidebarItem = ['dashboard', ''];
-        return view('dashboard')
+        return view('warga.dashboard')
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem);
     }

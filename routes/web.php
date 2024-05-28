@@ -2,13 +2,18 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BansosController;
+use App\Http\Controllers\IuranController;
+use App\Http\Controllers\KegiatanController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\LayoutController;
+// use App\Http\Controllers\Controller;
+// use App\Http\Controllers\LayoutController;
 use App\Http\Controllers\PengajuanSuratController;
 use App\Http\Controllers\PelaporanController;
 use App\Http\Controllers\KegiatandanIuranController;
-use App\Http\Controllers\KetuaController;
+use App\Http\Controllers\SuratController;
+// use App\Http\Controllers\KetuaController;
+use App\Http\Controllers\WargaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,54 +26,64 @@ use App\Http\Controllers\KetuaController;
 |
 */
 
+Route::get('/', [AuthController::class, 'index'])->name('entry');
 Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/proses_login', [AuthController::class, 'proses_login'])->name('proses_login');
-
 Route::get('/register', [AuthController::class, 'register'])->name('register');
-
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/', [AuthController::class, 'index'])->name('entry')->middleware('auth');
-
 Route::group(['middleware' => ['auth']], function () {
-    Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function () {
+    Route::get('/', [AuthController::class, 'index'])->name('dashboard');
+
+    Route::prefix('admin')->middleware(['role:admin'])->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
+    });
+
+    Route::prefix('warga')->middleware(['role:warga'])->group(function () {
+        Route::get('/', [WargaController::class, 'index'])->name('warga.dashboard');
+    });
+
+    Route::prefix('surat')->group(function () {
+        Route::get('pengajuan', [SuratController::class, 'pengajuan'])->name('surat.pengajuan');
+        Route::get('riwayat', [SuratController::class, 'riwayat'])->name('surat.riwayat');
+        Route::get('hasilform', [SuratController::class, 'hasilform'])->name('surat.hasilform');
+    });
+
+    Route::prefix('pelaporan')->group(function() {
+        Route::get('lapor', [PelaporanController::class, 'lapor'])->name('pelaporan.lapor');
+        Route::get('riwayat', [PelaporanController::class, 'riwayat'])->name('pelaporan.riwayat');
+        Route::get('hasilform', [PelaporanController::class, 'hasilform'])->name('pelaporan.hasilform');
+    });
+
+    Route::get('kegiatan', [KegiatanController::class, 'index'])->name('kegiatan.index');
+    Route::get('iuran', [IuranController::class, 'index'])->name('iuran.index');
+
+    Route::prefix('bansos')->group(function () {
+        Route::get('riwayat', [BansosController::class, 'riwayat'])->name('bansos.riwayat');
+        Route::get('permintaaan', [BansosController::class, 'permintaan'])->name('bansos.permintaan');
+        Route::get('pengajuan', [BansosController::class, 'pengajuan'])->name('bansos.pengajuan');
+        Route::get('data', [BansosController::class, 'data'])->name('bansos.data');
     });
 
     // belum diatur
     // localhost/ketua-rt/
-    Route::group(['prefix' => 'ketua-rt', 'middleware' => ['role:ketua_rt']], function () {
-        Route::get('/', [KetuaController::class, 'index'])->name('ketua_rt.dashboard');
-    });
+    // Route::group(['prefix' => 'ketua-rt', 'middleware' => ['role:ketua_rt']], function () {
+    //     Route::get('/', [KetuaController::class, 'index'])->name('ketua_rt.dashboard');
+    // });
 });
 
 // Pengajuan Surat -- Pengajuan Surat
 Route::get('/pengajuansurat/index', [PengajuanSuratController::class, 'index'])->name('pengajuansurat.index');
-
 // PengajuanSurat -- PengajuanSurat (HasilForm ketika Save Simpan)
 Route::get('/pengajuansurat/hasilform', [PengajuanSuratController::class, 'hasilform'])->name('pengajuansurat.hasilform.index');
-
 // PengajuanSurat -- RiwayatSurat
 Route::get('/riwayatsurat', [PengajuanSuratController::class, 'riwayatsurat'])->name('riwayatsurat.index');
-
-
-
 Route::get('/pelaporan/index', [PelaporanController::class, 'index'])->name('pelaporan.index');
-
 // PengajuanSurat -- PengajuanSurat (HasilForm ketika Save Simpan)
 Route::get('/pelaporan/hasilform', [PelaporanController::class, 'hasilform'])->name('pelaporan.hasilform.index');
-
 // PengajuanSurat -- RiwayatSurat
 Route::get('/riwayatpelaporan', [PelaporanController::class, 'riwayatpelaporan'])->name('riwayatpelaporan.index');
-
-
-
-
-
 Route::get('/kegiatandaniuran/index', [KegiatandanIuranController::class, 'index'])->name('kegiatandaniuran.index');
-
 Route::get('/iuranwarga', [KegiatandanIuranController::class, 'iuranwarga'])->name('iuranwarga.index');
-
-// route placeholdes
 
 Route::get('/placeholder', [AuthController::class, 'index'])->name('placeholder1');
