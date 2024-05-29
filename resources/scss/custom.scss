@@ -1,0 +1,15 @@
+// @import "../node_modules/bootstrap/scss/functions";
+@import "./bootstrap/scss/_functions.scss";
+// @import "../node_modules/bootstrap/scss/variables";
+@import "./bootstrap/scss/_variables.scss";
+
+// Default variable overrides
+$theme-colors: (
+  // "primary": #ff0000,
+  // "danger": #ff4136
+);
+
+// Required
+// @import "../node_modules/bootstrap/scss/mixins";
+// @import "./bootstrap/scss/_mixins.scss";
+@import "./bootstrap/scss/bootstrap.scss";
