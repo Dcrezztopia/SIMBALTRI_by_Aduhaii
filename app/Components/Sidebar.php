@@ -65,14 +65,14 @@ class Sidebar {
                 'children' => [
                     'riwayat' => [
                         'icon' => 'bi-circle',
-                        'label' => 'Riwayat Bansos',
+                        'label' => 'Riwayat Permintaan',
                         'route' => 'bansos.riwayat'
                     ],
-                    'pengajuan' => [
-                        'icon' => 'bi-circle',
-                        'label' => 'Pengajuan Bansos',
-                        'route' => 'bansos.pengajuan',
-                    ],
+                    // 'pengajuan' => [
+                    //     'icon' => 'bi-circle',
+                    //     'label' => 'Pengajuan Bansos',
+                    //     'route' => 'bansos.pengajuan',
+                    // ],
                     'permintaan' => [
                         'icon' => 'bi-circle',
                         'label' => 'Permintaan Bansos',
@@ -80,7 +80,7 @@ class Sidebar {
                     ],
                     'data' => [
                         'icon' => 'bi-circle',
-                        'label' => 'Data Bansos',
+                        'label' => 'Daftar Bansos',
                         'route' => 'bansos.data'
                     ],
                 ]

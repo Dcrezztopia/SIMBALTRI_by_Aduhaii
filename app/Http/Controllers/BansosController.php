@@ -3,6 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Components\Sidebar;
+use App\DataTables\BansosDataTable;
+use App\DataTables\PermintaanBansosDataTable;
+use App\DataTables\PermintaanSuratDataTable;
+use App\DataTables\UsersDataTable;
+use App\Models\Bansos;
+use App\Models\PermintaanBansos;
+use Illuminate\Http\Request;
+
 // use Illuminate\Http\Request;
 
 class BansosController extends Controller
@@ -19,12 +27,18 @@ class BansosController extends Controller
     {
     }
 
-    public function riwayat()
+    public function riwayat(PermintaanBansosDataTable $datatable)
     {
         $this->activeSidebarItem = ['bansos', 'riwayat'];
-        return view('bansos.riwayat')
-            ->with('sidebarItems', $this->sidebarItems)
-            ->with('activeSidebarItem', $this->activeSidebarItem);
+        return $datatable->render('bansos.riwayat',
+            [
+            'sidebarItems' => $this->sidebarItems,
+            'activeSidebarItem' => $this->activeSidebarItem
+            ]
+        );
+        // return view('bansos.riwayat')
+        //     ->with('sidebarItems', $this->sidebarItems)
+        //     ->with('activeSidebarItem', $this->activeSidebarItem);
     }
 
     public function permintaan()
@@ -35,6 +49,12 @@ class BansosController extends Controller
             ->with('activeSidebarItem', $this->activeSidebarItem);
     }
 
+    public function store_permintaan(Request $request)
+    {
+        PermintaanBansos::create($request->except('_token'));
+        return redirect()->route('bansos.riwayat');
+    }
+
     public function pengajuan()
     {
         $this->activeSidebarItem = ['bansos', 'pengajuan'];
@@ -43,11 +63,14 @@ class BansosController extends Controller
             ->with('activeSidebarItem', $this->activeSidebarItem);
     }
 
-    public function data()
+    public function data(BansosDataTable $datatable)
     {
         $this->activeSidebarItem = ['bansos', 'data'];
-        return view('bansos.data')
-            ->with('sidebarItems', $this->sidebarItems)
-            ->with('activeSidebarItem', $this->activeSidebarItem);
+        return $datatable->render('bansos.data' ,
+            [
+                'sidebarItems' => $this->sidebarItems,
+                'activeSidebarItem' => $this->activeSidebarItem
+            ]
+        );
     }
 }

@@ -45,6 +45,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::prefix('surat')->group(function () {
         Route::get('pengajuan', [SuratController::class, 'pengajuan'])->name('surat.pengajuan');
+        Route::post('pengajuan', [SuratController::class, 'store_pengajuan'])->name('surat.pengajuan.post');
         Route::get('riwayat', [SuratController::class, 'riwayat'])->name('surat.riwayat');
         Route::get('hasilform', [SuratController::class, 'hasilform'])->name('surat.hasilform');
     });
@@ -61,6 +62,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::prefix('bansos')->group(function () {
         Route::get('riwayat', [BansosController::class, 'riwayat'])->name('bansos.riwayat');
         Route::get('permintaaan', [BansosController::class, 'permintaan'])->name('bansos.permintaan');
+        Route::post('permintaaan', [BansosController::class, 'store_permintaan'])->name('bansos.permintaan.post');
         Route::get('pengajuan', [BansosController::class, 'pengajuan'])->name('bansos.pengajuan');
         Route::get('data', [BansosController::class, 'data'])->name('bansos.data');
     });
@@ -87,3 +89,7 @@ Route::get('/kegiatandaniuran/index', [KegiatandanIuranController::class, 'index
 Route::get('/iuranwarga', [KegiatandanIuranController::class, 'iuranwarga'])->name('iuranwarga.index');
 
 Route::get('/placeholder', [AuthController::class, 'index'])->name('placeholder1');
+
+// Auth::routes();
+//
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

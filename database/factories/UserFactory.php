@@ -13,12 +13,13 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'username' => fake()->unique()->name(),
+            'username' => fake()->unique()->randomLetter(),
+            'nama' => fake()->userName(),
             'role' => 'admin',
             // 'email' => fake()->unique()->safeEmail(),
             // 'email_verified_at' => now(),
             'password' => bcrypt('12345'), // password
-            // 'remember_token' => Str::random(10),
+            'remember_token' => Str::random(10),
         ];
     }
 
