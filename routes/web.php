@@ -31,6 +31,7 @@ Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/proses_login', [AuthController::class, 'proses_login'])->name('proses_login');
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/proses_register', [AuthController::class, 'proses_register'])->name('proses_register');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/', [AuthController::class, 'index'])->name('dashboard');
@@ -51,7 +52,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('surat/store', [SuratController::class, 'store'])->name('surat.store');
     });
 
-    Route::prefix('pelaporan')->group(function() {
+    Route::prefix('pelaporan')->group(function () {
         Route::get('lapor', [PelaporanController::class, 'lapor'])->name('pelaporan.lapor');
         Route::get('riwayat', [PelaporanController::class, 'riwayat'])->name('pelaporan.riwayat');
         Route::get('hasilform', [PelaporanController::class, 'hasilform'])->name('pelaporan.hasilform');
