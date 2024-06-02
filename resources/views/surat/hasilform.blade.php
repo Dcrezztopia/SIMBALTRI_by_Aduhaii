@@ -8,7 +8,7 @@
       </ol>
     </nav>
     <div class="pagetitle text-center">
-      <h2 class="welcome-message-surat">Surat Pernyataan</h2>
+      <h2 class="welcome-message-surat">Hasil Form</h2>
     </div><!-- End Page Title -->
 
     <div class="container my-4">

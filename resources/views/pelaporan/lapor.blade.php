@@ -9,51 +9,40 @@
     </ol>
   </nav>
   <div class="pagetitle text-center">
-    <h2 class="welcome-message-surat">Surat</h2>
+    <h2 class="welcome-message-surat">Pengajuan Pelaporan</h2>
   </div><!-- End Page Title -->
 
   <div class="container my-4">
     <div class="card">
-      <div class="card-header" id="umumHeading">
-        <h5 class="mb-0">
-          <button class="btn-custom" data-bs-toggle="collapse" data-bs-target="#umumCollapse" aria-expanded="true" aria-controls="umumCollapse">
-            <i class="bi bi-chevron-down ms-auto">
-              <span>Pengajuan Lapor</span>
-            </i>
-          </button>
-        </h5>
-      </div>
-
-      <div id="umumCollapse" class="collapse" aria-labelledby="umumHeading" data-bs-parent="#accordion">
         <div class="card-body">
           <form>
             <label for="input1" class="form-label">Nama : </label>
             <div class="mb-3">
-              <input type="text" class="form-control" id="input1">
+              <input type="text" class="form-control" id="input1" name="nama">
             </div>
             <label for="input2" class="form-label">Tempat dan Tanggal Lahir : </label>
             <div class="mb-3">
-              <input type="text" class="form-control" id="input2">
+              <input type="text" class="form-control" id="input2" name="tempat tanggal lahir">
             </div>
             <label for="input3" class="form-label">Jenis Kelamin : </label>
             <div class="mb-3">
-              <input type="text" class="form-control" id="input3">
+              <input type="text" class="form-control" id="input3" name="jeniskelamin">
             </div>
             <label for="input4" class="form-label">Kewarganegaraan : </label>
             <div class="mb-3">
-              <input type="text" class="form-control" id="input4">
+              <input type="text" class="form-control" id="input4" name="kewarganegaraan">
             </div>
             <div class="mb-3">
               <label for="input5" class="form-label">Alamat :</label>
-              <input type="text" class="form-control" id="input5">
+              <input type="text" class="form-control" id="input5" name="alamat">
             </div>
             <div class="mb-3">
               <label for="input6" class="form-label">Hal :</label>
-              <input type="text" class="form-control" id="input6">
+              <input type="text" class="form-control" id="input6" name="hal">
             </div>
             <div class="mb-3">
               <label for="input6" class="form-label">Pengajuan :</label>
-              <input type="text" class="form-control" id="input7">
+              <input type="text" class="form-control" id="input7" name="pengajuan">
             </div>
           </form>
           <button class="btn btn-success mt-3" style="float: right;" onclick="showAlert()">

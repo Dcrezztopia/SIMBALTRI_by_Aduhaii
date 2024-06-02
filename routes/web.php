@@ -49,6 +49,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('pengajuan', [SuratController::class, 'pengajuan'])->name('surat.pengajuan');
         Route::get('riwayat', [SuratController::class, 'riwayat'])->name('surat.riwayat');
         Route::get('hasilform', [SuratController::class, 'hasilform'])->name('surat.hasilform');
+        Route::delete('{id}', [SuratController::class, 'destroy'])->name('surat.destroy'); 
+        Route::post('surat/store', [SuratController::class, 'store'])->name('surat.store');
     });
 
     Route::prefix('pelaporan')->group(function () {
