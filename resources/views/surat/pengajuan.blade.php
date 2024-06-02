@@ -13,17 +13,8 @@
 
         <div class="container my-4">
             <div class="card">
-            <div class="card-header" id="umumHeading">
-                <h5 class="mb-0">
-                <button class="btn-custom" data-bs-toggle="collapse" data-bs-target="#umumCollapse" aria-expanded="true" aria-controls="umumCollapse">
-                    <i class="bi bi-chevron-down ms-auto">
-                    <span>Pengajuan Surat</span>
-                    </i>
-                </button>
-                </h5>
-            </div>
 
-            <div id="umumCollapse" class="collapse" aria-labelledby="umumHeading" data-bs-parent="#accordion">
+
                 <div class="card-body">
                 <form>
                     <label for="input1" class="form-label">Nama : </label>
@@ -40,7 +31,7 @@
                     </div>
                     <label for="input4" class="form-label">Kewarganegaraan : </label>
                     <div class="mb-3">
-                    <input type="text" class="form-control" id="input4">
+                    <input type="text" class="form-control" id="input4" >
                     </div>
                     <div class="mb-3">
                     <label for="input5" class="form-label">Alamat :</label>
@@ -59,7 +50,7 @@
                     <i class="bi bi-save"></i> Simpan
                 </button>
                 </div>
-            </div>
+            
             </div>
         </div>
 
