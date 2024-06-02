@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('alamat_rumah', 100);
             $table->string('kepentingan', 100);
             $table->enum('perihal', ['pengantar domisili', 'pembuatan KTP', 'pengantar kematian', 'keterangan tidak mampu']);
-            $table->date('tanggal_dibuat');
+            $table->enum('status', ['menunggu', 'diterima', 'ditolak'])->default('menunggu');
             $table->timestamps();
         });
     }
