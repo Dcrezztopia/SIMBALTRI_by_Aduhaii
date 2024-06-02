@@ -14,6 +14,7 @@ use App\Http\Controllers\KegiatandanIuranController;
 use App\Http\Controllers\SuratController;
 // use App\Http\Controllers\KetuaController;
 use App\Http\Controllers\WargaController;
+use App\Http\Controllers\DataWargaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +58,12 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::get('kegiatan', [KegiatanController::class, 'index'])->name('kegiatan.index');
+    Route::get('kegiatan/create', [KegiatanController::class, 'createKegiatanWarga'])->name('kegiatan.create');
+    Route::post('kegiatan', [KegiatanController::class, 'storeKegiatanWarga']);
+    Route::get('kegiatan/edit/{id}', [KegiatanController::class, 'editKegiatanWarga'])->name('kegiatan.edit');
+    Route::post('kegiatan/update/{id}', [KegiatanController::class, 'updateKegiatanWarga'])->name('kegiatan.update');
+    Route::delete('kegiatan/{id}', [KegiatanController::class, 'destroyKegiatanWarga'])->name('kegiatan.destroy');
+
     Route::get('iuran', [IuranController::class, 'index'])->name('iuran.index');
 
     Route::prefix('bansos')->group(function () {

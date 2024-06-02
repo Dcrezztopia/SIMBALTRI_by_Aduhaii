@@ -31,7 +31,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $kegiatan->nama_kegiatan }}</td>
                                 <td>{{ $kegiatan->tanggal_pelaksanaan }}</td>
-                                <td>{{ $kegiatan->tempat }}</td>
+                                <td>{{ $kegiatan->tempat_pelaksanaan }}</td>
                                 <td>{{ $kegiatan->penanggung_jawab }}</td>
                             </tr>
                             @endforeach

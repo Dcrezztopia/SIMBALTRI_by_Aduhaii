@@ -49,7 +49,7 @@ class AdminController extends Controller
     public function index()
     {
         $this->activeSidebarItem = ['dashboard', ''];
-        return view('dashboard')
+        return view('admin.dashboard')
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem);
     }

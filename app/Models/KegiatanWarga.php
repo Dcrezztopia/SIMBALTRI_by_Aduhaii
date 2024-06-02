@@ -4,13 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class KegiatanWarga extends Model
 {
     use HasFactory;
 
     protected $table = 'kegiatan_warga';
-    protected $primaryKey = 'kegiatan_id';
-    protected $guarded = [];
+    protected $primaryKey = 'id_kegiatan';
+    protected $fillable = [
+        'nama_kegiatan',
+        'tanggal_pelaksanaan',
+        'tempat_pelaksanaan',
+        'penanggung_jawab',
+    ];
 }
