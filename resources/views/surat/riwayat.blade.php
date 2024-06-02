@@ -4,7 +4,7 @@
 <main id="main" class="main">
   <nav>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item active">Home/Pengajuan Surat/ Pengajuan Surat</li>
+      <li class="breadcrumb-item active">Home/Pelaporan/ Riwayat Pelaporan</li>
     </ol>
   </nav>
   <div class="pagetitle text-center">
@@ -18,31 +18,41 @@
           <table class="table table-striped table-hover">
             <thead>
               <tr>
-                <th>No</th>
-                <th>NIM</th>
+                <th>ID</th>
                 <th>Nama</th>
-                <th>Program Studi</th>
-                <th>Tahun Akademik</th>
-                <th>Status</th>
-                <th>Catatan</th>
+                <th>Tanggal Lahir</th>
+                <th>Kewarganegaraan</th>
+                <th>Pekerjaan</th>
+                <th>Alamat_Rumah</th>
+                <th>Kepentingan</th>
+                <th>Perihal</th>
+                <th>Tanggal_Dibuat</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              <!-- Data tabel disini -->
+              @foreach($surats as $surat)
               <tr>
-                <td>1</td>
-                <td>1234567890</td>
-                <td>John Doe</td>
-                <td>Manajemen</td>
-                <td>2023/2024</td>
-                <td>Disetujui</td>
-                <td>-</td>
+                <td>{{ $surat->id_surat }}</td>
+                <td>{{ $surat->nama }}</td>
+                <td>{{ $surat->tanggal_lahir }}</td>
+                <td>{{ $surat->kewarganegaraan }}</td>
+                <td>{{ $surat->pekerjaan }}</td>
+                <td>{{ $surat->alamat_rumah }}</td>
+                <td>{{ $surat->kepentingan }}</td>
+                <td>{{ $surat->perihal }}</td>
+                <td>{{ $surat->created_at }}</td>
                 <td>
-                  <!-- Tombol aksi disini -->
-                  <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Delete</button>
+                  <form action="{{ route('surat.destroy', $surat->id_surat) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus surat ini?');">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-sm btn-danger" type="submit">
+                      <i class="bi bi-trash"></i> Delete
+                    </button>
+                  </form>
                 </td>
               </tr>
+              @endforeach
               <!-- Akhir data tabel -->
             </tbody>
           </table>

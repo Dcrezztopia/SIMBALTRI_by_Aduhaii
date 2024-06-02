@@ -18,24 +18,27 @@
           <table class="table table-striped table-hover">
             <thead>
               <tr>
-                <th>No</th>
-                <th>NIM</th>
+                <th>ID</th>
                 <th>Nama</th>
-                <th>Tempat</th>
-                <th>Penanggung</th>
-                <th>Action</th>
+                <th>Tanggal Lahir</th>
+                <th>Jenis Kelamin</th>
+                <th>Kewarganegaraan</th>
+                <th>Alamat</th>
+                <th>Perihal</th>
+                <th>Isi</th>
               </tr>
             </thead>
             <tbody>
-              <!-- Data tabel disini -->
               <tr>
-                <td>1</td>
-                <td>1234567890</td>
-                <td>John Doe</td>
-                <td>Balai RW</td>
-                <td>Bu Risa</td>
+                <td>Proses</td>
+                <td>Proses</td>
+                <td>Proses</td>
+                <td>Proses</td>
+                <td>Proses</td>
+                <td>Proses</td>
+                <td>Proses</td>
+                <td>Proses</td>
                 <td>
-                  <!-- Tombol aksi disini -->
                   <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Delete</button>
                 </td>
               </tr>
