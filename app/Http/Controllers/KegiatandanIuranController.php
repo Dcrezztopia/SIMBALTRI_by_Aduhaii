@@ -16,5 +16,7 @@ class KegiatandanIuranController extends Controller
     {
         return view('kegiatandaniuran.iuranwarga.index');
     }
+
+    
 }
 

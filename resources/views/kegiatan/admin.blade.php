@@ -42,11 +42,13 @@
                                         <a href="{{ route('kegiatan.edit', $kegiatan->id_kegiatan) }}"
                                             class="btn btn-sm btn-info">Ubah</a>
                                         <!-- Form Delete -->
-                <form action="{{ route('kegiatan.index', $kegiatan->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus kegiatan ini?');">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
-                </form>
+                                        <form action="{{ route('kegiatan.destroy', $kegiatan->id_kegiatan) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus kegiatan ini?');" style="display:inline-block;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-sm btn-danger" type="submit">
+                                                <i class="bi bi-trash"></i> Delete
+                                            </button>
+                                        </form>                                        
                                     </td>
                                 </tr>
                                 @endforeach
