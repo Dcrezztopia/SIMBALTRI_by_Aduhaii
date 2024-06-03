@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Components\Sidebar;
-use App\Models\pengajuan_surat;
+use App\Models\PengajuanSurat;
 use Illuminate\Http\Request;
 
 class SuratController extends Controller
@@ -27,7 +27,7 @@ class SuratController extends Controller
     public function riwayat()
     {
         $this->activeSidebarItem = ['pengajuan-surat', 'riwayat'];
-        $surats = pengajuan_surat::all(); // Mengambil semua data dari tabel surat dengan menggunakan model surat
+        $surats = PengajuanSurat::all(); // Mengambil semua data dari tabel surat dengan menggunakan model surat
         return view('surat.riwayat')
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem)
@@ -44,7 +44,7 @@ class SuratController extends Controller
 
     public function destroy($id)
     {
-        $surat = pengajuan_surat::findOrFail($id);
+        $surat = PengajuanSurat::findOrFail($id);
         $surat->delete();
 
         return redirect()->route('surat.riwayat')->with('success', 'Surat berhasil dihapus.');
@@ -64,7 +64,7 @@ class SuratController extends Controller
         ]);
 
         // Simpan data ke database
-        pengajuan_surat::create([
+        PengajuanSurat::create([
             'nama' => $request->nama,
             'tanggal_lahir' => $request->tanggal_lahir,
             'kewarganegaraan' => $request->kewarganegaraan,

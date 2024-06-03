@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class pengajuan_surat extends Model
+class PengajuanSurat extends Model
 {
     use HasFactory;
 
@@ -22,5 +22,6 @@ class pengajuan_surat extends Model
         'alamat_rumah', 
         'kepentingan',
         'perihal',
+        'status',
     ];
 }
