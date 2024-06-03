@@ -57,6 +57,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('lapor', [PelaporanController::class, 'lapor'])->name('pelaporan.lapor');
         Route::get('riwayat', [PelaporanController::class, 'riwayat'])->name('pelaporan.riwayat');
         Route::get('hasilform', [PelaporanController::class, 'hasilform'])->name('pelaporan.hasilform');
+        Route::delete('{id}', [PelaporanController::class, 'destroy'])->name('pelaporan.destroy'); 
     });
 
     Route::get('kegiatan', [KegiatanController::class, 'index'])->name('kegiatan.index');
