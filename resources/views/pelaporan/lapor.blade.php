@@ -22,27 +22,34 @@
             </div>
             <label for="input2" class="form-label">Tempat dan Tanggal Lahir : </label>
             <div class="mb-3">
-              <input type="text" class="form-control" id="input2" name="tempat tanggal lahir">
+              <input type="date" class="form-control" id="input2" name="tanggal_lahir">
             </div>
-            <label for="input3" class="form-label">Jenis Kelamin : </label>
             <div class="mb-3">
-              <input type="text" class="form-control" id="input3" name="jeniskelamin">
-            </div>
+              <label for="input3" class="form-label">Jenis kelamin:</label>
+              <select class="form-control" id="input7" name="perihal">
+                  <option value="L">Laki Laki</option>
+                  <option value="P">Perempuan</option>
+              </select>
+          </div>
             <label for="input4" class="form-label">Kewarganegaraan : </label>
             <div class="mb-3">
               <input type="text" class="form-control" id="input4" name="kewarganegaraan">
             </div>
             <div class="mb-3">
-              <label for="input5" class="form-label">Alamat :</label>
-              <input type="text" class="form-control" id="input5" name="alamat">
+              <label for="input5" class="form-label">Alamat Rumah :</label>
+              <input type="text" class="form-control" id="input5" name="alamat_rumah">
             </div>
             <div class="mb-3">
-              <label for="input6" class="form-label">Hal :</label>
+              <label for="input6" class="form-label">Perihal :</label>
               <input type="text" class="form-control" id="input6" name="hal">
             </div>
             <div class="mb-3">
-              <label for="input6" class="form-label">Pengajuan :</label>
+              <label for="input6" class="form-label">Isi :</label>
               <input type="text" class="form-control" id="input7" name="pengajuan">
+            </div>
+            <div class="mb-3">
+              <label for="inputFoto" class="form-label">Foto Bukti :</label>
+              <input type="file" class="form-control" id="inputFoto" name="foto_bukti">
             </div>
           </form>
           <button class="btn btn-success mt-3" style="float: right;" onclick="showAlert()">
