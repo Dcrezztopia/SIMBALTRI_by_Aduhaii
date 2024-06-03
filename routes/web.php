@@ -49,7 +49,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('pengajuan', [SuratController::class, 'pengajuan'])->name('surat.pengajuan');
         Route::get('riwayat', [SuratController::class, 'riwayat'])->name('surat.riwayat');
         Route::get('hasilform', [SuratController::class, 'hasilform'])->name('surat.hasilform');
-        Route::delete('{id}', [SuratController::class, 'destroy'])->name('surat.destroy'); 
+        Route::delete('{id}', [SuratController::class, 'destroy'])->name('surat.destroy');
         Route::post('surat/store', [SuratController::class, 'store'])->name('surat.store');
     });
 
@@ -68,6 +68,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('kegiatan/{id}', [KegiatanController::class, 'destroyKegiatanWarga'])->name('kegiatan.destroy');
 
     Route::get('iuran', [IuranController::class, 'index'])->name('iuran.index');
+    Route::get('iuran/create', [IuranController::class, 'createKegiatanWarga'])->name('iuran.create');
+    Route::post('iuran', [IuranController::class, 'storeKegiatanWarga']);
+    Route::get('iuran/edit/{id}', [IuranController::class, 'editKegiatanWarga'])->name('iuran.edit');
+    Route::post('iuran/update/{id}', [IuranController::class, 'updateKegiatanWarga'])->name('iuran.update');
+    Route::delete('iuran/{id}', [IuranController::class, 'destroyKegiatanWarga'])->name('iuran.destroy');
 
     Route::prefix('bansos')->group(function () {
         Route::get('riwayat', [BansosController::class, 'riwayat'])->name('bansos.riwayat');

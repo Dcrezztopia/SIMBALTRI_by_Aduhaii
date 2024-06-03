@@ -23,4 +23,8 @@ class IuranWarga extends Model
     {
         return $this->belongsTo(KegiatanWarga::class, 'id_kegiatan');
     }
+    public function warga()
+    {
+        return $this->belongsTo(DataWarga::class, 'penanggung_jawab', 'nik');
+    }
 }
