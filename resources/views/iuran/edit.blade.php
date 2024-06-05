@@ -1,6 +1,7 @@
 @extends('layout.app')
 
 @section('content_body')
+
 <main id="main" class="main">
     <nav>
         <ol class="breadcrumb">
@@ -19,15 +20,15 @@
                         <div class="card-title">Form Ubah Iuran</div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('iuran.index', $iuranWarga->id_iuran) }}">
+                        <form method="POST" action="{{ route('iuran.update', $iuranWarga->id_iuran) }}">
                             @csrf
-                            @method('POST')
+                            @method('PUT')
                             <div class="form-group">
                                 <label for="id_kegiatan">Kegiatan</label>
                                 <select class="form-control" id="id_kegiatan" name="id_kegiatan" required>
                                     <option value="" disabled>Pilih Kegiatan</option>
                                     @foreach ($kegiatanWarga as $kegiatan)
-                                        <option value="{{ $kegiatan->id }}" {{ $iuranWarga->id_kegiatan == $kegiatan->id ? 'selected' : '' }}>{{ $kegiatan->nama_kegiatan }}</option>
+                                        <option value="{{ $kegiatan->id_kegiatan }}" {{ $iuranWarga->id_kegiatan == $kegiatan->id ? 'selected' : '' }}>{{ $kegiatan->nama_kegiatan }}</option>
                                     @endforeach
                                 </select>
                                 @error('id_kegiatan')

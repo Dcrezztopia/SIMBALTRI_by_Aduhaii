@@ -23,7 +23,7 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>ID Iuran</th>
+                                    <th>ID</th>
                                     <th>Kegiatan</th>
                                     <th>Periode</th>
                                     <th>Interval</th>
