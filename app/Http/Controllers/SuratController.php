@@ -60,7 +60,7 @@ class SuratController extends Controller
             'pekerjaan' => 'required|string|max:25',
             'alamat_rumah' => 'required|string|max:100',
             'kepentingan' => 'required|string|max:100',
-            'perihal' => 'required|in:pengantar domisili,pembuatan KTP,pengantar kematian,keterangan tidak mampu',
+            'perihal' => 'required|in:pengantar_domisili,pembuatan_KTP,pengantar_kematian,keterangan_tidak_mampu',
         ]);
 
         // Simpan data ke database
@@ -74,7 +74,17 @@ class SuratController extends Controller
             'perihal' => $request->perihal,
         ]);
 
-        // Redirect dengan pesan sukses
-        return redirect()->route('surat.riwayat')->with('success', 'Pengajuan surat berhasil disimpan.');
+        session([
+            'nama' => $request->nama,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'kewarganegaraan' => $request->kewarganegaraan,
+            'pekerjaan' => $request->pekerjaan,
+            'alamat_rumah' => $request->alamat_rumah,
+            'kepentingan' => $request->kepentingan,
+            'perihal' => $request->perihal,
+        ]);
+    
+        // Redirect ke halaman hasil
+        return redirect()->route('surat.hasilform');
     }
 }

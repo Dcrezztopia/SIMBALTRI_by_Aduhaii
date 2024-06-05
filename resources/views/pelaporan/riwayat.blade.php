@@ -42,8 +42,10 @@
                 <td>{{ $pelaporan->alamat_rumah }}</td>
                 <td>{{ $pelaporan->perihal }}</td>
                 <td>{{ $pelaporan->isi }}</td>
-                <td>{{ $pelaporan->foto_bukti }}</td>
-                <td>{{ $pelaporan->created_at }}</td>
+                <td>
+                  <img src="{{ Storage::url($pelaporan->foto_bukti) }}" alt="Foto Bukti" class="img-thumbnail" style="width: 100px; height: auto;">
+                </td>               
+                 <td>{{ $pelaporan->created_at }}</td>
                 <td>
                   <form action="{{ route('pelaporan.destroy', $pelaporan->id_pelaporan) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus pelaporan ini?');">
                     @csrf
