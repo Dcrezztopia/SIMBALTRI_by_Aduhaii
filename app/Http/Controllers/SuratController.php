@@ -5,14 +5,20 @@ namespace App\Http\Controllers;
 use App\Components\Sidebar;
 use App\Models\PengajuanSurat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SuratController extends Controller
 {
     private $sidebarItems;
     private $activeSidebarItem;
+    private $user;
 
     public function __construct()
     {
+        $this->middleware(function ($request, $next) {
+            $this->user = Auth::user();
+            return $next($request);
+        });
         $this->sidebarItems = (new Sidebar())->getItems();
     }
 
@@ -20,6 +26,7 @@ class SuratController extends Controller
     {
         $this->activeSidebarItem = ['pengajuan-surat', 'pengajuan-surat'];
         return view('surat.pengajuan')
+            ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem);
     }
@@ -29,6 +36,7 @@ class SuratController extends Controller
         $this->activeSidebarItem = ['pengajuan-surat', 'riwayat'];
         $surats = PengajuanSurat::all(); // Mengambil semua data dari tabel surat dengan menggunakan model surat
         return view('surat.riwayat')
+            ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem)
             ->with('surats', $surats); // Mengirim data surat ke view
@@ -38,6 +46,7 @@ class SuratController extends Controller
     {
         $this->activeSidebarItem = ['pengajuan-surat', 'pengajuan-surat'];
         return view('surat.hasilform')
+            ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem);
     }
@@ -83,7 +92,7 @@ class SuratController extends Controller
             'kepentingan' => $request->kepentingan,
             'perihal' => $request->perihal,
         ]);
-    
+
         // Redirect ke halaman hasil
         return redirect()->route('surat.hasilform');
     }

@@ -15,6 +15,7 @@ use App\Http\Controllers\SuratController;
 // use App\Http\Controllers\KetuaController;
 use App\Http\Controllers\WargaController;
 use App\Http\Controllers\DataWargaController;
+use App\Http\Controllers\WelcomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,15 +28,15 @@ use App\Http\Controllers\DataWargaController;
 |
 */
 
-Route::get('/', [AuthController::class, 'index'])->name('entry');
-Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/proses_login', [AuthController::class, 'proses_login'])->name('proses_login');
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/proses_register', [AuthController::class, 'proses_register'])->name('proses_register');
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/', [AuthController::class, 'index'])->name('dashboard');
+    // Route::get('/', [AuthController::class, 'index'])->name('dashboard');
 
     Route::prefix('admin')->middleware(['role:admin'])->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
@@ -43,6 +44,10 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::prefix('warga')->middleware(['role:warga'])->group(function () {
         Route::get('/', [WargaController::class, 'index'])->name('warga.dashboard');
+    });
+
+    Route::middleware(['role:warga'])->group(function () {
+        Route::get('home', [WargaController::class, 'index'])->name('warga.home');
     });
 
     Route::prefix('surat')->group(function () {

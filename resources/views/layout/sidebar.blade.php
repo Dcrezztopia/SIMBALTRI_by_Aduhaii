@@ -1,14 +1,25 @@
 <aside id="sidebar" class="sidebar">
     <i class="bi bi-caret-left toggle-sidebar-btn sidebar-btn" style="float: right"></i>
     <ul class="sidebar-nav" id="sidebar-nav">
-        <img src="{{ asset('assets/img/simbaltri.png') }}" alt="" style="width: 150px; height: 300;">
+        <img class="mb-3" src="{{ asset('assets/img/simbaltri.png') }}" alt="" style="width: 150px; height: 300;">
 
-        <li class="nav-item">
-            <a class="nav-link @if($activeSidebarItem[0] == 'dashboard') active @else collapsed @endif" href="{{ route('dashboard') }}">
-                <i class="bi bi-grid"></i>
-                <span>Dashboard</span>
-            </a>
-        </li><!-- End Dashboard Nav -->
+        @isset($user)
+            @if($user->role == 'admin')
+            <li class="nav-item">
+                <a class="nav-link @if($activeSidebarItem[0] == 'dashboard') active @else collapsed @endif" href="{{ route('admin.dashboard') }}">
+                    <i class="bi bi-grid"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            @elseif($user->role == 'warga')
+            <li class="nav-item">
+                <a class="nav-link @if($activeSidebarItem[0] == 'home') active @else collapsed @endif" href="{{ route('warga.home') }}">
+                    <i class="bi bi-grid"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+            @endif
+        @endisset
 
         <li class="nav-heading">Pages</li>
 

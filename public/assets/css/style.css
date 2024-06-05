@@ -669,30 +669,6 @@ body{
   font-family: 'Inter', sans-serif;
 }
 
-.pagetitle {
-  text-align: center;
-  margin: 100px auto;
-}
-
-.welcome-message {
-  font-size: 5em;
-  font-weight: bold;
-  color: #006778;
-}
-
-.welcome-message-surat {
-  font-size: 5em;
-  font-weight: bold;
-  color: #006778;
-  text-align: left;
-}
-
-.sub-message {
-  font-size: 3.5em;
-  font-weight: normal;
-  color: #006778;
-
-}
 
 /* isi kotak */
 
@@ -742,14 +718,6 @@ body{
 /* .sidebar::-webkit-scrollbar-thumb { */
 /*   background-color: #aab7cf; */
 /* } */
-
-@media (min-width: 1200px) {
-
-  #main,
-  #footer {
-    margin-left: 300px;
-  }
-}
 
 /* @media (max-width: 1199px) { */
 /*   .toggle-sidebar .sidebar { */

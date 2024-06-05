@@ -14,9 +14,14 @@ class KegiatanController extends Controller
 {
     private $sidebarItems;
     private $activeSidebarItem;
+    private $user;
 
     public function __construct()
     {
+        $this->middleware(function ($request, $next) {
+            $this->user = Auth::user();
+            return $next($request);
+        });
         $this->sidebarItems = (new Sidebar())->getItems();
     }
 
@@ -36,6 +41,7 @@ class KegiatanController extends Controller
         $this->activeSidebarItem = ['kegiatan-dan-iuran', 'kegiatan'];
         $kegiatanWarga = KegiatanWarga::all(); // Ambil data kegiatan warga dari database
         return view('kegiatan.warga')
+            ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem)
             ->with('kegiatanWarga', $kegiatanWarga); // Kirim data ke view
@@ -46,6 +52,7 @@ class KegiatanController extends Controller
         $this->activeSidebarItem = ['kegiatan-dan-iuran', 'kegiatan'];
         $kegiatanWarga = KegiatanWarga::all(); // Ambil data kegiatan warga dari database
         return view('kegiatan.admin')
+            ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem)
             ->with('kegiatanWarga', $kegiatanWarga); // Kirim data ke view
@@ -57,6 +64,7 @@ class KegiatanController extends Controller
         $this->activeSidebarItem = ['kegiatan-dan-iuran', 'kegiatan'];
         $data_warga = DataWarga::all();
         return view('kegiatan.create', compact('data_warga'))
+            ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem);
     }
@@ -93,6 +101,7 @@ class KegiatanController extends Controller
 
         $this->activeSidebarItem = ['kegiatan-dan-iuran', 'kegiatan'];
         return view('kegiatan.edit')
+            ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem)
             ->with('kegiatanWarga', $kegiatanWarga);

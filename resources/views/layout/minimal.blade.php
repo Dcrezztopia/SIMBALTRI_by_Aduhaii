@@ -1,9 +1,7 @@
 @include('layout.head')
 {{--@include('layout.header')--}}
-@include('layout.sidebar')
 
 <main id="main">
-    @include('layout.navbar')
     @yield('content_body')
     <div id="main-bg"></div>
 </main>
@@ -37,14 +35,14 @@
             padding: 10px;
         }
     }
-
     @media (min-width: 1200px) {
 
     #main,
     #footer {
-        margin-left: 300px;
+        margin-left: 30px;
     }
     }
+
 
     .lin-gradient {
         background: linear-gradient(135deg, #ffc5bd 0%, #5fc5bd 100%);
@@ -67,5 +65,30 @@
     table[id$='-table'] {
         margin-bottom: 10px;
     }
+
+.pagetitle {
+  text-align: center;
+  margin: 100px auto;
+}
+
+.welcome-message {
+  font-size: 4em;
+  font-weight: bold;
+  color: #006778;
+}
+
+.welcome-message-surat {
+  font-size: 4em;
+  font-weight: bold;
+  color: #006778;
+  text-align: left;
+}
+
+.sub-message {
+  font-size: 3em;
+  font-weight: normal;
+  color: #006778;
+
+}
 </style>
 

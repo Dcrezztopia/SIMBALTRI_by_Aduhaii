@@ -95,12 +95,12 @@ class Sidebar {
                     ],
                 ]
             ],
-            'contoh-dengan-route' => [
-                'icon' => 'bi-menu-button-wide',
-                'label' => 'Contoh dengan Route',
-                'route' => 'placeholder1',
-                'children' => []
-            ]
+            // 'contoh-dengan-route' => [
+            //     'icon' => 'bi-menu-button-wide',
+            //     'label' => 'Contoh dengan Route',
+            //     'route' => 'placeholder1',
+            //     'children' => []
+            // ]
         ];
     }
 

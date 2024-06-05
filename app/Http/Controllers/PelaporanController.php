@@ -5,15 +5,20 @@ namespace App\Http\Controllers;
 use App\Components\Sidebar;
 use Illuminate\Http\Request;
 use App\Models\Pelaporan;
-
+use Illuminate\Support\Facades\Auth;
 
 class  PelaporanController extends Controller
 {
     private $sidebarItems;
     private $activeSidebarItem;
+    private $user;
 
     public function __construct()
     {
+        $this->middleware(function ($request, $next) {
+            $this->user = Auth::user();
+            return $next($request);
+        });
         $this->sidebarItems = (new Sidebar())
             ->getItems();
     }
@@ -37,6 +42,7 @@ class  PelaporanController extends Controller
     {
         $this->activeSidebarItem = ['pelaporan', 'lapor'];
         return view('pelaporan.lapor')
+            ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem);
     }
@@ -46,6 +52,7 @@ class  PelaporanController extends Controller
         $this->activeSidebarItem = ['pelaporan', 'riwayat'];
         $pelaporans = Pelaporan::all(); // Mengambil semua data dari tabel pelaporan dengan menggunakan model pelaporan
         return view('pelaporan.riwayat')
+            ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem)
             ->with('pelaporans', $pelaporans); // Mengirim data pelaporan ke view
@@ -55,6 +62,7 @@ class  PelaporanController extends Controller
     {
         $this->activeSidebarItem = ['pelaporan', 'hasilform'];
         return view('pelaporan.hasilform')
+            ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem);
     }
@@ -80,7 +88,7 @@ class  PelaporanController extends Controller
             'foto_bukti' => 'required|image|max:2048', // Validasi foto bukti
         ]);
 
-    
+
         if ($request->hasFile('foto_bukti')) {
             $file = $request->file('foto_bukti');
             $path = $file->store('public/foto_bukti');

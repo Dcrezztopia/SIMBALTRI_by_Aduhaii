@@ -27,12 +27,21 @@
         <!-- <div class="big-box"> -->
         <!-- Content inside the box can go here if needed -->
         </div>
-        <div class="d-flex">
-            <div class="card">
-                <div class="card-header lin-gradient-light-primary text-dark">
-                    News & Updates
-                </div>
-                <div class="card-body">
+        <div class="row ma-5">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header lin-gradient-light-primary text-dark">
+                        News & Updates
+                    </div>
+                    <div class="card-body">
+                        <div class="news">
+                            <div class="news-item">
+                                <div class="news-title">
+                                    <h4>News Title</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

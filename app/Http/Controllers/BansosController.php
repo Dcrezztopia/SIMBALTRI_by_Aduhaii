@@ -9,6 +9,7 @@ use App\Models\PengajuanBansos;
 use App\Models\PerbandinganKriteriaBansos;
 use App\Models\PerhitunganAhp;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -18,9 +19,14 @@ class BansosController extends Controller
 {
     private $sidebarItems;
     private $activeSidebarItem;
+    private $user;
 
     public function __construct()
     {
+        $this->middleware(function ($request, $next) {
+            $this->user = Auth::user();
+            return $next($request);
+        });
         $this->sidebarItems = (new Sidebar())->getItems();
     }
 
@@ -32,6 +38,7 @@ class BansosController extends Controller
     {
         $this->activeSidebarItem = ['bansos', 'riwayat'];
         return view('bansos.riwayat')
+            ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem);
     }
@@ -40,6 +47,7 @@ class BansosController extends Controller
     {
         $this->activeSidebarItem = ['bansos', 'permintaan'];
         return view('bansos.permintaan')
+            ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem);
     }
@@ -48,6 +56,7 @@ class BansosController extends Controller
     {
         $this->activeSidebarItem = ['bansos', 'pengajuan'];
         return view('bansos.pengajuan')
+            ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem);
     }
@@ -56,6 +65,7 @@ class BansosController extends Controller
     {
         $this->activeSidebarItem = ['bansos', 'data'];
         return view('bansos.data')
+            ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem);
     }
@@ -64,6 +74,7 @@ class BansosController extends Controller
     {
         $this->activeSidebarItem = ['bansos', 'evaluasi-penerima'];
         return view('bansos.evaluasi-penerima')
+            ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem);
     }
@@ -72,6 +83,7 @@ class BansosController extends Controller
     {
         $this->activeSidebarItem = ['bansos', 'penerima'];
         return view('bansos.penerima')
+            ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem);
     }

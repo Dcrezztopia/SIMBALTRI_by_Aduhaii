@@ -28,6 +28,26 @@ class AuthController extends Controller
                 default => redirect()->intended('login'),
             };
         }
+        return redirect()->route('welcome');
+    }
+
+    public function login()
+    {
+        $user = Auth::user();
+
+        if ($user) {
+            return match ($user->role) {
+                'admin' => redirect()->route('admin.dashboard'),
+                'ketua_rt' => redirect()->intended('ketua_rt'),
+                'ketua_rw' => redirect()->intended('ketua_rw'),
+                'sekretaris_rw' => redirect()->intended('sekretaris'),
+                'sekretaris_rt' => redirect()->intended('sekretaris'),
+                'bendahara_rw' => redirect()->intended('bendahara'),
+                'bendahara_rt' => redirect()->intended('bendahara'),
+                'warga' => redirect()->intended('warga'),
+                default => redirect()->intended('login'),
+            };
+        }
         return view('login');
     }
 
