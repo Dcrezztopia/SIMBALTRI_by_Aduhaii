@@ -43,16 +43,16 @@
                     <div class="mb-3">
                         <label for="input7" class="form-label">Perihal:</label>
                         <select class="form-control" id="input7" name="perihal">
-                            <option value="pengantar domisili">Pengantar Domisili</option>
-                            <option value="pembuatan KTP">Pembuatan KTP</option>
-                            <option value="pengantar kematian">Pengantar Kematian</option>
-                            <option value="keterangan tidak mampu">Keterangan Tidak Mampu</option>
+                            <option value="pengantar_domisili">Pengantar Domisili</option>
+                            <option value="pembuatan_KTP">Pembuatan KTP</option>
+                            <option value="pengantar_kematian">Pengantar Kematian</option>
+                            <option value="keterangan_tidak_mampu">Keterangan Tidak Mampu</option>
                         </select>
                     </div>
+                    <button type="submit" class="btn btn-success mt-3" style="float: right;" id="customAlert">
+                        <i class="bi bi-save"></i> Simpan
+                    </button>                    
                 </form>
-                <button type="submit" class="btn btn-success mt-3" style="float: right;" onclick="showAlert()">
-                    <i class="bi bi-save"></i> Simpan
-                </button>
                 </div>
 
             </div>
@@ -82,10 +82,13 @@
     </div>
 
     <script>
-    function showAlert() {
-        var alert = document.getElementById('customAlert');
-        alert.classList.add('show');
-    }
+        function showAlert() {
+            var alert = document.getElementById('customAlert');
+            alert.classList.add('show');
+            setTimeout(function() {
+                acceptPengajuan();
+            }, 7000); // Tunda 5 detik sebelum mengirim form
+        }
 
     function closeAlert() {
         var alert = document.getElementById('customAlert');

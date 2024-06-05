@@ -11,6 +11,7 @@ class KegiatanWarga extends Model
 
     protected $table = 'kegiatan_warga';
     protected $primaryKey = 'id_kegiatan';
+    
     protected $fillable = [
         'nama_kegiatan',
         'tanggal_pelaksanaan',
