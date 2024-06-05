@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('nama', 100);
             $table->string('nik', 16)->index();
             $table->string('no_kk', 16)->index();
-            $table->enum('kondisi_rumah', ['SANGAT TIDAK LAYAK', 'LAYAK', 'SANGAT LAYAK']);
+            $table->enum('kondisi_rumah', ['SEMPURNA', 'BAIK', 'LAYAK', 'BURUK']);
+            $table->integer('luas_rumah')->length(10)->unsigned();
             $table->enum('status_pernikahan', ['BELUM/TIDAK', 'MENIKAH', 'JANDA/DUDA']);
             $table->string('pekerjaan', 25);
             $table->integer('jml_tanggungan')->length(20)->unsigned();

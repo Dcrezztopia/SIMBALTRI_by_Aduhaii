@@ -83,6 +83,16 @@ class Sidebar {
                         'label' => 'Data Bansos',
                         'route' => 'bansos.data'
                     ],
+                    'evaluasi-penerima' => [
+                        'icon' => 'bi-circle',
+                        'label' => 'Evaluasi Penerima',
+                        'route' => 'bansos.evaluasi-penerima'
+                    ],
+                    'penerima' => [
+                        'icon' => 'bi-circle',
+                        'label' => 'Penerima Bansos',
+                        'route' => 'bansos.penerima'
+                    ],
                 ]
             ],
             'contoh-dengan-route' => [

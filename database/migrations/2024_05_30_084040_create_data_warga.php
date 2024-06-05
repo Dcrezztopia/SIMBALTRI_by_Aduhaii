@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('data_warga', function (Blueprint $table) {
             // $table->id('id_warga');
             $table->string('nik', 16)->primary();
-            $table->string('no_kk', 16)->unique();
+            $table->string('no_kk', 16)->index();
             // $table->primary('nik');
             $table->string('nama', 100);
             $table->string('alamat_rumah', 200);
@@ -28,6 +28,8 @@ return new class extends Migration
             $table->enum('status_pernikahan', ['BELUM/TIDAK', 'MENIKAH', 'JANDA/DUDA']);
             $table->enum('status_penduduk', ['T', 'P', 'A']);
             $table->timestamps();
+
+            $table->unique(['nik', 'no_kk']);
         });
     }
 

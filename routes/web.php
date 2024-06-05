@@ -80,6 +80,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('permintaaan', [BansosController::class, 'permintaan'])->name('bansos.permintaan');
         Route::get('pengajuan', [BansosController::class, 'pengajuan'])->name('bansos.pengajuan');
         Route::get('data', [BansosController::class, 'data'])->name('bansos.data');
+        Route::get('evaluasi-penerima', [BansosController::class, 'evaluasi_penerima'])->name('bansos.evaluasi-penerima');
+        Route::get('penerima', [BansosController::class, 'penerima'])->name('bansos.penerima');
     });
 
     // belum diatur
