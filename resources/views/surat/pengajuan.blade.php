@@ -13,8 +13,6 @@
 
         <div class="container my-4">
             <div class="card">
-
-
                 <div class="card-body">
                     <form action="{{ route('surat.store') }}" method="POST">
                     @csrf
@@ -56,7 +54,7 @@
                     <i class="bi bi-save"></i> Simpan
                 </button>
                 </div>
-            
+
             </div>
         </div>
 

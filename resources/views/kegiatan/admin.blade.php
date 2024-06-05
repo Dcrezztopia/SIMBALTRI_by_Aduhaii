@@ -2,9 +2,10 @@
 
 @section('content_body')
 <main id="main" class="main">
-    <nav>
+    <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active">Kegiatan dan Iuran/ Kegiatan</li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Kegiatan Warga</li>
         </ol>
     </nav>
     <div class="pagetitle text-center">
@@ -37,10 +38,10 @@
                                     <td>{{ $kegiatan->nama_kegiatan }}</td>
                                     <td>{{ $kegiatan->tanggal_pelaksanaan }}</td>
                                     <td>{{ $kegiatan->tempat_pelaksanaan }}</td>
-                                    <td>{{ $kegiatan->penanggung_jawab }}</td>
+                                    <td>{{ $kegiatan->penanggungJawab->nama ?? 'N/A' }}</td>
+                                    <!-- Menampilkan nama penanggung jawab -->
                                     <td>
-                                        <a href="{{ route('kegiatan.edit', $kegiatan->id_kegiatan) }}"
-                                            class="btn btn-sm btn-info">Ubah</a>
+                                        <a href="{{ route('kegiatan.edit', $kegiatan->id_kegiatan) }}" class="btn btn-sm btn-info">Ubah</a>
                                         <!-- Form Delete -->
                                         <form action="{{ route('kegiatan.destroy', $kegiatan->id_kegiatan) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus kegiatan ini?');" style="display:inline-block;">
                                             @csrf
@@ -48,7 +49,7 @@
                                             <button class="btn btn-sm btn-danger" type="submit">
                                                 <i class="bi bi-trash"></i> Delete
                                             </button>
-                                        </form>                                        
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach

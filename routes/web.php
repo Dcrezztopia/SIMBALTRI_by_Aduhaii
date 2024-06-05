@@ -66,12 +66,14 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('kegiatan/update/{id}', [KegiatanController::class, 'updateKegiatanWarga'])->name('kegiatan.update');
     Route::delete('kegiatan/{id}', [KegiatanController::class, 'destroyKegiatanWarga'])->name('kegiatan.destroy');
 
-    Route::get('iuran', [IuranController::class, 'index'])->name('iuran.index');
-    Route::get('iuran/create', [IuranController::class, 'createKegiatanWarga'])->name('iuran.create');
-    Route::post('iuran', [IuranController::class, 'storeKegiatanWarga']);
-    Route::get('iuran/edit/{id}', [IuranController::class, 'editKegiatanWarga'])->name('iuran.edit');
-    Route::post('iuran/update/{id}', [IuranController::class, 'updateKegiatanWarga'])->name('iuran.update');
-    Route::delete('iuran/{id}', [IuranController::class, 'destroyKegiatanWarga'])->name('iuran.destroy');
+    Route::prefix('iuran')->middleware(['auth'])->group(function () {
+        Route::get('/', [IuranController::class, 'index'])->name('iuran.index');
+        Route::get('/create', [IuranController::class, 'createIuranWarga'])->name('iuran.create');
+        Route::post('/', [IuranController::class, 'storeIuranWarga'])->name('iuran.store');
+        Route::get('/edit/{id}', [IuranController::class, 'editIuranWarga'])->name('iuran.edit');
+        Route::post('/update/{id}', [IuranController::class, 'updateIuranWarga'])->name('iuran.update');
+        Route::delete('/{id}', [IuranController::class, 'destroyIuranWarga'])->name('iuran.destroy');
+    });
 
     Route::prefix('bansos')->group(function () {
         Route::get('riwayat', [BansosController::class, 'riwayat'])->name('bansos.riwayat');

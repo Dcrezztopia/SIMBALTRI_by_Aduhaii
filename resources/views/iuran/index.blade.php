@@ -4,7 +4,8 @@
 <main id="main" class="main">
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active">Home/Kegiatan dan Iuran/ Iuran Warga</li>
+            <li class="breadcrumb-item"><a href="{{ route('iuran.index') }}">Home</a></li>
+            <li class="breadcrumb-item active">Iuran dan Iuran / Iuran Warga</li>
         </ol>
     </nav>
     <div class="pagetitle text-center">
@@ -19,24 +20,30 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Kegiatan</th>
-                                <th>Tanggal Pelaksanaan</th>
-                                <th>Tempat</th>
+                                <th>Kegiatan</th>
+                                <th>Periode</th>
+                                <th>Interval</th>
                                 <th>Penanggung Jawab</th>
+                                <th>Total</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($kegiatan as $index => $item)
+                            @foreach ($iuranWarga as $index => $item)
                             <tr>
                                 <td>{{ $index + 1 }}</td>
-                                <td>{{ $item->nama }}</td>
-                                <td>{{ $item->tanggal_pelaksanaan }}</td>
-                                <td>{{ $item->tempat }}</td>
+                                <td>{{ $item->kegiatan->nama_kegiatan }}</td>
+                                <td>{{ $item->periode }}</td>
+                                <td>{{ $item->interval }}</td>
                                 <td>{{ $item->penanggung_jawab }}</td>
+                                <td>{{ number_format($item->total, 0, ',', '.') }}</td>
                                 <td>
+                                    <a href="{{ route('iuran.edit', $item->id_iuran) }}"
+                                        class="btn btn-warning btn-sm">Ubah</a>
                                     <!-- Form Delete -->
-                                    <form action="{{ route('kegiatan.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus kegiatan ini?');">
+                                    <form action="{{ route('iuran.destroy', $item->id_iuran) }}" method="POST"
+                                        onsubmit="return confirm('Apakah Anda yakin ingin menghapus iuran ini?');"
+                                        style="display:inline;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
@@ -50,6 +57,5 @@
             </div>
         </div>
     </section>
-</main><!--
- End #main -->
+</main><!-- End #main -->
 @endsection

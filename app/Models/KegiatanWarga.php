@@ -17,4 +17,9 @@ class KegiatanWarga extends Model
         'tempat_pelaksanaan',
         'penanggung_jawab',
     ];
+
+    public function penanggungJawab()
+    {
+        return $this->belongsTo(DataWarga::class, 'penanggung_jawab', 'nik');
+    }
 }
