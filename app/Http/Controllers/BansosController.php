@@ -207,7 +207,7 @@ class BansosController extends Controller
     {
         DB::beginTransaction();
         try {
-            foreach ($request->all_perbandingan as $perbandingan) {
+            foreach ($request->perbandingan as $perbandingan) {
                 $p = PerbandinganKriteriaBansos::firstWhere(
                     [
                         'right_id' => $perbandingan['right_id'],

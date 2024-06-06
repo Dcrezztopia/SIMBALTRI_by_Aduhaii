@@ -24,7 +24,7 @@
             <!--         <button class="btn btn-primary text-light" id="tambah_kriteria" onclick="addKriteria">Tambah</button> -->
             <!--     </div> -->
             <!-- </div> -->
-            <div class="mt-2">
+            <div id="kriteria-wrapper" class="mt-2">
                 <h5 class="text-dark d-inline">Kriteria : </h5>
                 <button class="btn btn-sm btn-primary text-light" type="button" data-bs-toggle="collapse" data-bs-target="#kriteriaCollapse" aria-expanded="false" aria-controls="kriteriaCollapse">
                     Show/Hide
@@ -35,7 +35,7 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-3">
+            <div id="perbandingan-wrapper" class="mt-3">
                 <h5 class="text-dark d-inline">Perbandingan : </h5>
                 <button class="btn btn-sm btn-primary text-light" type="button" data-bs-toggle="collapse" data-bs-target="#perbandingenCollapse" aria-expanded="false" aria-controls="perbandingenCollapse">
                     Show/Hide
@@ -45,6 +45,9 @@
                         <div class="d-inline">
                             <button class="btn btn-primary text-light mb-2" id="set-perbandingan">Set Perbandingan</button>
                             <button class="btn btn-success text-light mb-2" id="evaluasi-kriteria">Evaluasi Kriteria</button>
+                            <div class="spinner-border d-none" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
                         </div>
                         <form id="form-perbandingan">
                             <div id="perbandingan-kriteria"> </div>
@@ -66,7 +69,7 @@
             <!--         </div> -->
             <!--     </div> -->
             <!-- </div> -->
-            <div class="mt-3">
+            <div id="hasil-evaluasi-wrapper" class="mt-3">
                 <div class="card">
                     <div class="card-header lin-gradient-light-primary text-dark">
                         Tabel Hasil Evaluasi
@@ -149,6 +152,7 @@
         $('#set-perbandingan').click(function() {
             document.querySelector('#form-perbandingan').reportValidity();
             var perbandingan = [];
+            $('#perbandingan-wrapper .spinner-border').removeClass('d-none');
             $('.perbandingan').each(function() {
                 var right_id = $(this).find('.kriteria').eq(1).attr('id').split('-')[2];
                 var left_id = $(this).find('.kriteria').eq(0).attr('id').split('-')[2];
@@ -160,24 +164,44 @@
                     right_val: right_val,
                     left_val: left_val
                 });
-                $.ajax({
-                    url: '/api/bansos/perbandingan/',
-                    method: 'POST',
-                    data: {
-                        right_id: right_id,
-                        left_id: left_id,
-                        left_val: left_val,
-                        right_val: right_val
-                    },
-                    success: function(data) {
-                        console.log(data);
-                    },
-                    error: function(data) {
-                        console.log(data);
-                    }
-                });
+                // $.ajax({
+                //     url: '/api/bansos/perbandingan/',
+                //     method: 'POST',
+                //     async: false,
+                //     data: {
+                //         right_id: right_id,
+                //         left_id: left_id,
+                //         left_val: left_val,
+                //         right_val: right_val
+                //     },
+                //     success: function(data) {
+                //         console.log(data);
+                //     },
+                //     error: function(data) {
+                //         console.log(data);
+                //     }
+                // });
             });
-            refreshPerbandingan2();
+            console.log(perbandingan);
+            $.ajax({
+                url: '/api/bansos/perbandingan/set-multiple',
+                method: 'POST',
+                data: {
+                    perbandingan: perbandingan
+                },
+                success: function(data) {
+                    console.log(data);
+                    // refreshPerbandingan();
+                    refreshPerbandingan2();
+                    $('#perbandingan-wrapper .spinner-border').addClass('d-none');
+                },
+                error: function(data) {
+                    console.log(data);
+                    $('#perbandingan-wrapper .spinner-border').addClass('d-none');
+                }
+            });
+            // refreshPerbandingan2();
+            // $('#perbandingan-wrapper .spinner-border').addClass('d-none');
         });
 
         function enableDeleteKriteriaBtn() {
@@ -284,11 +308,15 @@
                 success: function(data) {
                     // console.log(data);
                     // data = JSON.parse(data);
-                    for (var perbandingan of data) {
-                        // console.log(perbandingan);
-                        $('#value-perbandingan-right-' + perbandingan.right_id).val(perbandingan.right_val);
-                        $('#value-perbandingan-left-' + perbandingan.left_id).val(perbandingan.left_val);
-                    }
+                    $('.perbandingan').each(function() {
+                        var right_id = $(this).find('.kriteria').eq(1).attr('id').split('-')[2];
+                        var left_id = $(this).find('.kriteria').eq(0).attr('id').split('-')[2];
+                        var right_val = $(this).find('.value-perbandingan').eq(1).val();
+                        var left_val = $(this).find('.value-perbandingan').eq(0).val();
+                        var perbandingan = data.find((el) => el.left_id == left_id && el.right_id == right_id);
+                        $(this).find('.value-perbandingan').eq(0).val(perbandingan.left_val);
+                        $(this).find('.value-perbandingan').eq(1).val(perbandingan.right_val);
+                    });
                 },
                 error: function(data) {
                     console.log(data);
@@ -436,5 +464,10 @@
         .cell.identifier {
             background-color: #f0f0f0;
         }
+
+        .spinner-border {
+            /* margin: 10px; */
+        }
+
     </style>
 @endpush
