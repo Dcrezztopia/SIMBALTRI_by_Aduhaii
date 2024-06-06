@@ -207,17 +207,25 @@ class BansosController extends Controller
     {
         DB::beginTransaction();
         try {
-            foreach ($request->perbandingan as $perbandingan) {
-                $p = PerbandinganKriteriaBansos::firstWhere(
-                    [
-                        'right_id' => $perbandingan['right_id'],
-                        'left_id' => $perbandingan['left_id']
+            array_map(function($perbandingan) {
+                PerbandinganKriteriaBansos::where('left_id', $perbandingan['left_id'])
+                    ->where('right_id', $perbandingan['right_id'])
+                    ->update([
+                        'left_val' => $perbandingan['left_val'],
+                        'right_val' => $perbandingan['right_val']
                     ]);
-                $p->left_val = $perbandingan['left_val'];
-                $p->right_val = $perbandingan['right_val'];
-                $p->save();
-                Log::info($p);
-            }
+            }, $request->perbandingan);
+            // foreach ($request->perbandingan as $perbandingan) {
+            //     $p = PerbandinganKriteriaBansos::firstWhere(
+            //         [
+            //             'right_id' => $perbandingan['right_id'],
+            //             'left_id' => $perbandingan['left_id']
+            //         ]);
+            //     $p->left_val = $perbandingan['left_val'];
+            //     $p->right_val = $perbandingan['right_val'];
+            //     $p->save();
+            //     Log::info($p);
+            // }
             DB::commit();
             $all_perbandingan = PerbandinganKriteriaBansos::all();
             Log::info($all_perbandingan);
