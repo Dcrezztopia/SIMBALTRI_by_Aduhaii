@@ -67,5 +67,30 @@
     table[id$='-table'] {
         margin-bottom: 10px;
     }
+
+.pagetitle {
+  text-align: center;
+  margin: 100px auto;
+}
+
+.welcome-message {
+  font-size: 5em;
+  font-weight: bold;
+  color: #006778;
+}
+
+.welcome-message-surat {
+  font-size: 5em;
+  font-weight: bold;
+  color: #006778;
+  text-align: left;
+}
+
+.sub-message {
+  font-size: 3.5em;
+  font-weight: normal;
+  color: #006778;
+
+}
 </style>
 

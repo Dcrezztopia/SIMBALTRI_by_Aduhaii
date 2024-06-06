@@ -16,6 +16,7 @@ class PerbandinganKriteriaBansos extends Model
         'right_val',
         'left_val',
     ];
+    public $timestamps = false;
 
     public function right()
     {

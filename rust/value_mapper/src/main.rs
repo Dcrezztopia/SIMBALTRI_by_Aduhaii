@@ -56,7 +56,8 @@ fn main() {
     // }
     let args: Vec<String> = args().collect();
     let input =
-        serde_json::from_str::<Input>(&args[1]).unwrap_or_else(|_| panic!("Failed to parse input"));
+        serde_json::from_str::<Input>(&args[1]).map_err(|e| format!("Failed to parse input\nError: {}\nInput: {}", e, args[1]))
+            .unwrap();
     let mut output = Vec::with_capacity(input.data.len());
     for i in 0..input.data.len() {
         let mut row = Vec::with_capacity(input.kriteria.len());

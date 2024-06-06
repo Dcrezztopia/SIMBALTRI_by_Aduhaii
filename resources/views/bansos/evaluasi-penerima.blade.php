@@ -66,6 +66,28 @@
             <!--         </div> -->
             <!--     </div> -->
             <!-- </div> -->
+            <div class="mt-3">
+                <div class="card">
+                    <div class="card-header lin-gradient-light-primary text-dark">
+                        Tabel Hasil Evaluasi
+                    </div>
+                    <div class="card-body">
+                        <button class="btn btn-primary text-light mb-3" id="btn-hasil-evaluasi">Evaluasi</button>
+                        <table id="hasil-evaluasi">
+                            <thead id="hasil-evaluasi-head">
+                                <tr>
+                                    <th class="cell identifier">Ranking</th>
+                                    <th class="cell identifier">Nik</th>
+                                    <th class="cell identifier">Nama</th>
+                                    <th class="cell identifier">Nilai Evaluasi</th>
+                               </tr>
+                            </thead>
+                            <tbody id="hasil-evaluasi-body">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -76,6 +98,7 @@
         $(document).ready(function() {
             refreshKriteria();
             refreshPerbandingan();
+            refreshHasilEvaluasi();
             // refreshMappedValue();
         });
 
@@ -117,6 +140,10 @@
                     console.log(data);
                 }
             });
+        });
+
+        $('#btn-hasil-evaluasi').click(function() {
+            refreshHasilEvaluasi();
         });
 
         $('#set-perbandingan').click(function() {
@@ -303,6 +330,47 @@
                 }
             });
         }
+
+        function refreshHasilEvaluasi() {
+            $.ajax({
+            url: '/api/bansos/evaluasi',
+            method: 'GET',
+            success: function(data) {
+                console.log(data);
+                // the data will look like
+                // [
+                //      {
+                //          "ranking": 2,
+                //          "nik": "1234567890",
+                //          "nama": "Seseorang",
+                //          "nilai": 123,
+                //      },
+                //      {
+                //          "ranking": 1,
+                //          "nik": "2458637901",
+                //          "nama": "Manusia",
+                //          "nilai": 223,
+                //      },
+                // ]
+                $('#hasil-evaluasi-body').empty();
+                for (var i = 0; i < data.length; i++) {
+                    let singeData = data.find((el) => el.ranking == i + 1);
+                    $('#hasil-evaluasi-body').append(`
+                        <tr>
+                            <td class="cell">${singeData.ranking}</td>
+                            <td class="cell">${singeData.nik}</td>
+                            <td class="cell">${singeData.nama}</td>
+                            <td class="cell">${singeData.nilai}</td>
+                        </tr>
+                    `);
+                }
+            },
+            error: function(data) {
+                console.log(data);
+            }
+            });
+        }
+
 
     </script>
 @endpush

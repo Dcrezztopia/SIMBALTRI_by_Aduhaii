@@ -30,4 +30,5 @@ Route::prefix('bansos')->group(function () {
     Route::get('perbandingan', [BansosController::class, 'perbandingan'])->name('bansos.perbandingan');
     Route::post('perbandingan', [BansosController::class, 'set_perbandingan'])->name('bansos.perbandingan.post');
     Route::post('perbandingan/set-multiple', [BansosController::class, 'set_multiple_perbandingan'])->name('bansos.perbandingan.set-multiple');
+    Route::get('evaluasi', [BansosController::class, 'evaluasi'])->name('bansos.evaluasi');
 });

@@ -307,53 +307,177 @@ class BansosController extends Controller
         }
     }
 
-public function mapped_value() {
-    $kriteria = KriteriaBansos::select('id', 'nama', 'jenis', 'jenis_score', 'weight', 'column_name', 'weight')->get();
-    $mapper = KriteriaMappedScore::all();
-    $data = PengajuanBansos::all();
-    $input = [
-        'kriteria' => $kriteria,
-        'mapper' => $mapper,
-        'data' => $data
-    ];
+    private function raw_mapped_value() {
+        $kriteria = KriteriaBansos::select('id', 'nama', 'jenis', 'jenis_score', 'weight', 'column_name', 'weight')->get();
+        $mapper = KriteriaMappedScore::all();
+        $data = PengajuanBansos::all();
+        $input2 = [
+            'kriteria' => $kriteria,
+            'mapper' => $mapper,
+            'data' => $data
+        ];
 
-    $command = "/home/alimulap/.kuliah/college_stuff/spk/value_mapper/target/release/value_mapper '" . json_encode($input) . "'";
+        $command = "";// "/home/alimulap/.kuliah/college_stuff/spk/value_mapper/target/release/value_mapper '" . json_encode($input) . "'";
 
-    $descriptorspec = [
-        0 => ["pipe", "r"],  // stdin is a pipe that the child will read from
-        1 => ["pipe", "w"],  // stdout is a pipe that the child will write to
-        2 => ["pipe", "w"]   // stderr is a pipe that the child will write to
-    ];
-
-    $process = proc_open($command, $descriptorspec, $pipes);
-
-    if (is_resource($process)) {
-        // Write input to the process
-        fwrite($pipes[0], json_encode($input));
-        fclose($pipes[0]);
-
-        // Capture output and error messages
-        $output = stream_get_contents($pipes[1]);
-        fclose($pipes[1]);
-
-        $error = stream_get_contents($pipes[2]);
-        fclose($pipes[2]);
-
-        $return_value = proc_close($process);
-
-        if ($return_value !== 0) {
-            return response(['message' => 'Failed to map value', 'error' => $error], 500);
+        if (PHP_OS_FAMILY === "Linux") {
+            $command = "./../../../rust/bin/linux/value_mapper '" . json_encode($input2) . "'";
+        } elseif (PHP_OS_FAMILY === "Windows") {
+            $command = "./../../../rust/bin/windows/value_mapper.exe '" . json_encode($input2) . "'";
         }
 
-        return [
-            'kriteria' => $kriteria->pluck('nama'),
-            'data' => $data->pluck('nama'),
-            'values' => json_decode($output),
-            'weight' => $kriteria->pluck('weight'),
-            'jenis' => $kriteria->pluck('jenis'),
+        $descriptorspec = [
+            0 => ["pipe", "r"],  // stdin is a pipe that the child will read from
+            1 => ["pipe", "w"],  // stdout is a pipe that the child will write to
+            2 => ["pipe", "w"]   // stderr is a pipe that the child will write to
         ];
-    } else {
-        return response(['message' => 'Failed to open process'], 500);
+
+        $process = proc_open($command, $descriptorspec, $pipes, __DIR__);
+
+        if (is_resource($process)) {
+            // Write input to the process
+            fwrite($pipes[0], json_encode($input2));
+            fclose($pipes[0]);
+
+            // Capture output and error messages
+            $output = stream_get_contents($pipes[1]);
+            fclose($pipes[1]);
+
+            $error = stream_get_contents($pipes[2]);
+            fclose($pipes[2]);
+
+            $return_value = proc_close($process);
+
+            if ($return_value !== 0) {
+                throw new \Exception('Failed to map value' . $error);
+            }
+
+            return [
+                'kriteria' => $kriteria->pluck('nama'),
+                'data' => $data->pluck('nama'),
+                'values' => json_decode($output),
+                'weight' => $kriteria->pluck('weight'),
+                'jenis' => $kriteria->pluck('jenis'),
+            ];
+        } else {
+            throw new \Exception('Failed to open process');
+        }
     }
-}
+
+    public function mapped_value() {
+        $kriteria = KriteriaBansos::select('id', 'nama', 'jenis', 'jenis_score', 'weight', 'column_name', 'weight')->get();
+        $mapper = KriteriaMappedScore::all();
+        $data = PengajuanBansos::all();
+        $input = [
+            'kriteria' => $kriteria,
+            'mapper' => $mapper,
+            'data' => $data
+        ];
+
+        $command = "";// "/home/alimulap/.kuliah/college_stuff/spk/value_mapper/target/release/value_mapper '" . json_encode($input) . "'";
+
+        if (PHP_OS_FAMILY === "Linux") {
+            $command = "./../../../rust/bin/linux/value_mapper '" . json_encode($input) . "'";
+        } elseif (PHP_OS_FAMILY === "Windows") {
+            $command = "./../../../rust/bin/windows/value_mapper.exe '" . json_encode($input) . "'";
+        }
+
+        $descriptorspec = [
+            0 => ["pipe", "r"],  // stdin is a pipe that the child will read from
+            1 => ["pipe", "w"],  // stdout is a pipe that the child will write to
+            2 => ["pipe", "w"]   // stderr is a pipe that the child will write to
+        ];
+
+        $process = proc_open($command, $descriptorspec, $pipes, __DIR__);
+
+        if (is_resource($process)) {
+            // Write input to the process
+            fwrite($pipes[0], json_encode($input));
+            fclose($pipes[0]);
+
+            // Capture output and error messages
+            $output = stream_get_contents($pipes[1]);
+            fclose($pipes[1]);
+
+            $error = stream_get_contents($pipes[2]);
+            fclose($pipes[2]);
+
+            $return_value = proc_close($process);
+
+            if ($return_value !== 0) {
+                return response(['message' => 'Failed to map value', 'error' => $error], 500);
+            }
+
+            return [
+                'kriteria' => $kriteria->pluck('nama'),
+                'data' => $data->pluck('nama'),
+                'values' => json_decode($output),
+                'weight' => $kriteria->pluck('weight'),
+                'jenis' => $kriteria->pluck('jenis'),
+            ];
+        } else {
+            return response(['message' => 'Failed to open process'], 500);
+        }
+    }
+
+    public function evaluasi()
+    {
+        $mapped_value = $this->raw_mapped_value();
+        $input = [
+            "data" => $mapped_value['values'],
+            "weight" => $mapped_value['weight'],
+            "criteria_kind" => $mapped_value['jenis']
+        ];
+        $command = "";// "/home/alimulap/.kuliah/college_stuff/spk/value_mapper/target/release/value_mapper '" . json_encode($input) . "'";
+
+        if (PHP_OS_FAMILY === "Linux") {
+            $command = "./../../../rust/bin/linux/electre '" . json_encode($input) . "'";
+        } elseif (PHP_OS_FAMILY === "Windows") {
+            $command = "./../../../rust/bin/windows/electre.exe '" . json_encode($input) . "'";
+        }
+
+        $descriptorspec = [
+            0 => ["pipe", "r"],  // stdin is a pipe that the child will read from
+            1 => ["pipe", "w"],  // stdout is a pipe that the child will write to
+            2 => ["pipe", "w"]   // stderr is a pipe that the child will write to
+        ];
+
+        $process = proc_open($command, $descriptorspec, $pipes, __DIR__);
+
+        if (is_resource($process)) {
+            // Write input to the process
+            fwrite($pipes[0], json_encode($input));
+            fclose($pipes[0]);
+
+            // Capture output and error messages
+            $output = stream_get_contents($pipes[1]);
+            fclose($pipes[1]);
+
+            $error = stream_get_contents($pipes[2]);
+            fclose($pipes[2]);
+
+            $return_value = proc_close($process);
+
+            if ($return_value !== 0) {
+                return response(['message' => 'Failed to map value', 'error' => $error], 500);
+            }
+
+            $output = json_decode($output, true);
+
+            $data = [];
+            $pengajuanBansos = PengajuanBansos::all();
+
+            foreach ($output['nilai_akhir'] as $i => $value) {
+                $data[] = [
+                    'ranking' => $output['ranking'][$i],
+                    'nik' => $pengajuanBansos[$i]->nik,
+                    'nama' => $pengajuanBansos[$i]->nama,
+                    'nilai' => $value
+                ];
+            }
+
+            return $data;
+        } else {
+            return response(['message' => 'Failed to open process'], 500);
+        }
+    }
 }
