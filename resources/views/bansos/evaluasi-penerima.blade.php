@@ -77,12 +77,12 @@
                     <div class="card-body">
                         <button class="btn btn-primary text-light mb-3" id="btn-hasil-evaluasi">Evaluasi</button>
                         <table id="hasil-evaluasi">
-                            <thead id="hasil-evaluasi-head">
+                            <thead id="hasil-evaluasi-head" class="">
                                 <tr>
-                                    <th class="cell identifier">Ranking</th>
+                                    <th class="cell identifier rounder-top-left">Ranking</th>
                                     <th class="cell identifier">Nik</th>
                                     <th class="cell identifier">Nama</th>
-                                    <th class="cell identifier">Nilai Evaluasi</th>
+                                    <th class="cell identifier rounded-top-right">Nilai Evaluasi</th>
                                </tr>
                             </thead>
                             <tbody id="hasil-evaluasi-body">
@@ -457,16 +457,9 @@
             overflow-y: scroll;
         }
 
-        .cell {
-            border: 1px solid black;
-            padding: 5px;
-        }
-        .cell.identifier {
-            background-color: #f0f0f0;
-        }
-
-        .spinner-border {
-            /* margin: 10px; */
+        #hasil-evaluasi {
+            width: 100%;
+            overflow-y: scroll;
         }
 
     </style>

@@ -1,7 +1,10 @@
 <aside id="sidebar" class="sidebar">
     <i class="bi bi-caret-left toggle-sidebar-btn sidebar-btn" style="float: right"></i>
     <ul class="sidebar-nav" id="sidebar-nav">
-        <img class="mb-3" src="{{ asset('assets/img/simbaltri.png') }}" alt="" style="width: 150px; height: 300;">
+        <a href="{{ route('home') }}">
+            <img class="my-3 ml-2" src="{{ asset('assets/img/simbaltri2.png') }}" alt="" style="width: 150px; height: 300;">
+        </a>
+        {{--<!-- <img class="my-3 ml-2" src="{{ asset('assets/img/simbaltri2.png') }}" alt="" style="width: 150px; height: 300;"> -->--}}
 
         @isset($user)
             @if($user->role == 'admin')

@@ -50,10 +50,6 @@
         background: linear-gradient(135deg, #ffc5bd 0%, #5fc5bd 100%);
     }
 
-    .lin-gradient-light-primary {
-        background: linear-gradient(135deg, #bfdfcf 0%, #5fc5bd 100%);
-    }
-
     div[id$='-table_filter'] {
         float: right;
         margin-top: -71px;

@@ -28,7 +28,7 @@ use App\Http\Controllers\WelcomeController;
 |
 */
 
-Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+Route::get('/', [AuthController::class, 'index'])->name('home');
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/proses_login', [AuthController::class, 'proses_login'])->name('proses_login');
 Route::get('/register', [AuthController::class, 'register'])->name('register');
@@ -37,6 +37,7 @@ Route::post('/proses_register', [AuthController::class, 'proses_register'])->nam
 
 Route::group(['middleware' => ['auth']], function () {
     // Route::get('/', [AuthController::class, 'index'])->name('dashboard');
+    // Route::get('home', [AuthController::class, 'index'])->name('home');
 
     Route::prefix('admin')->middleware(['role:admin'])->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');

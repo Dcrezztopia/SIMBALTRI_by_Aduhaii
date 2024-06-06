@@ -1,0 +1,38 @@
+
+.cell {
+    /* border: 1px solid black; */
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    padding: 7px;
+}
+th.cell:last-child, td.cell:last-child {
+    border-right: none;
+}
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+table {
+    border: 1px solid black;
+    border-radius: 5px;
+    border-collapse: separate !important;
+    border-spacing: 0;
+}
+
+table thead {
+    @extend .lin-gradient-light-primary;
+}
+
+table thead tr:first-child th:first-child {
+    border-radius: 5px 0 0 0;
+}
+table thead tr:first-child th:last-child {
+    border-radius: 0 5px 0 0;
+}
+table tbody tr:last-child td:last-child {
+    border-radius: 0 0 5px 0;
+}
+table tbody tr:last-child td:first-child {
+    border-radius: 0  0 0 5px;
+}
+

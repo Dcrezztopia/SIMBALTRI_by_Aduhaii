@@ -24,11 +24,11 @@ class AuthController extends Controller
                 'sekretaris_rt' => redirect()->intended('sekretaris'),
                 'bendahara_rw' => redirect()->intended('bendahara'),
                 'bendahara_rt' => redirect()->intended('bendahara'),
-                'warga' => redirect()->intended('warga'),
+                'warga' => redirect()->route('warga.home'),
                 default => redirect()->intended('login'),
             };
         }
-        return redirect()->route('welcome');
+        return view('landing-page');
     }
 
     public function login()

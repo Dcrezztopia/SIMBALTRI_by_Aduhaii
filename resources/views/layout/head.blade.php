@@ -8,6 +8,11 @@
 <title>Dashboard - SimbalTri</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
+    @vite([
+        'resources/sass/app.scss',
+        'resources/js/app.js',
+        'resources/css/app.css',
+    ])
 
   <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
 <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
@@ -26,13 +31,12 @@
   <!-- {{--<link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">--}}} -->
   <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
 
-  <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
   <link href="{{ asset('vendor/bootstrap/custom.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
 <body>
