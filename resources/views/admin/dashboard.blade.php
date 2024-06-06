@@ -1,50 +1,69 @@
 @extends('layout.app')
 
 @section('content_body')
-<main id="main" class="main">
-
-    <!-- <nav> -->
-    <!--     <ol class="breadcrumb"> -->
-    <!--         <li class="breadcrumb-item active">Dashboard</li> -->
-    <!--     </ol> -->
-    <!-- </nav> -->
-    <div class="pagetitle text-center">
-        <h2 class="welcome-message">Selamat Datang, Admin</h2>
-        <h3 class="sub-message">Di Portal Website</h3>
-        <h3 class="sub-message">Kelurahan Balearjosari</h3>
-    </div><!-- End Page Title -->
-
-    <!-- Add the new big box here -->
-    <div class="big-box">
+<div class="card">
+    <div class="card-header lin-gradient-light-primary text-dark">
+        Dashboard
+    </div>
+    <div class="card-body pa-5">
+        <!-- <div class="text-center mt-3"> -->
+        <!--     <h2 class="text-primary-dark"> -->
+        <!--         <strong> -->
+        <!--             SELAMAT DATANG -->
+        <!--         </strong> -->
+        <!--     </h2> -->
+        <!--     <h3 class="text-primary-dark"> -->
+        <!--         <strong> -->
+        <!--             DI PORTAL WEBSITE -->
+        <!--         </strong> -->
+        <!--     </h3> -->
+        <!--     <h3 class="text-primary-dark"> -->
+        <!--         <strong> -->
+        <!--             KELURAHAN BALEARJOSARI -->
+        <!--         </strong> -->
+        <!--     </h3> -->
+        <!-- </div> -->
+        <!-- Add the new big box here -->
+        <!-- <div class="big-box"> -->
         <!-- Content inside the box can go here if needed -->
+        <!-- </div> -->
+        <!-- <div class="d-flex"> -->
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header lin-gradient-light-primary text-dark">
+                            News & Updates
+                        </div>
+                        <div class="card-body">
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header lin-gradient-light-primary text-dark">
+                            News & Updates
+                        </div>
+                        <div class="card-body">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- </div> -->
     </div>
 
-    <section class="section dashboard">
-        <div class="row">
-
-            <!-- Left side columns -->
-
-
-        </div>
-        </div><!-- End News & Updates -->
-
-        </div><!-- End Right side columns -->
-
-        </div>
-    </section>
-
-</main><!-- End #main -->
+</div>
 @endsection
 
 @push('js')
-<script>
-$(document).ready(() => {
-    // alert('Something')
-})
-</script>
+    <script>
+        $(document).ready(() => {
+            // alert('Something')
+        })
+    </script>
 @endpush
 
 @push('css')
-<style>
-</style>
+    <style>
+    </style>
 @endpush
+

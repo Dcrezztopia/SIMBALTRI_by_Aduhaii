@@ -290,7 +290,7 @@ h6 {
 
 .card-body {
   padding: 20px 20px 20px 20px;
-  
+
 }
 
 .card-img-overlay {
@@ -431,12 +431,12 @@ h6 {
   /* Search Bar */
 }
 
-.header .toggle-sidebar-btn {
-  font-size: 32px;
-  padding-left: 10px;
-  cursor: pointer;
-  color: #ffffff;
-}
+/* .header .toggle-sidebar-btn { */
+/*   font-size: 32px; */
+/*   padding-left: 10px; */
+/*   cursor: pointer; */
+/*   color: #ffffff; */
+/* } */
 
 .header .search-bar {
   min-width: 360px;
@@ -638,24 +638,24 @@ h6 {
   background-color: #f6f9ff;
 }
 
-/*--------------------------------------------------------------
-# Sidebar
---------------------------------------------------------------*/
-.sidebar {
-  position: fixed;
-  top: 60px;
-  left: 0;
-  bottom: 0;
-  width: 300px;
-  z-index: 996;
-  transition: all 0.3s;
-  padding: 20px;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: #08645c transparent;
-  box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
-  background-color: #8abbb7;
-}
+/* /*-------------------------------------------------------------- */
+/* # Sidebar */
+/* --------------------------------------------------------------*/ */
+/* .sidebar { */
+/*   position: fixed; */
+/*   top: 60px; */
+/*   left: 0; */
+/*   bottom: 0; */
+/*   width: 300px; */
+/*   z-index: 996; */
+/*   transition: all 0.3s; */
+/*   padding: 20px; */
+/*   overflow-y: auto; */
+/*   scrollbar-width: thin; */
+/*   scrollbar-color: #08645c transparent; */
+/*   box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1); */
+/*   background-color: #8abbb7; */
+/* } */
 
 /* Isi */
 
@@ -669,30 +669,6 @@ body{
   font-family: 'Inter', sans-serif;
 }
 
-.pagetitle {
-  text-align: center;
-  margin: 100px auto;
-}
-
-.welcome-message {
-  font-size: 5em;
-  font-weight: bold;
-  color: #006778;
-}
-
-.welcome-message-surat {
-  font-size: 5em;
-  font-weight: bold;
-  color: #006778;
-  text-align: left;  
-}
-
-.sub-message {
-  font-size: 3.5em;
-  font-weight: normal;
-  color: #006778;
-
-}
 
 /* isi kotak */
 
@@ -727,144 +703,136 @@ body{
 
 /* end isi */
 
-@media (max-width: 1199px) {
-  .sidebar {
-    left: -300px;
-  }
-}
+/* @media (max-width: 1199px) { */
+/*   .sidebar { */
+/*     left: -300px; */
+/*   } */
+/* } */
+/**/
+/* .sidebar::-webkit-scrollbar { */
+/*   width: 5px; */
+/*   height: 8px; */
+/*   background-color: #fff; */
+/* } */
+/**/
+/* .sidebar::-webkit-scrollbar-thumb { */
+/*   background-color: #aab7cf; */
+/* } */
 
-.sidebar::-webkit-scrollbar {
-  width: 5px;
-  height: 8px;
-  background-color: #fff;
-}
+/* @media (max-width: 1199px) { */
+/*   .toggle-sidebar .sidebar { */
+/*     left: 0; */
+/*   } */
+/* } */
 
-.sidebar::-webkit-scrollbar-thumb {
-  background-color: #aab7cf;
-}
-
-@media (min-width: 1200px) {
-
-  #main,
-  #footer {
-    margin-left: 300px;
-  }
-}
-
-@media (max-width: 1199px) {
-  .toggle-sidebar .sidebar {
-    left: 0;
-  }
-}
-
-@media (min-width: 1200px) {
-
-  .toggle-sidebar #main,
-  .toggle-sidebar #footer {
-    margin-left: 0;
-  }
-
-  .toggle-sidebar .sidebar {
-    left: -300px;
-  }
-}
-
-.sidebar-nav {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.sidebar-nav li {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.sidebar-nav .nav-item {
-  margin-bottom: 5px;
-}
-
-.sidebar-nav .nav-heading {
-  font-size: 21px;
-  text-transform: uppercase;
-  color: #070707;
-  font-weight: 600;
-  margin: 20px 11px 11px 35px;
-  
-}
-
-/* Tombol Dipencet */
-.sidebar-nav .nav-link {
-  display: flex;
-  align-items: center;
-  font-size: 15px;
-  font-weight: 600;
-  color: #ffffff;
-  transition: 0.3;
-  background: #8ABBB7; 
-  padding: 10px 15px;
-  border-radius: 4px;
-  
-}
-
-/* menu yang aktif */
-.sidebar-nav .nav-link.active {
-    display: inline-block;
-    position: relative;
-}
-
-.sidebar-nav .nav-link.active::after {
-    content: "";
-    display: block;
-    width: 100%; /* Ubah ini sesuai dengan panjang garis yang diinginkan */
-    border-bottom: 5px solid #000000; /* Ketebalan dan warna garis */
-    position: absolute;
-    bottom: -5px; /* Jarak antara teks dan garis */
-    left: 20%; /* Tengah dari elemen teks */
-    color: #ffffff;
-}
-
-.sidebar-nav .nav-item .nav-link,
-.sidebar-nav .nav-content .nav-link {
-  position: relative;
-}
-
-
-.sidebar-nav .nav-link i {
-  font-size: 16px;
-  margin-right: 10px;
-  color: #000000;
-}
-
-.sidebar-nav .nav-link.collapsed {
-  color: #012970;
-  background: #8abbb7;
-}
-
-/* kotak turun */
-.sidebar-nav .nav-link.collapsed i {
-  color: #000000;
-}
-
-/* mouse geser */
-.sidebar-nav .nav-link:hover {
-  color: rgb(255, 255, 255);
-  background: #8abbb7;
-}
-
-.sidebar-nav .nav-link:hover i {
-  color: #ffffff;
-}
-
-.sidebar-nav .nav-link .bi-chevron-down {
-  margin-right: 0;
-  transition: transform 0.2s ease-in-out;
-}
-
-.sidebar-nav .nav-link:not(.collapsed) .bi-chevron-down {
-  transform: rotate(180deg);
-}
+/* @media (min-width: 1200px) { */
+/**/
+/*   .toggle-sidebar #main, */
+/*   .toggle-sidebar #footer { */
+/*     margin-left: 0; */
+/*   } */
+/**/
+/*   .toggle-sidebar .sidebar { */
+/*     left: -300px; */
+/*   } */
+/* } */
+/**/
+/* .sidebar-nav { */
+/*   padding: 0; */
+/*   margin: 0; */
+/*   list-style: none; */
+/* } */
+/**/
+/* .sidebar-nav li { */
+/*   padding: 0; */
+/*   margin: 0; */
+/*   list-style: none; */
+/* } */
+/**/
+/* .sidebar-nav .nav-item { */
+/*   margin-bottom: 5px; */
+/* } */
+/**/
+/* .sidebar-nav .nav-heading { */
+/*   font-size: 21px; */
+/*   text-transform: uppercase; */
+/*   color: #070707; */
+/*   font-weight: 600; */
+/*   margin: 20px 11px 11px 35px; */
+/**/
+/* } */
+/**/
+/* /* Tombol Dipencet */ */
+/* .sidebar-nav .nav-link { */
+/*   display: flex; */
+/*   align-items: center; */
+/*   font-size: 15px; */
+/*   font-weight: 600; */
+/*   color: #ffffff; */
+/*   transition: 0.3; */
+/*   background: #8ABBB7;  */
+/*   padding: 10px 15px; */
+/*   border-radius: 4px; */
+/**/
+/* } */
+/**/
+/* /* menu yang aktif */ */
+/* .sidebar-nav .nav-link.active { */
+/*     display: inline-block; */
+/*     position: relative; */
+/* } */
+/**/
+/* .sidebar-nav .nav-link.active::after { */
+/*     content: ""; */
+/*     display: block; */
+/*     width: 100%; /* Ubah ini sesuai dengan panjang garis yang diinginkan */ */
+/*     border-bottom: 5px solid #000000; /* Ketebalan dan warna garis */ */
+/*     position: absolute; */
+/*     bottom: -5px; /* Jarak antara teks dan garis */ */
+/*     left: 20%; /* Tengah dari elemen teks */ */
+/*     color: #ffffff; */
+/* } */
+/**/
+/* .sidebar-nav .nav-item .nav-link, */
+/* .sidebar-nav .nav-content .nav-link { */
+/*   position: relative; */
+/* } */
+/**/
+/**/
+/* .sidebar-nav .nav-link i { */
+/*   font-size: 16px; */
+/*   margin-right: 10px; */
+/*   color: #000000; */
+/* } */
+/**/
+/* .sidebar-nav .nav-link.collapsed { */
+/*   color: #012970; */
+/*   background: #8abbb7; */
+/* } */
+/**/
+/* /* kotak turun */ */
+/* .sidebar-nav .nav-link.collapsed i { */
+/*   color: #000000; */
+/* } */
+/**/
+/* /* mouse geser */ */
+/* .sidebar-nav .nav-link:hover { */
+/*   color: rgb(255, 255, 255); */
+/*   background: #8abbb7; */
+/* } */
+/**/
+/* .sidebar-nav .nav-link:hover i { */
+/*   color: #ffffff; */
+/* } */
+/**/
+/* .sidebar-nav .nav-link .bi-chevron-down { */
+/*   margin-right: 0; */
+/*   transition: transform 0.2s ease-in-out; */
+/* } */
+/**/
+/* .sidebar-nav .nav-link:not(.collapsed) .bi-chevron-down { */
+/*   transform: rotate(180deg); */
+/* } */
 
 
 /* Warna Navigasi collapse */
@@ -909,12 +877,12 @@ body{
 .sidebar-nav .nav-content a:hover,
 .sidebar-nav .nav-content a.active {
   color: #ffffff;
-  
+
 }
 
 .sidebar-nav .nav-content a.active i {
   background-color: #4154f1;
-  
+
 }
 
 /*--------------------------------------------------------------
@@ -933,7 +901,7 @@ body{
   padding-bottom: 5px;
   transition: 0.3s;
   font-size: 16px;
-  
+
 }
 
 .dashboard .filter .icon:hover,

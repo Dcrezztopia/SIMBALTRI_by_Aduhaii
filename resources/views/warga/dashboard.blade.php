@@ -5,41 +5,41 @@
 
         <!-- <nav> -->
         <!--     <ol class="breadcrumb"> -->
-        <!--         <li class="breadcrumb-item active">Dashboard</li> -->
+        <!--         <li class="breadcrumb-item active">dashboard</li> -->
         <!--     </ol> -->
         <!-- </nav> -->
         <div class="pagetitle text-center">
-            <h2 class="welcome-message">Selamat Datang</h2>
-            <h3 class="sub-message">Di Portal Website</h3>
-            <h3 class="sub-message">Kelurahan Balearjosari</h3>
-        </div><!-- End Page Title -->
+            <h2 class="welcome-message">selamat datang</h2>
+            <h3 class="sub-message">di portal website</h3>
+            <h3 class="sub-message">kelurahan balearjosari</h3>
+        </div><!-- end page title -->
 
-        <!-- Add the new big box here -->
+        <!-- add the new big box here -->
         <div class="big-box">
-        <!-- Content inside the box can go here if needed -->
+        <!-- content inside the box can go here if needed -->
         </div>
 
             <section class="section dashboard">
             <div class="row">
 
-                <!-- Left side columns -->
+                <!-- left side columns -->
 
 
                     </div>
-                </div><!-- End News & Updates -->
+                </div><!-- end news & updates -->
 
-                </div><!-- End Right side columns -->
+                </div><!-- end right side columns -->
 
             </div>
             </section>
 
-    </main><!-- End #main -->
+    </main><!-- end #main -->
 @endsection
 
 @push('js')
     <script>
         $(document).ready(() => {
-            // alert('Something')
+            // alert('something')
         })
     </script>
 @endpush

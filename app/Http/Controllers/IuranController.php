@@ -15,9 +15,14 @@ class IuranController extends Controller
 {
     private $sidebarItems;
     private $activeSidebarItem;
+    private $user;
 
     public function __construct()
     {
+        $this->middleware(function ($request, $next) {
+            $this->user = Auth::user();
+            return $next($request);
+        });
         $this->sidebarItems = (new Sidebar())->getItems();
     }
 
@@ -36,6 +41,7 @@ class IuranController extends Controller
         $this->activeSidebarItem = ['kegiatan-dan-iuran', 'iuran'];
         $iuranWarga = IuranWarga::all(); // Ambil data iuran warga dari database
         return view('iuran.warga')
+            ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem)
             ->with('iuranWarga', $iuranWarga); // Kirim data ke view
@@ -46,6 +52,7 @@ class IuranController extends Controller
         $this->activeSidebarItem = ['kegiatan-dan-iuran', 'iuran'];
         $iuranWarga = IuranWarga::all(); // Ambil data iuran warga dari database
         return view('iuran.admin')
+            ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem)
             ->with('iuranWarga', $iuranWarga); // Kirim data ke view
@@ -57,6 +64,7 @@ class IuranController extends Controller
         $kegiatanWarga = KegiatanWarga::all();
         $data_warga = DataWarga::all(); // Fetch all warga data
         return view('iuran.create', compact('kegiatanWarga', 'data_warga'))
+            ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem);
     }
@@ -94,7 +102,8 @@ class IuranController extends Controller
         $data_warga = DataWarga::all(); // Tambahkan baris ini untuk mengambil data warga
 
         $this->activeSidebarItem = ['kegiatan-dan-iuran', 'iuran'];
-        return view('iuran.edit')
+        return view('iuran.edit', compact('iuranWarga', 'data_warga'))
+            ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem)
             ->with('iuranWarga', $iuranWarga)
@@ -107,7 +116,7 @@ class IuranController extends Controller
         $iuranWarga = IuranWarga::findOrFail($id);
 
         $request->validate([
-            'id_kegiatan' => 'required|exists:kegiatan_warga,id',
+            'id_kegiatan' => 'required|exists:kegiatan_warga',
             'periode' => 'required|date',
             'interval' => 'required|integer',
             'penanggung_jawab' => 'required|string|max:16',
@@ -121,6 +130,8 @@ class IuranController extends Controller
             'penanggung_jawab' => $request->input('penanggung_jawab'),
             'total' => $request->input('total'),
         ]);
+        $iuran = IuranWarga::findOrFail($id);
+        $iuran->update($request->all());
 
         return redirect()->route('iuran.index')->with('success', 'Iuran warga berhasil diperbarui!');
     }

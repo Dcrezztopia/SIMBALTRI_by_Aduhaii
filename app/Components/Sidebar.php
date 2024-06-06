@@ -63,34 +63,44 @@ class Sidebar {
                 'label' => 'Bantuan Sosial',
                 'route' => null,
                 'children' => [
-                    'riwayat' => [
-                        'icon' => 'bi-circle',
-                        'label' => 'Riwayat Bansos',
-                        'route' => 'bansos.riwayat'
-                    ],
+                    // 'riwayat' => [
+                    //     'icon' => 'bi-circle',
+                    //     'label' => 'Riwayat Bansos',
+                    //     'route' => 'bansos.riwayat'
+                    // ],
                     'pengajuan' => [
                         'icon' => 'bi-circle',
                         'label' => 'Pengajuan Bansos',
                         'route' => 'bansos.pengajuan',
                     ],
-                    'permintaan' => [
+                    // 'permintaan' => [
+                    //     'icon' => 'bi-circle',
+                    //     'label' => 'Permintaan Bansos',
+                    //     'route' => 'bansos.permintaan'
+                    // ],
+                    // 'data' => [
+                    //     'icon' => 'bi-circle',
+                    //     'label' => 'Data Bansos',
+                    //     'route' => 'bansos.data'
+                    // ],
+                    'evaluasi-penerima' => [
                         'icon' => 'bi-circle',
-                        'label' => 'Permintaan Bansos',
-                        'route' => 'bansos.permintaan'
+                        'label' => 'Evaluasi Penerima',
+                        'route' => 'bansos.evaluasi-penerima'
                     ],
-                    'data' => [
+                    'penerima' => [
                         'icon' => 'bi-circle',
-                        'label' => 'Data Bansos',
-                        'route' => 'bansos.data'
+                        'label' => 'Penerima Bansos',
+                        'route' => 'bansos.penerima'
                     ],
                 ]
             ],
-            'contoh-dengan-route' => [
-                'icon' => 'bi-menu-button-wide',
-                'label' => 'Contoh dengan Route',
-                'route' => 'placeholder1',
-                'children' => []
-            ]
+            // 'contoh-dengan-route' => [
+            //     'icon' => 'bi-menu-button-wide',
+            //     'label' => 'Contoh dengan Route',
+            //     'route' => 'placeholder1',
+            //     'children' => []
+            // ]
         ];
     }
 

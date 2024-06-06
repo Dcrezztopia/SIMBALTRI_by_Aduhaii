@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -91,7 +92,16 @@ class DatabaseSeeder extends Seeder
                     'role' => 'bendahara_rt',
                     'password' => bcrypt('12345')
                 ],
-                
+
             ]);
+        $this->call([
+            DataWargaSeeder::class,
+            PengajuanBansos::class,
+            KriteriaBansos::class,
+            KriteriaMappedScore::class,
+            PerbandinganKriteriaBansos::class
+        ]);
+
+
     }
 }
