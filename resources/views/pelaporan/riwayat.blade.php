@@ -43,7 +43,7 @@
                 <td>{{ $pelaporan->perihal }}</td>
                 <td>{{ $pelaporan->isi }}</td>
                 <td>
-                  <img src="{{ Storage::url($pelaporan->foto_bukti) }}" alt="Foto Bukti" class="img-thumbnail" style="width: 100px; height: auto;">
+                  <img src="{{ Storage::url($pelaporan->foto_bukti) }}" alt="Foto Bukti" class="img-thumbnail" style="width: 150px; height: auto;">
                 </td>               
                  <td>{{ $pelaporan->created_at }}</td>
                 <td>

@@ -1459,3 +1459,11 @@ body{
   color: #fff;
   background-color: #dc3545;
 }
+
+.custom-img {
+  max-width: 50%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

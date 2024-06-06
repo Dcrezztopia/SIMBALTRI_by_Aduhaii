@@ -40,13 +40,13 @@ class SuratController extends Controller
         return view('surat.hasilform')
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem);
-    }
-
-    public function destroy($id)
-    {
+        }
+        
+        public function destroy($id)
+        {
         $surat = PengajuanSurat::findOrFail($id);
         $surat->delete();
-
+        
         return redirect()->route('surat.riwayat')->with('success', 'Surat berhasil dihapus.');
     }
 
@@ -62,7 +62,7 @@ class SuratController extends Controller
             'kepentingan' => 'required|string|max:100',
             'perihal' => 'required|in:pengantar_domisili,pembuatan_KTP,pengantar_kematian,keterangan_tidak_mampu',
         ]);
-
+        
         // Simpan data ke database
         PengajuanSurat::create([
             'nama' => $request->nama,
@@ -72,8 +72,9 @@ class SuratController extends Controller
             'alamat_rumah' => $request->alamat_rumah,
             'kepentingan' => $request->kepentingan,
             'perihal' => $request->perihal,
+            'status' => 'menunggu',
         ]);
-
+        
         session([
             'nama' => $request->nama,
             'tanggal_lahir' => $request->tanggal_lahir,
@@ -87,4 +88,33 @@ class SuratController extends Controller
         // Redirect ke halaman hasil
         return redirect()->route('surat.hasilform');
     }
+
+    public function updateStatus($id, $status)
+    {
+        // Validasi status
+        if (!in_array($status, ['diterima', 'ditolak'])) {
+            return redirect()->back()->withErrors(['Status tidak valid.']);
+        }
+        
+        // Temukan surat berdasarkan ID
+        $surat = PengajuanSurat::findOrFail($id);
+
+        // Perbarui status
+        $surat->status = $status;
+        $surat->save();
+        
+        return redirect()->back()->with('success', 'Status surat berhasil diperbarui.');
+    }
+
+    public function show($id)
+    {
+        $surat = PengajuanSurat::findOrFail($id);
+        return view('surat.detail')
+            ->with('sidebarItems', $this->sidebarItems)
+            ->with('activeSidebarItem', $this->activeSidebarItem)
+            ->with('surat', $surat);  
+    }
+    
+
+
 }

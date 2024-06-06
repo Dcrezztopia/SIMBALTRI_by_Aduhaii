@@ -41,7 +41,7 @@
             </div>
             <div class="mb-3">
                 <label for="input7" class="form-label">Isi:</label>
-                <input type="text" class="form-control" id="input7" placeholder="Perihal" value="{{ session('isi') }}" disabled>
+                <input type="text" class="form-control" id="input7" placeholder="Isi" value="{{ session('isi') }}" disabled>
             </div>
             <div class="mb-3">
               <label for="input7" class="form-label">Foto Bukti:</label>

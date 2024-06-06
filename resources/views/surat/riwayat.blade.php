@@ -27,6 +27,7 @@
                 <th>Kepentingan</th>
                 <th>Perihal</th>
                 <th>Tanggal_Dibuat</th>
+                <th>Status</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -42,6 +43,14 @@
                 <td>{{ $surat->kepentingan }}</td>
                 <td>{{ $surat->perihal }}</td>
                 <td>{{ $surat->created_at }}</td>
+                <td>                 
+                   @if($surat->status == 'menunggu')
+                  <span class="badge bg-warning text-dark">Menunggu</span>
+                @elseif($surat->status == 'diterima')
+                  <span class="badge bg-success">Diterima</span>
+                @elseif($surat->status == 'ditolak')
+                  <span class="badge bg-danger">Ditolak</span>
+                @endif</td>
                 <td>
                   <form action="{{ route('surat.destroy', $surat->id_surat) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus surat ini?');">
                     @csrf
@@ -49,6 +58,23 @@
                     <button class="btn btn-sm btn-danger" type="submit">
                       <i class="bi bi-trash"></i> Delete
                     </button>
+                  </form>
+                  <form action="{{ route('surat.updateStatus', ['id' => $surat->id_surat, 'status' => 'diterima']) }}" method="POST" class="d-inline">
+                    @csrf
+                    @method('PUT')
+                    <button class="btn btn-sm btn-success" type="submit">
+                      <i class="bi bi-check"></i> Terima
+                    </button>
+                  </form>
+                  <form action="{{ route('surat.updateStatus', ['id' => $surat->id_surat, 'status' => 'ditolak']) }}" method="POST" class="d-inline">
+                    @csrf
+                    @method('PUT')
+                    <button class="btn btn-sm btn-danger" type="submit">
+                      <i class="bi bi-x"></i> Tolak
+                    </button>
+                    <a href="{{ route('surat.detail', $surat->id_surat) }}" class="btn btn-sm btn-info">
+                      <i class="bi bi-eye"></i> Detail
+                    </a>
                   </form>
                 </td>
               </tr>
