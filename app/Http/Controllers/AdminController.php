@@ -30,4 +30,13 @@ class AdminController extends Controller
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem);
     }
+
+    public function data_warga()
+    {
+        $this->activeSidebarItem = ['data-warga', ''];
+        return view('datawarga.index')
+            ->with('user', $this->user)
+            ->with('sidebarItems', $this->sidebarItems)
+            ->with('activeSidebarItem', $this->activeSidebarItem);
+    }
 }

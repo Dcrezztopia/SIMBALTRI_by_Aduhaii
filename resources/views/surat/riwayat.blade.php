@@ -1,7 +1,6 @@
 @extends('layout.app')
 
 @section('content_body')
-<main id="main" class="main">
   <nav>
     <ol class="breadcrumb">
       <li class="breadcrumb-item active">Home/Pelaporan/ Riwayat Pelaporan</li>
@@ -43,7 +42,7 @@
                 <td>{{ $surat->kepentingan }}</td>
                 <td>{{ $surat->perihal }}</td>
                 <td>{{ $surat->created_at }}</td>
-                <td>                 
+                <td>
                    @if($surat->status == 'menunggu')
                   <span class="badge bg-warning text-dark">Menunggu</span>
                 @elseif($surat->status == 'diterima')
@@ -86,5 +85,4 @@
       </div>
     </div>
   </section>
-</main><!-- End #main -->
 @endsection

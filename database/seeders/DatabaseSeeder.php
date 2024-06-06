@@ -37,6 +37,13 @@ class DatabaseSeeder extends Seeder
                     'password' => bcrypt('12345')
                 ],
                 [
+                    'username' => 'admin',
+                    'nama' => 'Pengguna Terhormat',
+                    'no_telp' => '089512392133',
+                    'role' => 'admin',
+                    'password' => bcrypt('12345')
+                ],
+                [
                     'username' => 'amdAr',
                     'nama' => 'AHMAD ARIFIN',
                     'no_telp' => '085190902122',

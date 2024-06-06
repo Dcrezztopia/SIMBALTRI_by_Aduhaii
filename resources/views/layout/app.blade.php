@@ -39,11 +39,10 @@
     }
 
     @media (min-width: 1200px) {
-
-    #main,
-    #footer {
-        margin-left: 300px;
-    }
+        #main,
+        #footer {
+            margin-left: 270px;
+        }
     }
 
     .lin-gradient {

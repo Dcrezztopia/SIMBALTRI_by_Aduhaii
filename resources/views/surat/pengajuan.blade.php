@@ -1,7 +1,6 @@
 @extends('layout.app')
 
 @section('content_body')
-    <main id="main" class="main">
         <nav>
             <ol class="breadcrumb">
             <li class="breadcrumb-item active">Home/Pengajuan Surat/ Pengajuan Surat</li>
@@ -51,7 +50,7 @@
                     </div>
                     <button type="submit" class="btn btn-success mt-3" style="float: right;" id="customAlert">
                         <i class="bi bi-save"></i> Simpan
-                    </button>                    
+                    </button>
                 </form>
                 </div>
 
@@ -64,7 +63,6 @@
             <!-- Add your content here -->
             </div>
         </section>
-    </main><!-- End #main -->
 
     <div id="customAlert" class="custom-alert">
     <h5>Accept Pengajuan</h5>

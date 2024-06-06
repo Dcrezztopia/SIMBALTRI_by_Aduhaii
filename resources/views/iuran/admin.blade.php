@@ -1,7 +1,6 @@
 @extends('layout.app')
 
 @section('content_body')
-<main id="main" class="main">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
@@ -58,5 +57,4 @@
             </div>
         </div>
     </section>
-</main>
 @endsection

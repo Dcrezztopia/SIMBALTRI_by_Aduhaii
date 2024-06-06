@@ -38,6 +38,7 @@ Route::post('/proses_register', [AuthController::class, 'proses_register'])->nam
 Route::group(['middleware' => ['auth']], function () {
     // Route::get('/', [AuthController::class, 'index'])->name('dashboard');
     // Route::get('home', [AuthController::class, 'index'])->name('home');
+    Route::get('data-warga', [AdminController::class, 'data_warga'])->name('data-warga.index');
 
     Route::prefix('admin')->middleware(['role:admin'])->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
@@ -63,6 +64,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::prefix('pelaporan')->group(function () {
         Route::get('lapor', [PelaporanController::class, 'lapor'])->name('pelaporan.lapor');
+        Route::post('lapor', [PelaporanController::class, 'store'])->name('pelaporan.store');
         Route::get('riwayat', [PelaporanController::class, 'riwayat'])->name('pelaporan.riwayat');
         Route::get('hasilform', [PelaporanController::class, 'hasilform'])->name('pelaporan.hasilform');
     });

@@ -1,12 +1,6 @@
 @extends('layout.app')
 
 @section('content_body')
-<main id="main" class="main">
-  <nav>
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item active">Home/Pelaporan/ Riwayat Pelaporan</li>
-    </ol>
-  </nav>
   <div class="pagetitle text-center">
     <h2 class="welcome-message-pelaporan">Riwayat pelaporan</h2>
   </div><!-- End Page Title -->
@@ -15,20 +9,20 @@
     <div class="row">
       <div class="col-md-12">
         <div class="table-responsive">
-          <table class="table table-striped table-hover">
+          <table class="">
             <thead>
               <tr>
-                <th>ID</th>
-                <th>Nama</th>
-                <th>Tanggal Lahir</th>
-                <th>Jenis Kelamin</th>
-                <th>Kewarganegaraan</th>
-                <th>Alamat_Rumah</th>
-                <th>Perihal</th>
-                <th>Isi</th>
-                <th>Foto Bukti</th>
-                <th>Tanggal_Dibuat</th>
-                <th>Action</th>
+                <th class="cell">ID</th>
+                <th class="cell">Nama</th>
+                <th class="cell">Tanggal Lahir</th>
+                <th class="cell">Jenis Kelamin</th>
+                <th class="cell">Kewarganegaraan</th>
+                <th class="cell">Alamat_Rumah</th>
+                <th class="cell">Perihal</th>
+                <th class="cell">Isi</th>
+                <th class="cell">Foto Bukti</th>
+                <th class="cell">Tanggal_Dibuat</th>
+                <th class="cell">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -44,7 +38,7 @@
                 <td>{{ $pelaporan->isi }}</td>
                 <td>
                   <img src="{{ Storage::url($pelaporan->foto_bukti) }}" alt="Foto Bukti" class="img-thumbnail" style="width: 150px; height: auto;">
-                </td>               
+                </td>
                  <td>{{ $pelaporan->created_at }}</td>
                 <td>
                   <form action="{{ route('pelaporan.destroy', $pelaporan->id_pelaporan) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus pelaporan ini?');">
@@ -64,5 +58,4 @@
       </div>
     </div>
   </section>
-</main><!-- End #main -->
 @endsection
