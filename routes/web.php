@@ -50,6 +50,15 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('home', [WargaController::class, 'index'])->name('warga.home');
     });
 
+    Route::prefix('datawarga')->group(function (){
+        Route::get('/', [DataWargaController::class, 'index'])->name('datawarga.index');
+        Route::get('/create', [DataWargaController::class, 'create'])->name('datawarga.create');
+        Route::post('/', [DataWargaController::class, 'store'])->name('datawarga.store');
+        Route::get('/edit/{id}', [DataWargaController::class, 'edit'])->name('datawarga.edit');
+        Route::post('/update/{id}', [DataWargaController::class, 'update'])->name('datawarga.update');
+        Route::delete('/{id}', [DataWargaController::class, 'destroy'])->name('datawarga.destroy');
+    });
+
     Route::prefix('surat')->group(function () {
         Route::get('pengajuan', [SuratController::class, 'pengajuan'])->name('surat.pengajuan');
         Route::get('riwayat', [SuratController::class, 'riwayat'])->name('surat.riwayat');

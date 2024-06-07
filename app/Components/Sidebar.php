@@ -82,7 +82,7 @@ class Sidebar {
                     //     'icon' => 'bi-circle',
                     //     'label' => 'Data Bansos',
                     //     'route' => 'bansos.data'
-                    // ],
+                    // ],p
                     'evaluasi-penerima' => [
                         'icon' => 'bi-circle',
                         'label' => 'Evaluasi Penerima',
@@ -95,6 +95,12 @@ class Sidebar {
                     ],
                 ]
             ],
+            'data-warga' => [
+                'icon' => 'bi-menu-button-wide',
+                'label' => 'Data Warga',
+                'route' => 'datawarga.index',
+                'children' => []
+            ]
             // 'contoh-dengan-route' => [
             //     'icon' => 'bi-menu-button-wide',
             //     'label' => 'Contoh dengan Route',
