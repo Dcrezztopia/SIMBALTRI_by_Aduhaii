@@ -1,20 +1,11 @@
 @extends('layout.app')
 
 @section('content_body')
-<main id="main" class="main">
-    <nav>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item active">Kegiatan dan Iuran/ Kegiatan</li>
-        </ol>
-    </nav>
-    <div class="pagetitle text-center">
-        <h2 class="welcome-message-surat">Tambah Kegiatan Warga</h2>
+<div class="card">
+    <div class="card-header lin-gradient-light-primary text-primary-dark">
+        Tambah Kegiatan Warga
     </div>
-    <section class="section">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">
+    <div class="card-body">
                         <form method="POST" action="{{ route('kegiatan.index') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="row mb-3">
@@ -60,29 +51,27 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="penanggung_jawab">Penanggung Jawab</label>
-                                <select class="form-control @error('penanggung_jawab') is-invalid @enderror" id="penanggung_jawab" name="penanggung_jawab" required>
-                                    <option value="">Pilih Penanggung Jawab</option>
-                                    @foreach($data_warga as $warga)
-                                        <option value="{{ $warga->nik }}">{{ $warga->nama }} ({{ $warga->nik }})</option>
-                                    @endforeach
-                                </select>
-                                @error('penanggung_jawab')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
+                            <div class="row mb-3">
+                                <label for="penanggung_jawab" class="col-md-4 col-form-label">Penanggung Jawab</label>
+                                <div class="col-md-8">
+                                    <select class="form-control @error('penanggung_jawab') is-invalid @enderror" id="penanggung_jawab" name="penanggung_jawab" required>
+                                        <option value="">Pilih Penanggung Jawab</option>
+                                        @foreach($data_warga as $warga)
+                                            <option value="{{ $warga->nik }}">{{ $warga->nama }} ({{ $warga->nik }})</option>
+                                        @endforeach
+                                    </select>
+                                    @error('penanggung_jawab')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
-                                @enderror
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                <button type="submit" class="btn btn-primary text-light">Simpan</button>
                                 <a href="{{ route('kegiatan.index') }}" class="btn btn-secondary">Kembali</a>
                             </div>
                         </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</main>
+    </div>
+</div>
 @endsection

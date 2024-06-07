@@ -41,7 +41,7 @@
     @media (min-width: 1200px) {
         #main,
         #footer {
-            margin-left: 270px;
+            margin-left: 300px;
         }
     }
 
@@ -87,5 +87,9 @@
   color: #006778;
 
 }
+
+.card-header {
+    color: var(--text-primary-dark);
+    }
 </style>
 

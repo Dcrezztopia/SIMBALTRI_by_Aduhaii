@@ -67,6 +67,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('lapor', [PelaporanController::class, 'store'])->name('pelaporan.store');
         Route::get('riwayat', [PelaporanController::class, 'riwayat'])->name('pelaporan.riwayat');
         Route::get('hasilform', [PelaporanController::class, 'hasilform'])->name('pelaporan.hasilform');
+        Route::delete('{id}', [PelaporanController::class, 'destroy'])->name('pelaporan.destroy');
     });
 
     Route::get('kegiatan', [KegiatanController::class, 'index'])->name('kegiatan.index');
@@ -109,7 +110,7 @@ Route::get('/pengajuansurat/hasilform', [PengajuanSuratController::class, 'hasil
 Route::get('/riwayatsurat', [PengajuanSuratController::class, 'riwayatsurat'])->name('riwayatsurat.index');
 Route::get('/pelaporan/index', [PelaporanController::class, 'index'])->name('pelaporan.index');
 // PengajuanSurat -- PengajuanSurat (HasilForm ketika Save Simpan)
-Route::get('/pelaporan/hasilform', [PelaporanController::class, 'hasilform'])->name('pelaporan.hasilform.index');
+// Route::get('/pelaporan/hasilform', [PelaporanController::class, 'hasilform'])->name('pelaporan.hasilform.index');
 // PengajuanSurat -- RiwayatSurat
 Route::get('/riwayatpelaporan', [PelaporanController::class, 'riwayatpelaporan'])->name('riwayatpelaporan.index');
 Route::get('/kegiatandaniuran/index', [KegiatandanIuranController::class, 'index'])->name('kegiatandaniuran.index');

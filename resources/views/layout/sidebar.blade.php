@@ -30,7 +30,7 @@
             <li class="nav-item">
                 @if(isset($item['route']))
                     {{-- WARNA PERLU DIBENARKAN AKU GAK NGERTI KUDU WARNA OPO --}}
-                    <a class="nav-link collapsed @if($activeSidebarItem[0] == $key) active @endif" href="{{ route($item['route']) }}" style="color: #012970;">
+                    <a class="nav-link collapsed @if($activeSidebarItem[0] == $key) active @endif" href="{{ route($item['route']) }}">
                         <i class="{{ $item['icon'] }}"></i><span>{{ $item['label'] }}
                     </a>
                 @else

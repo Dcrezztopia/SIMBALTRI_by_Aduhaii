@@ -74,11 +74,11 @@ class Sidebar {
                     //     'label' => 'Riwayat Bansos',
                     //     'route' => 'bansos.riwayat'
                     // ],
-                    'pengajuan' => [
-                        'icon' => 'bi bi-circle',
-                        'label' => 'Pengajuan Bansos',
-                        'route' => 'bansos.pengajuan',
-                    ],
+                    // 'pengajuan' => [
+                    //     'icon' => 'bi bi-circle',
+                    //     'label' => 'Pengajuan Bansos',
+                    //     'route' => 'bansos.pengajuan',
+                    // ],
                     // 'permintaan' => [
                     //     'icon' => 'bi bi-circle',
                     //     'label' => 'Permintaan Bansos',
@@ -94,11 +94,11 @@ class Sidebar {
                         'label' => 'Evaluasi Penerima',
                         'route' => 'bansos.evaluasi-penerima'
                     ],
-                    'penerima' => [
-                        'icon' => 'bi bi-circle',
-                        'label' => 'Penerima Bansos',
-                        'route' => 'bansos.penerima'
-                    ],
+                    // 'penerima' => [
+                    //     'icon' => 'bi bi-circle',
+                    //     'label' => 'Penerima Bansos',
+                    //     'route' => 'bansos.penerima'
+                    // ],
                 ]
             ],
             // 'contoh-dengan-route' => [

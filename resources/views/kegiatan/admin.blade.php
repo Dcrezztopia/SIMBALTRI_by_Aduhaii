@@ -1,46 +1,35 @@
 @extends('layout.app')
 
 @section('content_body')
-<main id="main" class="main">
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Kegiatan Warga</li>
-        </ol>
-    </nav>
-    <div class="pagetitle text-center">
-        <h2 class="welcome-message-surat">Kegiatan Warga</h2>
+<div class="card">
+    <div class="card-header lin-gradient-light-primary text-primary-dark">
+        Kegiatan Warga
     </div>
-    <section class="section">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title">Daftar Kegiatan</div>
-                        <a href="{{ route('kegiatan.create') }}" class="btn btn-primary float-right">Tambah Kegiatan</a>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-striped table-hover">
-                            <thead>
+    <div class="card-body">
+        <div>
+                        <a href="{{ route('kegiatan.create') }}" class="btn btn-primary float-right mb-3">Tambah Kegiatan</a>
+        </div>
+                        <table class="w-100">
+                            <thead class="lin-gradient-light-primary">
                                 <tr>
-                                    <th>No</th>
-                                    <th>Nama Kegiatan</th>
-                                    <th>Tanggal Pelaksanaan</th>
-                                    <th>Tempat Pelaksanaan</th>
-                                    <th>Penanggung Jawab</th>
-                                    <th>Aksi</th>
+                                    <th class="cell">No</th>
+                                    <th class="cell">Nama Kegiatan</th>
+                                    <th class="cell">Tanggal Pelaksanaan</th>
+                                    <th class="cell">Tempat Pelaksanaan</th>
+                                    <th class="cell">Penanggung Jawab</th>
+                                    <th class="cell">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($kegiatanWarga as $key => $kegiatan)
                                 <tr>
-                                    <td>{{ $key + 1 }}</td>
-                                    <td>{{ $kegiatan->nama_kegiatan }}</td>
-                                    <td>{{ $kegiatan->tanggal_pelaksanaan }}</td>
-                                    <td>{{ $kegiatan->tempat_pelaksanaan }}</td>
-                                    <td>{{ $kegiatan->penanggungJawab->nama ?? 'N/A' }}</td>
+                                    <td class="cell">{{ $key + 1 }}</td>
+                                    <td class="cell">{{ $kegiatan->nama_kegiatan }}</td>
+                                    <td class="cell">{{ $kegiatan->tanggal_pelaksanaan }}</td>
+                                    <td class="cell">{{ $kegiatan->tempat_pelaksanaan }}</td>
+                                    <td class="cell">{{ $kegiatan->penanggungJawab->nama ?? 'N/A' }}</td>
                                     <!-- Menampilkan nama penanggung jawab -->
-                                    <td>
+                                    <td class="cell">
                                         <a href="{{ route('kegiatan.edit', $kegiatan->id_kegiatan) }}" class="btn btn-sm btn-info">Ubah</a>
                                         <!-- Form Delete -->
                                         <form action="{{ route('kegiatan.destroy', $kegiatan->id_kegiatan) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus kegiatan ini?');" style="display:inline-block;">
@@ -55,10 +44,6 @@
                                 @endforeach
                             </tbody>
                         </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</main>
+</div>
+</div>
 @endsection

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BansosController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -18,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/data-warga/all', [AdminController::class, 'get_data_warga'])->name('data-warga.all');
 Route::prefix('bansos')->group(function () {
     Route::get('kriteria', [BansosController::class, 'kriteria'])->name('bansos.kriteria');
     Route::post('kriteria', [BansosController::class, 'add_kriteria'])->name('bansos.kriteria.post');

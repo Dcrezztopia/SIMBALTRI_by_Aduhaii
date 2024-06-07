@@ -1,58 +1,62 @@
-
 @extends('layout.app')
 
 @section('content_body')
 <div class="card">
-    <div class="card-header lin-gradient-light-primary text-dark">
-        Data Warga
-
+    <div class="card-header lin-gradient-light-primary text-primary-dark">
+        Riwayat pelaporan
     </div>
-    <div class="card-body pa-5">
-        <table id="theTable">
-        </table>
+    <div class="card-body">
+  <section class="section dashboard">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <table class="w-100">
+            <thead>
+              <tr>
+                <th class="cell">Nik</th>
+                <th class="cell">Nama</th>
+                <th class="cell">Jenis Kelamin</th>
+                <th class="cell">Tanggal Lahir</th>
+                <th class="cell">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($dataWarga as $data)
+              <tr>
+                <td class="cell">{{ $data->nik }}</td>
+                <td class="cell">{{ $data->nama }}</td>
+                <td class="cell">
+                    @if($data->jenis_kelamin == 'P')
+                        Perempuan
+                    @else
+                        Laki-laki
+                    @endif
+                </td>
+                <td class="cell">{{ $data->tanggal_lahir }}</td>
+                <td class="cell">
+                {{--
+                <!--   <form action="{{ route('pelaporan.destroy', $pelaporan->id_pelaporan) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus pelaporan ini?');"> -->
+                <!--     @csrf -->
+                <!--     @method('DELETE') -->
+                <!--     <button class="btn btn-sm btn-danger" type="submit" -->
+                <!--                 data-bs-toggle="tooltip" -->
+                <!--                 data-bs-placement="top" -->
+                <!--                 title="Hapus laporan" -->
+                <!--     > -->
+                <!--       <i class="bi bi-trash"></i> -->
+                <!--     </button> -->
+                <!--   </form> -->
+                --}}
+                </td>
+              </tr>
+              @endforeach
+              <!-- Akhir data tabel -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
     </div>
 </div>
 @endsection
-
-@push('scripts')
-    <script>
-        $(document).ready(function() {
-            var dataUser = $('#theTable').DataTable({
-                serverSide: true,
-                ajax: {
-                    "url": "{{ url('level/list') }}",
-                    "dataType": "json",
-                    "type": "POST",
-                },
-                columns: [
-                    {
-                        data: "DT_RowIndex", // nomor urut dari laravel datatable addIndexColumn()
-                        className: "text-center",
-                        orderable: false,
-                        searchable: false
-                    },{
-                        data: "level_id",
-                        className: "",
-                        orderable: true,
-                        searchable: true
-                    },{
-                        data: "level_nama",
-                        className: "",
-                        orderable: true,
-                        searchable: true
-                    },{
-                        data: "level_kode",
-                        className: "",
-                        orderable: true,
-                        searchable: true
-                    },{
-                        data: "aksi",
-                        className: "",
-                        orderable: false,
-                        searchable:false
-                    }
-                ]
-            });
-        });
-    </script>
-@endpush

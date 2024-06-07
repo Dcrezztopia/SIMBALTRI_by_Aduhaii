@@ -24,7 +24,7 @@ class SuratController extends Controller
 
     public function pengajuan()
     {
-        $this->activeSidebarItem = ['pengajuan-surat', 'pengajuan-surat'];
+        $this->activeSidebarItem = ['surat', 'pengajuan-surat'];
         return view('surat.pengajuan')
             ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
@@ -33,7 +33,7 @@ class SuratController extends Controller
 
     public function riwayat()
     {
-        $this->activeSidebarItem = ['pengajuan-surat', 'riwayat'];
+        $this->activeSidebarItem = ['surat', 'riwayat'];
         $surats = PengajuanSurat::all(); // Mengambil semua data dari tabel surat dengan menggunakan model surat
         return view('surat.riwayat')
             ->with('user', $this->user)
@@ -44,18 +44,18 @@ class SuratController extends Controller
 
     public function hasilform()
     {
-        $this->activeSidebarItem = ['pengajuan-surat', 'pengajuan-surat'];
+        $this->activeSidebarItem = ['surat', 'pengajuan-surat'];
         return view('surat.hasilform')
             ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem);
         }
-        
+
         public function destroy($id)
         {
         $surat = PengajuanSurat::findOrFail($id);
         $surat->delete();
-        
+
         return redirect()->route('surat.riwayat')->with('success', 'Surat berhasil dihapus.');
     }
 
@@ -71,7 +71,7 @@ class SuratController extends Controller
             'kepentingan' => 'required|string|max:100',
             'perihal' => 'required|in:pengantar_domisili,pembuatan_KTP,pengantar_kematian,keterangan_tidak_mampu',
         ]);
-        
+
         // Simpan data ke database
         PengajuanSurat::create([
             'nama' => $request->nama,
@@ -83,7 +83,7 @@ class SuratController extends Controller
             'perihal' => $request->perihal,
             'status' => 'menunggu',
         ]);
-        
+
         session([
             'nama' => $request->nama,
             'tanggal_lahir' => $request->tanggal_lahir,
@@ -104,14 +104,14 @@ class SuratController extends Controller
         if (!in_array($status, ['diterima', 'ditolak'])) {
             return redirect()->back()->withErrors(['Status tidak valid.']);
         }
-        
+
         // Temukan surat berdasarkan ID
         $surat = PengajuanSurat::findOrFail($id);
 
         // Perbarui status
         $surat->status = $status;
         $surat->save();
-        
+
         return redirect()->back()->with('success', 'Status surat berhasil diperbarui.');
     }
 
@@ -121,9 +121,9 @@ class SuratController extends Controller
         return view('surat.detail')
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem)
-            ->with('surat', $surat);  
+            ->with('surat', $surat);
     }
-    
+
 
 
 }

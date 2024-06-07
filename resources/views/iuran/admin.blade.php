@@ -1,46 +1,36 @@
 @extends('layout.app')
 
 @section('content_body')
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Iuran Warga</li>
-        </ol>
-    </nav>
-    <div class="pagetitle text-center">
-        <h2 class="welcome-message-surat">Iuran Warga</h2>
+<div class="card">
+    <div class="card-header lin-gradient-light-primary text-primary-dark">
+        Iuran Warga
     </div>
-    <section class="section">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title">Daftar Iuran</div>
-                        <a href="{{ route('iuran.create') }}" class="btn btn-primary float-right">Tambah Iuran</a>
+    <div class="card-body">
+                    <div class="">
+                        <a href="{{ route('iuran.create') }}" class="btn btn-primary float-right mb-3">Tambah Iuran</a>
                     </div>
-                    <div class="card-body">
-                        <table class="table table-striped">
+                        <table class="w-100">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Kegiatan</th>
-                                    <th>Periode</th>
-                                    <th>Interval</th>
-                                    <th>Penanggung Jawab</th>
-                                    <th>Total</th>
-                                    <th>Aksi</th>
+                                    <th class="cell">ID</th>
+                                    <th class="cell">Kegiatan</th>
+                                    <th class="cell">Periode</th>
+                                    <th class="cell">Interval</th>
+                                    <th class="cell">Penanggung Jawab</th>
+                                    <th class="cell">Total</th>
+                                    <th class="cell">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($iuranWarga as $iuran)
                                     <tr>
-                                        <td>{{ $iuran->id_iuran }}</td>
-                                        <td>{{ $iuran->kegiatan->nama_kegiatan }}</td>
-                                        <td>{{ $iuran->periode }}</td>
-                                        <td>{{ $iuran->interval }}</td>
-                                        <td>{{ $iuran->warga->nama }}</td>
-                                        <td>{{ number_format($iuran->total, 0, ',', '.') }}</td>
-                                        <td>
+                                        <td class="cell">{{ $iuran->id_iuran }}</td>
+                                        <td class="cell">{{ $iuran->kegiatan->nama_kegiatan }}</td>
+                                        <td class="cell">{{ $iuran->periode }}</td>
+                                        <td class="cell">{{ $iuran->interval }}</td>
+                                        <td class="cell">{{ $iuran->warga->nama }}</td>
+                                        <td class="cell">{{ number_format($iuran->total, 0, ',', '.') }}</td>
+                                        <td class="cell">
                                             <a href="{{ route('iuran.edit', $iuran->id_iuran) }}" class="btn btn-sm btn-warning">Ubah</a>
                                             <form method="post" action="{{ route('iuran.destroy', $iuran->id_iuran) }}" class="d-inline">
                                                 @csrf
@@ -52,9 +42,6 @@
                                 @endforeach
                             </tbody>
                         </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    </div>
+</div>
 @endsection
