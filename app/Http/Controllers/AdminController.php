@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Components\Sidebar;
+use App\Models\DataWarga;
 use Illuminate\Support\Facades\Auth;
 
 // use Illuminate\Http\Request;
@@ -29,5 +30,21 @@ class AdminController extends Controller
             ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem);
+    }
+
+    public function data_warga()
+    {
+        $this->activeSidebarItem = ['data-warga', ''];
+        $dataWarga = DataWarga::all();
+        return view('datawarga.index')
+            ->with('user', $this->user)
+            ->with('dataWarga', $dataWarga)
+            ->with('sidebarItems', $this->sidebarItems)
+            ->with('activeSidebarItem', $this->activeSidebarItem);
+    }
+
+    public function get_data_warga() {
+        $dataWarga = DataWarga::all();
+        return response()->json($dataWarga);
     }
 }

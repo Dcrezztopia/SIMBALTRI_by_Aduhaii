@@ -39,11 +39,10 @@
     }
 
     @media (min-width: 1200px) {
-
-    #main,
-    #footer {
-        margin-left: 300px;
-    }
+        #main,
+        #footer {
+            margin-left: 300px;
+        }
     }
 
     .lin-gradient {
@@ -88,5 +87,9 @@
   color: #006778;
 
 }
+
+.card-header {
+    color: var(--text-primary-dark);
+    }
 </style>
 

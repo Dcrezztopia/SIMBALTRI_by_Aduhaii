@@ -1,25 +1,11 @@
 @extends('layout.app')
 
 @section('content_body')
-<main id="main" class="main">
-    <nav>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('iuran.index') }}">Iuran Warga</a></li>
-            <li class="breadcrumb-item active">Tambah Iuran</li>
-        </ol>
-    </nav>
-    <div class="pagetitle text-center">
-        <h2 class="welcome-message-surat">Tambah Iuran Warga</h2>
+<div class="card">
+    <div class="card-header lin-gradient-light-primary text-primary-dark">
+        Tambah Iuran Warga
     </div>
-    <section class="section">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title">Form Tambah Iuran</div>
-                    </div>
-                    <div class="card-body">
+    <div class="card-body">
                         <form method="post" action="{{ route('iuran.store') }}">
                             @csrf
                             <div class="form-group">
@@ -68,14 +54,10 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                <button type="submit" class="btn btn-primary text-light">Simpan</button>
                                 <a href="{{ route('iuran.index') }}" class="btn btn-secondary">Batal</a>
                             </div>
                         </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</main>
+    </div>
+</div>
 @endsection

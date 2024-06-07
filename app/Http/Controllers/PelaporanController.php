@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Components\Sidebar;
 use Illuminate\Http\Request;
 use App\Models\Pelaporan;
+use DateTime;
 use Illuminate\Support\Facades\Auth;
 
 class  PelaporanController extends Controller
@@ -104,7 +105,8 @@ class  PelaporanController extends Controller
             'alamat_rumah' => $request->alamat_rumah,
             'perihal' => $request->perihal,
             'isi' => $request->isi,
-            'foto_bukti' => $path
+            'foto_bukti' => $path,
+            'tanggal_dibuat' => new DateTime()
         ]);
 
         session([

@@ -38,18 +38,18 @@ class WargaController extends Controller
             //         ]
             //     ]
             // ])
-            ->addItem('profile', [
-                'icon' => 'bi-menu-button-wide',
-                'label' => 'Profile(contoh)',
-                'route' => null,
-                'children' => [
-                    'profile' => [
-                        'icon' => 'bi-circle',
-                        'label' => 'Profile',
-                        'route' => 'placeholder1'
-                    ]
-                ]
-            ])
+            //->addItem('profile', [
+            //    'icon' => 'bi-menu-button-wide',
+            //    'label' => 'Profile(contoh)',
+            //    'route' => null,
+            //    'children' => [
+            //        'profile' => [
+            //            'icon' => 'bi-circle',
+            //            'label' => 'Profile',
+            //            'route' => 'placeholder1'
+            //        ]
+            //    ]
+            //])
             ->getItems();
     }
 

@@ -1,19 +1,12 @@
 @extends('layout.app')
 
 @section('content_body')
-    <main id="main" class="main">
-        <nav>
-            <ol class="breadcrumb">
-            <li class="breadcrumb-item active">Home/Pengajuan Surat/ Pengajuan Surat</li>
-            </ol>
-        </nav>
-        <div class="pagetitle text-center">
-            <h2 class="welcome-message-surat">Pengajuan Surat</h2>
-        </div><!-- End Page Title -->
-
+<div class="card">
+    <div class="card-header lin-gradient-light-primary text=primary-dark">
+        Pengajuan Surat
+    </div>
+    <div class="card-body">
         <div class="container my-4">
-            <div class="card">
-                <div class="card-body">
                     <form action="{{ route('surat.store') }}" method="POST">
                     @csrf
                     <label for="input1" class="form-label">Nama : </label>
@@ -51,12 +44,11 @@
                     </div>
                     <button type="submit" class="btn btn-success mt-3" style="float: right;" id="customAlert">
                         <i class="bi bi-save"></i> Simpan
-                    </button>                    
+                    </button>
                 </form>
-                </div>
-
-            </div>
         </div>
+    </div>
+</div>
 
         <section class="section dashboard">
             <div class="row">
@@ -64,7 +56,6 @@
             <!-- Add your content here -->
             </div>
         </section>
-    </main><!-- End #main -->
 
     <div id="customAlert" class="custom-alert">
     <h5>Accept Pengajuan</h5>

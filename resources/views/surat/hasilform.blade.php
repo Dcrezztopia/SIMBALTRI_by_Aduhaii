@@ -1,19 +1,11 @@
 @extends('layout.app')
 
 @section('content_body')
-<main id="main" class="main">
-    <nav>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item active">Home/Pengajuan Surat/ Pengajuan Surat</li>
-        </ol>
-    </nav>
-    <div class="pagetitle text-center">
-        <h2 class="welcome-message-surat">Hasil Form</h2>
-    </div><!-- End Page Title -->
-
-    <div class="container my-4">
-        <div class="card">
-            <div class="card-body">
+<div class="card">
+    <div class="card-header lin-gradient-light-primary text-primary-dark">
+        Hasil Form
+    </div>
+    <div class="card-body">
                 <form>
                     <label for="input1" class="form-label">Nama : </label>
                     <div class="mb-3">
@@ -47,16 +39,7 @@
                 <button class="btn btn-success mt-3" style="float: right;" onclick="showAlert()">
                     <i class="bi bi-save"></i> Simpan
                 </button>
-            </div>
-        </div>
     </div>
-
-    <section class="section dashboard">
-        <div class="row">
-            <!-- Left side columns -->
-            <!-- Add your content here -->
-        </div>
-    </section>
-</main><!-- End #main -->
+</div>
 
 @endsection

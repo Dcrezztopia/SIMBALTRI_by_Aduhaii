@@ -19,8 +19,8 @@
         </div>
 
 
-        <div class="big-box">
-        </div>
+        <!-- <div class="big-box"> -->
+        <!-- </div> -->
 
         <section class="section dashboard">
         <div class="row">

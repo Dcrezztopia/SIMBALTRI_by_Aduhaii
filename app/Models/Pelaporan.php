@@ -22,5 +22,6 @@ class Pelaporan extends Model
         'perihal',
         'isi',
         'foto_bukti',
+        'tanggal_dibuat',
     ];
 }

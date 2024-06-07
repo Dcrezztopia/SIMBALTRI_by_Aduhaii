@@ -10,14 +10,14 @@
             @if($user->role == 'admin')
             <li class="nav-item">
                 <a class="nav-link @if($activeSidebarItem[0] == 'dashboard') active @else collapsed @endif" href="{{ route('admin.dashboard') }}">
-                    <i class="bi bi-grid"></i>
+                    <i class="bi bi-house"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
             @elseif($user->role == 'warga')
             <li class="nav-item">
                 <a class="nav-link @if($activeSidebarItem[0] == 'home') active @else collapsed @endif" href="{{ route('warga.home') }}">
-                    <i class="bi bi-grid"></i>
+                    <i class="bi bi-house"></i>
                     <span>Home</span>
                 </a>
             </li>
@@ -30,19 +30,19 @@
             <li class="nav-item">
                 @if(isset($item['route']))
                     {{-- WARNA PERLU DIBENARKAN AKU GAK NGERTI KUDU WARNA OPO --}}
-                    <a class="nav-link collapsed text-primary @if($activeSidebarItem[0] == $key) active @endif" href="{{ route($item['route']) }}">
-                        <i class="bi {{ $item['icon'] }}"></i><span>{{ $item['label'] }}
+                    <a class="nav-link collapsed @if($activeSidebarItem[0] == $key) active @endif" href="{{ route($item['route']) }}">
+                        <i class="{{ $item['icon'] }}"></i><span>{{ $item['label'] }}
                     </a>
                 @else
                     <a class="nav-link collapsed @if($activeSidebarItem[0] == $key) active @endif" data-bs-target="#{{ $key }}-nav" data-bs-toggle="collapse" style="cursor: pointer">
-                        <i class="bi {{ $item['icon'] }}"></i><span>{{ $item['label'] }}</span><i class="bi bi-chevron-down ms-auto"></i>
+                        <i class="{{ $item['icon'] }}"></i><span>{{ $item['label'] }}</span><i class="bi bi-chevron-down ms-auto"></i>
                     </a>
                 @endif
                 <ul id="{{ $key }}-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                     @foreach ($item['children'] as $childKey => $child)
                         <li>
                             <a class="nav-link @if($activeSidebarItem[0] == $key && $activeSidebarItem[1] == $childKey) active @endif" href="{{ route($child['route']) }}">
-                                <i class="bi {{ $child['icon'] }}"></i><span>{{ $child['label'] }}</span>
+                                <i class="{{ $child['icon'] }}"></i><span>{{ $child['label'] }}</span>
                             </a>
                         </li>
                     @endforeach
@@ -65,7 +65,7 @@
         width: 275px;
         z-index: 996;
         transition: all 0.3s;
-        padding: 20px;
+        padding: 10px;
         overflow-y: auto;
         scrollbar-width: thin;
         scrollbar-color: #08645c transparent;

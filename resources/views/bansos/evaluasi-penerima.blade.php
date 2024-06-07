@@ -76,6 +76,8 @@
                     </div>
                     <div class="card-body">
                         <button class="btn btn-primary text-light mb-3" id="btn-hasil-evaluasi">Evaluasi</button>
+                <div class="table-responsive">
+
                         <table id="hasil-evaluasi">
                             <thead id="hasil-evaluasi-head" class="">
                                 <tr>
@@ -88,6 +90,7 @@
                             <tbody id="hasil-evaluasi-body">
                             </tbody>
                         </table>
+</div>
                     </div>
                 </div>
             </div>

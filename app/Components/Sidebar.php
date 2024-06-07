@@ -7,96 +7,102 @@ class Sidebar {
 
     public function __construct() {
         $this->items = [
-            'pengajuan-surat' => [
-                'icon' => 'bi-menu-button-wide',
-                'label' => 'Pengajuan Surat',
+            'data-warga' => [
+                'icon' => 'bi bi-people-fill',
+                'label' => 'Data Warga',
+                'route' => 'data-warga.index',
+                'children' => []
+            ],
+            'surat' => [
+                'icon' => 'bi bi-envelope',
+                'label' => 'Surat',
                 'route' => null,
                 'children' => [
                     'pengajuan-surat' => [
-                        'icon' => 'bi-circle',
+                        'icon' => 'bi bi-circle',
                         'label' => 'Pengajuan Surat',
                         'route' => 'surat.pengajuan'
                     ],
                     'riwayat' => [
-                        'icon' => 'bi-circle',
+                        'icon' => 'bi bi-circle',
                         'label' => 'Riwayat Surat',
                         'route' => 'surat.riwayat'
                     ]
                 ]
             ],
             'pelaporan' => [
-                'icon' => 'bi-menu-button-wide',
+                'icon' => 'bi bi-megaphone',
                 'label' => 'Pelaporan',
                 'route' => null,
                 'children' => [
                     'lapor' => [
-                        'icon' => 'bi-circle',
+                        'icon' => 'bi bi-circle',
                         'label' => 'Pengajuan Lapor',
                         'route' => 'pelaporan.lapor'
                     ],
                     'riwayat' => [
-                        'icon' => 'bi-circle',
+                        'icon' => 'bi bi-circle',
                         'label' => 'Riwayat Pelaporan',
                         'route' => 'pelaporan.riwayat'
                     ]
                 ]
             ],
             'kegiatan-dan-iuran' => [
-                'icon' => 'bi-menu-button-wide',
+                'icon' => 'bi bi-calendar',
                 'label' => 'Kegiatan dan Iuran',
                 'route' => null,
                 'children' => [
                     'kegiatan' => [
-                        'icon' => 'bi-circle',
+                        'icon' => 'bi bi-circle',
                         'label' => 'Kegiatan Warga',
                         'route' => 'kegiatan.index'
                     ],
                     'iuran' => [
-                        'icon' => 'bi-circle',
+                        'icon' => 'bi bi-circle',
                         'label' => 'Iuran Warga',
                         'route' => 'iuran.index'
                     ]
                 ]
             ],
             'bansos' => [
-                'icon' => 'bi-menu-button-wide',
+                'icon' => 'fa-solid fa-hand-holding-heart',
                 'label' => 'Bantuan Sosial',
                 'route' => null,
                 'children' => [
                     // 'riwayat' => [
-                    //     'icon' => 'bi-circle',
+                    //     'icon' => 'bi bi-circle',
                     //     'label' => 'Riwayat Bansos',
                     //     'route' => 'bansos.riwayat'
                     // ],
-                    'pengajuan' => [
-                        'icon' => 'bi-circle',
-                        'label' => 'Pengajuan Bansos',
-                        'route' => 'bansos.pengajuan',
-                    ],
+                    // 'pengajuan' => [
+                    //     'icon' => 'bi bi-circle',
+                    //     'label' => 'Pengajuan Bansos',
+                    //     'route' => 'bansos.pengajuan',
+                    // ],
                     // 'permintaan' => [
-                    //     'icon' => 'bi-circle',
+                    //     'icon' => 'bi bi-circle',
                     //     'label' => 'Permintaan Bansos',
                     //     'route' => 'bansos.permintaan'
                     // ],
                     // 'data' => [
-                    //     'icon' => 'bi-circle',
+                    //     'icon' => 'bi bi-circle',
                     //     'label' => 'Data Bansos',
                     //     'route' => 'bansos.data'
                     // ],
                     'evaluasi-penerima' => [
-                        'icon' => 'bi-circle',
+                        'icon' => 'bi bi-circle',
                         'label' => 'Evaluasi Penerima',
                         'route' => 'bansos.evaluasi-penerima'
                     ],
-                    'penerima' => [
-                        'icon' => 'bi-circle',
-                        'label' => 'Penerima Bansos',
-                        'route' => 'bansos.penerima'
-                    ],
+                    // 'penerima' => [
+                    //     'icon' => 'bi bi-circle',
+                    //     'label' => 'Penerima Bansos',
+                    //     'route' => 'bansos.penerima'
+                    // ],
                 ]
             ],
             // 'contoh-dengan-route' => [
-            //     'icon' => 'bi-menu-button-wide',
+            //     'icon' => 'bi bi-menu-button-wide',
             //     'label' => 'Contoh dengan Route',
             //     'route' => 'placeholder1',
             //     'children' => []
