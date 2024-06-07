@@ -9,6 +9,8 @@
         <div>
                         <a href="{{ route('kegiatan.create') }}" class="btn btn-primary float-right mb-3">Tambah Kegiatan</a>
         </div>
+                <div class="table-responsive">
+
                         <table class="w-100">
                             <thead class="lin-gradient-light-primary">
                                 <tr>
@@ -44,6 +46,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+</div>
 </div>
 </div>
 @endsection

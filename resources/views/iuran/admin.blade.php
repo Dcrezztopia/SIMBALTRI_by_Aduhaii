@@ -9,6 +9,8 @@
                     <div class="">
                         <a href="{{ route('iuran.create') }}" class="btn btn-primary float-right mb-3">Tambah Iuran</a>
                     </div>
+                <div class="table-responsive">
+
                         <table class="w-100">
                             <thead>
                                 <tr>
@@ -42,6 +44,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+</div>
     </div>
 </div>
 @endsection

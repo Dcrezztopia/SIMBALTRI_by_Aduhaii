@@ -47,7 +47,9 @@
                             Kegiatan Berlangsung
                         </div>
                         <div class="card-body">
-                            <table>
+                <div class="table-responsive">
+
+                            <table class="w-100">
                                 <thead>
                                     <tr>
                                         <th class="cell">Nama Kegiatan</th>
@@ -61,6 +63,7 @@
                                     </tr>
                                 </tbody>
                             </table>
+</div>
                         </div>
                     </div>
                 </div>
@@ -70,6 +73,8 @@
                             Surat Menunggu Persetujuan
                         </div>
                         <div class="card-body">
+                <div class="table-responsive">
+
                             <table class="w-100">
                                 <thead>
                                     <tr>
@@ -108,6 +113,7 @@
                                     </tr>
                                 </tbody>
                             </table>
+</div>
                         </div>
                     </div>
                 </div>

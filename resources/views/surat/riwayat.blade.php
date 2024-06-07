@@ -42,7 +42,7 @@
                             @if($surat->perihal == 'pengantar_domisili')
                                 Pengantar Domisili
                             @else
-                                $surat->perihal
+				{{ $surat->perihal }}
                             @endif
                         </td>
                         <td class="cell">{{ $surat->created_at }}</td>
