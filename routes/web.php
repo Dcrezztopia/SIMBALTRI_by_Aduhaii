@@ -59,10 +59,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('{id}', [SuratController::class, 'destroy'])->name('surat.destroy');
         Route::post('surat/store', [SuratController::class, 'store'])->name('surat.store');
         Route::put('surat/updateStatus/{id}/{status}', [SuratController::class, 'updateStatus'])->name('surat.updateStatus');
-        Route::get('/surat/{id}', [PengajuanSuratController::class, 'show'])->name('surat.detail');
-        Route::get('/surat/{id}/edit', [PengajuanSuratController::class, 'edit'])->name('surat.edit');
-        Route::put('/surat/{id}', [PengajuanSuratController::class, 'update'])->name('surat.update');
-        Route::put('/surat/{id}/status/{status}', [PengajuanSuratController::class, 'updateStatus'])->name('surat.updateStatus');
+        Route::get('{id}', [SuratController::class, 'show'])->name('surat.detail');
+        Route::get('edit/{id}', [SuratController::class, 'edit'])->name('surat.edit');
+        Route::put('{id}', [SuratController::class, 'update'])->name('surat.update');
+        Route::put('{id}/status/{status}', [SuratController::class, 'updateStatus'])->name('surat.updateStatus');
     });
 
     Route::prefix('pelaporan')->group(function () {

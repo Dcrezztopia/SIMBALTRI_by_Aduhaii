@@ -95,9 +95,10 @@
                                                 data-bs-placement="top" title="Hapus surat">
                                                 <i class="bi bi-trash"></i>
                                             </button>
+                                        </form>
            
-                             </form>
-                                    </td>
+                         </td>
+
                                 </tr>
                                 @endforeach
                                 <!-- Akhir data tabel -->
