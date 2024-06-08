@@ -49,10 +49,10 @@ class SuratController extends Controller
             ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem);
-    }
+        }
 
-    public function destroy($id)
-    {
+        public function destroy($id)
+        {
         $surat = PengajuanSurat::findOrFail($id);
         $surat->delete();
 
@@ -118,45 +118,12 @@ class SuratController extends Controller
     public function show($id)
     {
         $surat = PengajuanSurat::findOrFail($id);
-
-        $this->activeSidebarItem = ['surat', 'pengajuan-surat'];
         return view('surat.detail')
-            ->with('user', $this->user)
-            ->with('sidebarItems', $this->sidebarItems)
-            ->with('activeSidebarItem', $this->activeSidebarItem)
-            ->with('surat', $surat);
-    }
-    public function edit($id)
-    {
-        $surat = PengajuanSurat::findOrFail($id);
-
-        $this->activeSidebarItem = ['surat', 'pengajuan-surat'];
-        return view('surat.edit')
-            ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem)
             ->with('surat', $surat);
     }
 
-    public function update(Request $request, $id)
-    {
-        // Validasi data
-        $request->validate([
-            'nama' => 'required|string|max:100',
-            'tanggal_lahir' => 'required|date',
-            'kewarganegaraan' => 'required|string|max:100',
-            'pekerjaan' => 'required|string|max:25',
-            'alamat_rumah' => 'required|string|max:100',
-            'kepentingan' => 'required|string|max:100',
-            'perihal' => 'required|in:pengantar_domisili,pembuatan_KTP,pengantar_kematian,keterangan_tidak_mampu',
-        ]);
 
-        // Temukan surat berdasarkan ID
-        $surat = PengajuanSurat::findOrFail($id);
 
-        // Perbarui data surat
-        $surat->update($request->all());
-
-        return redirect()->route('surat.riwayat')->with('success', 'Surat berhasil diperbarui.');
-    }
 }
