@@ -26,6 +26,7 @@ class  PelaporanController extends Controller
 
     public function index()
     {
+        $pelaporans = Pelaporan::all();
         return view('pelaporan.index');
     }
 
@@ -122,7 +123,50 @@ class  PelaporanController extends Controller
 
 
         return redirect()->route('pelaporan.hasilform');
+    }
+    public function show($id)
+    {
+        $pelaporan = Pelaporan::findOrFail($id);
+        $this->activeSidebarItem = ['pelaporan', 'lapor'];
+        return view('pelaporan.detail', compact('pelaporan'))
+            ->with('user', $this->user)
+            ->with('sidebarItems', $this->sidebarItems)
+            ->with('activeSidebarItem', $this->activeSidebarItem);
+    }
 
+    public function edit($id)
+    {
+        $pelaporan = Pelaporan::findOrFail($id);
+        $this->activeSidebarItem = ['pelaporan', 'lapor'];
 
+        return view('pelaporan.edit', compact('pelaporan'))
+            ->with('user', $this->user)
+            ->with('sidebarItems', $this->sidebarItems)
+            ->with('activeSidebarItem', $this->activeSidebarItem);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'nama' => 'required|string|max:100',
+            'tanggal_lahir' => 'required|date',
+            'jenis_kelamin' => 'required|in:L,P',
+            'kewarganegaraan' => 'required|string|max:100',
+            'alamat_rumah' => 'required|string|max:100',
+            'perihal' => 'required|string|max:100',
+            'isi' => 'required|string|max:500',
+            'foto_bukti' => 'nullable|image|max:2048',
+        ]);
+
+        $pelaporan = Pelaporan::findOrFail($id);
+        $pelaporan->update($request->all());
+
+        if ($request->hasFile('foto_bukti')) {
+            $path = $request->file('foto_bukti')->store('public/foto_bukti');
+            $pelaporan->foto_bukti = basename($path);
+            $pelaporan->save();
+        }
+
+        return redirect()->route('pelaporan.riwayat')->with('success', 'Pelaporan berhasil diperbarui.');
     }
 }
