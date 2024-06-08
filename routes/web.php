@@ -88,12 +88,16 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::prefix('bansos')->group(function () {
-        Route::get('riwayat', [BansosController::class, 'riwayat'])->name('bansos.riwayat');
+        // Route::get('riwayat', [BansosController::class, 'riwayat'])->name('bansos.riwayat');
         Route::get('permintaaan', [BansosController::class, 'permintaan'])->name('bansos.permintaan');
         Route::get('pengajuan', [BansosController::class, 'pengajuan'])->name('bansos.pengajuan');
         Route::get('data', [BansosController::class, 'data'])->name('bansos.data');
         Route::get('evaluasi-penerima', [BansosController::class, 'evaluasi_penerima'])->name('bansos.evaluasi-penerima');
+        Route::get('pengajuan-bansos', [BansosController::class, 'pengajuan_bansos'])->name('bansos.pengajuan-bansos');
+        Route::get('daftar_pengajuan', [BansosController::class, 'daftar_pengajuan'])->name('bansos.daftar_pengajuan');
         Route::get('penerima', [BansosController::class, 'penerima'])->name('bansos.penerima');
+        Route::get('/pengajuan_bansos', [BansosController::class, 'index'])->name('pengajuan_bansos.index');
+        Route::post('/pengajuan_bansos', [BansosController::class, 'store'])->name('pengajuan_bansos.store');
     });
 
     // belum diatur

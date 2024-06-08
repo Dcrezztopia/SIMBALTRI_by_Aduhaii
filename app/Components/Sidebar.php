@@ -94,6 +94,16 @@ class Sidebar {
                         'label' => 'Evaluasi Penerima',
                         'route' => 'bansos.evaluasi-penerima'
                     ],
+                    'pengajuan-bansos' => [
+                        'icon' => 'bi bi-circle',
+                        'label' => 'Pengajuan Bansos',
+                        'route' => 'bansos.pengajuan-bansos'
+                    ],
+                    'daftar_pengajuan' => [
+                        'icon' => 'bi bi-circle',
+                        'label' => 'Daftar Pengajuan',
+                        'route' => 'bansos.daftar_pengajuan'
+                    ]
                     // 'penerima' => [
                     //     'icon' => 'bi bi-circle',
                     //     'label' => 'Penerima Bansos',
