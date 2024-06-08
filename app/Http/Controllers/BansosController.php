@@ -6,6 +6,7 @@ use App\Components\Sidebar;
 use App\Models\KriteriaBansos;
 use App\Models\KriteriaMappedScore;
 use App\Models\PengajuanBansos;
+use App\Models\DataWarga;
 use App\Models\PerbandinganKriteriaBansos;
 use App\Models\PerhitunganAhp;
 use Illuminate\Http\Request;
@@ -29,6 +30,7 @@ class BansosController extends Controller
         });
         $this->sidebarItems = (new Sidebar())->getItems();
     }
+
 
     public function index()
     {
@@ -77,6 +79,27 @@ class BansosController extends Controller
             ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem);
+    }
+    public function pengajuan_bansos()
+    {
+        $this->activeSidebarItem = ['bansos', 'pengajuan-bansos'];
+        return view('bansos.pengajuan-bansos')
+            ->with('user', $this->user)
+            ->with('sidebarItems', $this->sidebarItems)
+            ->with('activeSidebarItem', $this->activeSidebarItem);
+    }
+    public function daftar_pengajuan()
+    {
+        $this->activeSidebarItem = ['bansos', 'daftar_pengajuan'];
+        $pengajuan_bansos = PengajuanBansos::all();
+        $dataWarga = DataWarga::all(); 
+        return view('bansos.daftar_pengajuan')
+            ->with('user', $this->user)
+            ->with('sidebarItems', $this->sidebarItems)
+            ->with('activeSidebarItem', $this->activeSidebarItem)
+            ->with('pengajuan_bansos', $pengajuan_bansos) 
+            ->with('dataWarga', $dataWarga); 
+
     }
 
     public function penerima()
@@ -487,5 +510,47 @@ class BansosController extends Controller
         } else {
             return response(['message' => 'Failed to open process'], 500);
         }
+    }
+
+    public function create()
+    {
+        return view('pengajuan_bansos.create');
+    }
+
+    public function store(Request $request)
+    {
+        // Validasi input
+        $request->validate([
+            'nama' => 'required|string|max:100',
+            'nik' => 'required|string|size:16|exists:data_warga,nik',
+            'no_kk' => 'required|string|size:16|exists:data_warga,no_kk',
+            'kondisi_rumah' => 'required|in:SEMPURNA,BAIK,LAYAK,BURUK',
+            'luas_rumah' => 'required|integer|min:0',
+            'status_pernikahan' => 'required|in:BELUM/TIDAK,MENIKAH,JANDA/DUDA',
+            'pekerjaan' => 'required|string|max:25',
+            'jml_tanggungan' => 'required|integer|min:0',
+            'jml_pendapatan' => 'required|integer|min:0',
+            'tag_listrik' => 'required|integer|min:0',
+            'tag_air' => 'required|integer|min:0',
+        ]);
+
+        // Simpan data ke database
+        PengajuanBansos::create([
+            'nama' => $request->nama,
+            'nik' => $request->nik,
+            'no_kk' => $request->no_kk,
+            'kondisi_rumah' => $request->kondisi_rumah,
+            'luas_rumah' => $request->luas_rumah,
+            'status_pernikahan' => $request->status_pernikahan,
+            'pekerjaan' => $request->pekerjaan,
+            'jml_tanggungan' => $request->jml_tanggungan,
+            'jml_pendapatan' => $request->jml_pendapatan,
+            'tag_listrik' => $request->tag_listrik,
+            'tag_air' => $request->tag_air,
+            'status' => 'menunggu',
+        ]);
+
+        // Redirect ke halaman sukses atau daftar pengajuan
+        return redirect()->route('bansos.daftar_pengajuan')->with('success', 'Pengajuan bansos berhasil disimpan.');
     }
 }
