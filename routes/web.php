@@ -69,6 +69,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('hasilform', [PelaporanController::class, 'hasilform'])->name('pelaporan.hasilform');
         Route::delete('{id}', [PelaporanController::class, 'destroy'])->name('pelaporan.destroy'); 
         Route::post('pelaporan/store', [PelaporanController::class, 'store'])->name('pelaporan.store');
+        Route::get('{id}', [PelaporanController::class, 'show'])->name('pelaporan.detail');
+        Route::get('{id}/edit', [PelaporanController::class, 'edit'])->name('pelaporan.edit');
+        Route::put('{id}', [PelaporanController::class, 'update'])->name('pelaporan.update');
+        Route::post('store', [PelaporanController::class, 'store'])->name('pelaporan.store');
     });
 
     Route::get('kegiatan', [KegiatanController::class, 'index'])->name('kegiatan.index');
