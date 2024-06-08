@@ -26,6 +26,7 @@ class  PelaporanController extends Controller
 
     public function index()
     {
+        $pelaporans = Pelaporan::all();
         return view('pelaporan.index');
     }
 
@@ -117,10 +118,7 @@ class  PelaporanController extends Controller
 
 
         return redirect()->route('pelaporan.hasilform');
-
-
     }
-
     public function show($id)
     {
         $pelaporan = Pelaporan::findOrFail($id);

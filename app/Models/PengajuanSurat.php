@@ -9,8 +9,8 @@ class PengajuanSurat extends Model
 {
     use HasFactory;
 
-    protected $table = 'pengajuan_surat'; 
-    protected $primaryKey = 'id_surat'; 
+    protected $table = 'pengajuan_surat';
+    protected $primaryKey = 'id_surat';
 
     public $timestamps = true;
 
@@ -19,7 +19,7 @@ class PengajuanSurat extends Model
         'tanggal_lahir',
         'kewarganegaraan',
         'pekerjaan',
-        'alamat_rumah', 
+        'alamat_rumah',
         'kepentingan',
         'perihal',
         'status',

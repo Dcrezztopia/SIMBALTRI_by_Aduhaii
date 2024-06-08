@@ -16,8 +16,17 @@
         <p>Tanggal Dibuat: {{ $pelaporan->tanggal_dibuat }}</p>
         @if($pelaporan->foto_bukti)
         <p>Foto Bukti:</p>
+<<<<<<< HEAD
         <img src="{{ Storage::url($pelaporan->foto_bukti) }}" alt="Foto Bukti" class="img-fluid">
         @endif
     </div>
 </div>
 @endsection
+=======
+        <img src="{{ Storage::url('foto_bukti') . $pelaporan->foto_bukti }}" alt="Foto Bukti" class="img-fluid">
+        @endif
+    </div>
+</div>
+
+@endsection
+>>>>>>> 460a1e032c239d6e68ca9511f3c94df3b604e7c0
