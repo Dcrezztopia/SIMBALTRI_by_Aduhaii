@@ -2,44 +2,47 @@
 
 @section('content_body')
 <div class="card">
-    <div class="card-header lin-gradient-light-primary text-primary-dark">
-        Hasil Form
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">Surat Pengajuan</h4>
     </div>
     <div class="card-body">
-                <form>
-                    <label for="input1" class="form-label">Nama : </label>
-                    <div class="mb-3">
-                        <input type="text" class="form-control" id="input1" placeholder="Nama" value="{{ session('nama') }}" disabled>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <div class="surat">
+                        <div class="header text-center">
+                            <h3 class="judul-surat">Surat Pengajuan</h3>
+                            <p class="info-surat">Nomor: [Nomor Surat] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Tanggal: [Tanggal Surat]</p>
+                        </div>
+                        <div class="konten-surat">
+                            <p>Kepada Yth.,</p>
+                            <p class="alamat-penerima">[Nama Penerima]<br>[Alamat Penerima]</p>
+                            <p>Dengan hormat,</p>
+                            <p>Kami yang bertanda tangan di bawah ini:</p>
+                            <ul>
+                                <li>Nama: {{ session('nama') }}</li>
+                                <li>Tempat, Tanggal Lahir: {{ session('tempat_lahir') }}, {{ session('tanggal_lahir') }}</li>
+                                <li>Kewarganegaraan: {{ session('kewarganegaraan') }}</li>
+                                <li>Pekerjaan: {{ session('pekerjaan') }}</li>
+                                <li>Alamat: {{ session('alamat_rumah') }}</li>
+                                <li>Kepentingan: {{ session('kepentingan') }}</li>
+                                <li>Perihal: {{ session('perihal') }}</li>
+                            </ul>
+                            <p>Berikut kami sampaikan pengajuan surat dengan rincian tersebut di atas.</p>
+                            <p>Demikian surat ini kami buat dengan sebenar-benarnya. Terima kasih atas perhatian dan kerjasamanya.</p>
+                        </div>
+                        <div class="footer text-center">
+                            <p>Dikirim oleh:</p>
+                            <p class="ttd">[Nama Pengirim]</p>
+                            <p class="tgl-ttd">[Tanggal Tanda Tangan]</p>
+                        </div>
                     </div>
-                    <label for="input2" class="form-label">Tempat dan Tanggal Lahir : </label>
-                    <div class="mb-3">
-                        <input type="text" class="form-control" id="input2" placeholder="Tempat dan Tanggal Lahir" value="{{ session('tanggal_lahir') }}" disabled>
-                    </div>
-                    <label for="input3" class="form-label">Kewarganegaraan : </label>
-                    <div class="mb-3">
-                        <input type="text" class="form-control" id="input3" placeholder="Kewarganegaraan" value="{{ session('kewarganegaraan') }}" disabled>
-                    </div>
-                    <label for="input4" class="form-label">Pekerjaan : </label>
-                    <div class="mb-3">
-                        <input type="text" class="form-control" id="input4" placeholder="Pekerjaan" value="{{ session('pekerjaan') }}" disabled>
-                    </div>
-                    <div class="mb-3">
-                        <label for="input5" class="form-label">Alamat Rumah:</label>
-                        <input type="text" class="form-control" id="input5" placeholder="Alamat Rumah" value="{{ session('alamat_rumah') }}" disabled>
-                    </div>
-                    <div class="mb-3">
-                        <label for="input6" class="form-label">Kepentingan :</label>
-                        <input type="text" class="form-control" id="input6" placeholder="Kepentingan" value="{{ session('kepentingan') }}" disabled>
-                    </div>
-                    <div class="mb-3">
-                        <label for="input7" class="form-label">Perihal:</label>
-                        <input type="text" class="form-control" id="input7" placeholder="Perihal" value="{{ session('perihal') }}" disabled>
-                    </div>
-                </form>
-                <button class="btn btn-success mt-3" style="float: right;" onclick="showAlert()">
-                    <i class="bi bi-save"></i> Simpan
-                </button>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-success mt-3 float-end" onclick="showAlert()">
+            <i class="bi bi-save"></i> Simpan
+        </button>
     </div>
 </div>
-
 @endsection
