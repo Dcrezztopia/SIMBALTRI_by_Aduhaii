@@ -58,12 +58,13 @@ class AdminController extends Controller
             '61+' => 0
         ];
         $pendidikanKelompok = [
-            'SLTA/SEDERAJAT' => 0,
+            'SLTA / SEDERAJAT' => 0,
             'SLTP/SEDERAJAT' => 0,
             'TIDAK / BELUM SEKOLAH' => 0,
             'BELUM TAMAT SD/SEDERAJAT' => 0,
+            'TAMAT SD / SEDERAJAT' => 0,
             'DIPLOMA I / II' => 0,
-            'DIPLOMA IV/STRATA I' => 0,
+            'DIPLOMA IV/ STRATA I' => 0,
             'Tidak Memiliki Pendidikan' => 0,
         ];
 
@@ -85,8 +86,8 @@ class AdminController extends Controller
             }
         }
         foreach ($pendidikanData as $pendidikan) {
-            if ($pendidikan == 'SLTA/SEDERAJAT') {
-                $pendidikanKelompok['SLTA/SEDERAJAT']++;
+            if ($pendidikan == 'SLTA / SEDERAJAT') {
+                $pendidikanKelompok['SLTA / SEDERAJAT']++;
             } elseif ($pendidikan == 'SLTP/SEDERAJAT') {
                 $pendidikanKelompok['SLTP/SEDERAJAT']++;
             } elseif ($pendidikan == 'TIDAK / BELUM SEKOLAH') {
@@ -94,15 +95,16 @@ class AdminController extends Controller
             } elseif ($pendidikan == 'BELUM TAMAT SD/SEDERAJAT') {
                 $pendidikanKelompok['BELUM TAMAT SD/SEDERAJAT']++;
             } elseif ($pendidikan == 'DIPLOMA I / II') {
+            } elseif ($pendidikan == 'TAMAT SD / SEDERAJAT') {
+                $pendidikanKelompok['TAMAT SD / SEDERAJAT']++;
+            } elseif ($pendidikan == 'DIPLOMA I / II') {
                 $pendidikanKelompok['DIPLOMA I / II']++;
-            } elseif ($pendidikan == 60) {
-                $pendidikanKelompok['DIPLOMA IV/STRATA I']++;
+            } elseif ($pendidikan == 'DIPLOMA IV/ STRATA I') {
+                $pendidikanKelompok['DIPLOMA IV/ STRATA I']++;
             } else {
                 $pendidikanKelompok['Tidak Memiliki Pendidikan']++;
             }
         }
-
-        // dd($umurKelompok);
 
         $this->activeSidebarItem = ['dashboard', ''];
         return view('admin.dashboard')
