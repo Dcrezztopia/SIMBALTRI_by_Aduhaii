@@ -154,7 +154,7 @@ class SuratController extends Controller
         $surat = PengajuanSurat::findOrFail($id);
 
         // Perbarui data surat
-        $surat->update($request->all());
+        $surat->update($request->only(['nama', 'tanggal_lahir', 'kewarganegaraan', 'pekerjaan', 'alamat_rumah', 'kepentingan', 'perihal']));
 
         return redirect()->route('surat.riwayat')->with('success', 'Surat berhasil diperbarui.');
     }

@@ -58,7 +58,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('hasilform', [SuratController::class, 'hasilform'])->name('surat.hasilform');
         Route::delete('{id}', [SuratController::class, 'destroy'])->name('surat.destroy');
         Route::post('surat/store', [SuratController::class, 'store'])->name('surat.store');
-        Route::put('surat/updateStatus/{id}/{status}', [SuratController::class, 'updateStatus'])->name('surat.updateStatus');
+        Route::put('updateStatus/{id}/{status}', [SuratController::class, 'updateStatus'])->name('surat.updateStatus');
         Route::get('{id}', [SuratController::class, 'show'])->name('surat.detail');
         Route::get('edit/{id}', [SuratController::class, 'edit'])->name('surat.edit');
         Route::put('{id}', [SuratController::class, 'update'])->name('surat.update');

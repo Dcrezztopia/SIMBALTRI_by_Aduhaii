@@ -7,7 +7,7 @@
     </div>
     <div class="card-body">
         <div class="container my-4">
-                <form action="{{ route('pengajuan_bansos.store') }}" method="POST">
+            <form action="{{ route('pengajuan_bansos.store') }}" method="POST">
                 @csrf
                 <label for="input1" class="form-label">Nama:</label>
                 <div class="mb-3">
@@ -62,9 +62,12 @@
                 <div class="mb-3">
                     <input type="number" class="form-control" id="input11" name="tag_air" min="0" required>
                 </div>
-                <button type="submit" class="btn btn-success mt-3" style="float: right;">
-                    <i class="bi bi-save"></i> Simpan
-                </button>
+                <div class="d-flex justify-content-between mt-3">
+                    <a href="{{ route('surat.riwayat') }}" class="btn btn-secondary">Kembali</a>
+                    <button type="submit" class="btn btn-success">
+                        <i class="bi bi-save"></i> Simpan
+                    </button>
+                </div>
             </form>
         </div>
     </div>

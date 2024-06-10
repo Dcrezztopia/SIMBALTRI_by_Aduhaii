@@ -2,6 +2,11 @@
 {{--@include('layout.header')--}}
 @include('layout.sidebar')
 
+<head>
+    <!-- Other head elements -->
+
+</head>
+
 <main id="main">
     @include('layout.navbar')
     @yield('content_body')
@@ -26,7 +31,7 @@
         width: 100%;
         height: 100%;
         background-image: url('/assets/img/backgroundimage.jpg');
-        background-color: rgba(255,255,255,0.5);
+        background-color: rgba(255, 255, 255, 0.5);
         background-blend-mode: lighten;
         background-size: cover;
         z-index: -1;
@@ -39,6 +44,7 @@
     }
 
     @media (min-width: 1200px) {
+
         #main,
         #footer {
             margin-left: 300px;
@@ -63,33 +69,32 @@
         margin-bottom: 10px;
     }
 
-.pagetitle {
-  text-align: center;
-  margin: 100px auto;
-}
+    .pagetitle {
+        text-align: center;
+        margin: 100px auto;
+    }
 
-.welcome-message {
-  font-size: 5em;
-  font-weight: bold;
-  color: #006778;
-}
+    .welcome-message {
+        font-size: 5em;
+        font-weight: bold;
+        color: #006778;
+    }
 
-.welcome-message-surat {
-  font-size: 5em;
-  font-weight: bold;
-  color: #006778;
-  text-align: left;
-}
+    .welcome-message-surat {
+        font-size: 5em;
+        font-weight: bold;
+        color: #006778;
+        text-align: left;
+    }
 
-.sub-message {
-  font-size: 3.5em;
-  font-weight: normal;
-  color: #006778;
+    .sub-message {
+        font-size: 3.5em;
+        font-weight: normal;
+        color: #006778;
 
-}
+    }
 
-.card-header {
-    color: var(--text-primary-dark);
+    .card-header {
+        color: var(--text-primary-dark);
     }
 </style>
-

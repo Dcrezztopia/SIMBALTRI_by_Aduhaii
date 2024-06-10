@@ -20,5 +20,7 @@
         @endif
     </div>
 </div>
-
+<div class="form-group">
+    <a href="{{ route('pelaporan.riwayat') }}" class="btn btn-secondary">Kembali</a>
+</div>
 @endsection
