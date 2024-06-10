@@ -45,4 +45,11 @@
         </button>
     </div>
 </div>
+
+<script>
+    function showAlert() {
+        alert('Data berhasil disimpan!');
+        window.location.href = "{{ route('surat.riwayat') }}"; // Ganti dengan route atau URL yang sesuai
+    }
+    </script>
 @endsection
