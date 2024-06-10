@@ -3,7 +3,7 @@
 @section('content_body')
 <div class="card">
     <div class="card-header lin-gradient-light-primary text-primary-dark">
-        Riwayat pelaporan
+        Data Warga
     </div>
     <div class="card-body">
   <section class="section dashboard">
