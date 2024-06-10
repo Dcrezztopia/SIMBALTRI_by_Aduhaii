@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Components\Sidebar;
-use App\Models\DataWarga; // Tambahkan model DataWarga
+use App\Models\DataWarga;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -27,31 +27,20 @@ class DataWargaController extends Controller
         $user = Auth::user();
 
         return match ($user->role) {
-            // 'warga' => $this->warga(),
             'admin' => $this->admin($user),
             default => abort(404),
         };
     }
 
-    // public function warga()
-    // {
-    //     $this->activeSidebarItem = ['data-warga'];
-    //     $dataWarga = DataWarga::all(); // Ambil data warga dari database
-    //     return view('data-warga.warga')
-    //         ->with('sidebarItems', $this->sidebarItems)
-    //         ->with('activeSidebarItem', $this->activeSidebarItem)
-    //         ->with('dataWarga', $dataWarga); // Kirim data ke view
-    // }
-
     public function admin()
     {
         $this->activeSidebarItem = ['data-warga'];
-        $dataWarga = DataWarga::all(); // Ambil data warga dari database
+        $dataWarga = DataWarga::all();
         return view('datawarga.index')
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem)
-            ->with('dataWarga', $dataWarga) // Kirim data ke view
-            ->with('user', $this->user); // Kirim data ke view
+            ->with('dataWarga', $dataWarga)
+            ->with('user', $this->user);
     }
 
     public function create()
@@ -76,11 +65,10 @@ class DataWargaController extends Controller
             'agama' => 'required|string|max:10',
             'tanggal_lahir' => 'required|date',
             'tempat_lahir' => 'required|string|max:25',
-            'pendidikan' => 'required|in:TIDAK/BELUM SEKOLAH, BELUM TAMAT SD, TAMAT SD, SLTP/SEDERAJAT ,SLTA/SEDERAJAT, 
-            DIPLOMA I/II,DIPLOMA III, DIPLOMA IV/STRATA I , STRATA II, STRATA III',
+            'pendidikan' => 'required|string|max:255',
             'pekerjaan' => 'required|string|max:25',
-            'status_pernikahan' => 'required|in:BELUM/TIDAK,MENIKAH,JANDA/DUDA',
-            'status_penduduk' => 'required|in:T,P,A',
+            'status_pernikahan' => 'required|string|max:25',
+            'status_penduduk' => 'required|string|max:25',
         ]);
 
         // Simpan data ke database
@@ -97,12 +85,10 @@ class DataWargaController extends Controller
             'pendidikan' => $request->input('pendidikan'),
             'pekerjaan' => $request->input('pekerjaan'),
             'status_pernikahan' => $request->input('status_pernikahan'),
-            'status_pendidikan' => $request->input('status_pendidikan'),
+            'status_penduduk' => $request->input('status_penduduk'),
         ]);
 
         // Berhasil, redirect ke halaman daftar kegiatan dengan pesan sukses
         return redirect()->route('datawarga.index')->with('success', 'Data warga berhasil ditambahkan!');
     }
-
-    
 }
