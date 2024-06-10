@@ -56,8 +56,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/', [DataWargaController::class, 'index'])->name('datawarga.index');
         Route::get('/create', [DataWargaController::class, 'create'])->name('datawarga.create');
         Route::post('/', [DataWargaController::class, 'store'])->name('datawarga.store');
-        Route::get('/edit/{id}', [DataWargaController::class, 'edit'])->name('datawarga.edit');
-        Route::post('/update/{id}', [DataWargaController::class, 'update'])->name('datawarga.update');
+        Route::get('/edit/{nik}', [DataWargaController::class, 'edit'])->name('datawarga.edit');
+        Route::put('/{nik}', [DataWargaController::class, 'update'])->name('datawarga.update');
         Route::delete('/{id}', [DataWargaController::class, 'destroy'])->name('datawarga.destroy');
         
     });

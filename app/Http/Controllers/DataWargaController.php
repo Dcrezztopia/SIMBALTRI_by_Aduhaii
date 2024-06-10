@@ -91,4 +91,55 @@ class DataWargaController extends Controller
         // Berhasil, redirect ke halaman daftar kegiatan dengan pesan sukses
         return redirect()->route('datawarga.index')->with('success', 'Data warga berhasil ditambahkan!');
     }
+
+    public function edit($nik)
+    {
+        $datawarga = DataWarga::findOrFail($nik);
+
+        $this->activeSidebarItem = ['data-warga'];
+        return view('datawarga.edit')
+            ->with('user', $this->user)
+            ->with('sidebarItems', $this->sidebarItems)
+            ->with('activeSidebarItem', $this->activeSidebarItem)
+            ->with('datawarga', $datawarga);
+    }
+
+    public function update(Request $request, $nik)
+    {
+        
+        // Validasi data
+        $request->validate([
+            'nik' => 'required|unique:data_warga|string|max:16',
+            'no_kk' => 'required|unique:data_warga|string|max:16',
+            'nama' => 'required|string|max:100',
+            'alamat_rumah' => 'required|string|max:200',
+            'RT' => 'required|string|max:255',
+            'jenis_kelamin' => 'required|in:L,P',
+            'agama' => 'required|string|max:10',
+            'tanggal_lahir' => 'required|date',
+            'tempat_lahir' => 'required|string|max:25',
+            'pendidikan' => 'required|string|max:255',
+            'pekerjaan' => 'required|string|max:25',
+            'status_pernikahan' => 'required|string|max:25',
+            'status_penduduk' => 'required|string|max:25',
+        ]);
+
+        // Temukan data berdasarkan NIK
+        $datawarga = DataWarga::findOrFail($nik);
+
+        // Perbarui data warga
+        $datawarga->update($request->all());
+
+        return redirect()->route('datawarga.index')->with('Success!', 'Data warga berhasil diperbarui.');
+    }
+
+    public function destroy($id)
+    {
+        $datawarga = DataWarga::findOrFail($id);
+        $datawarga->delete();
+
+        return redirect()->route('datawarga.index')->with('success', 'Data warga berhasil dihapus.');
+    }
+
+
 }
