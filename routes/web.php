@@ -38,7 +38,7 @@ Route::post('/proses_register', [AuthController::class, 'proses_register'])->nam
 Route::group(['middleware' => ['auth']], function () {
     // Route::get('/', [AuthController::class, 'index'])->name('dashboard');
     // Route::get('home', [AuthController::class, 'index'])->name('home');
-    Route::get('data-warga', [AdminController::class, 'data_warga'])->name('data-warga.index');
+    Route::get('data-warga', [AdminController::class, 'data_warga'])->name('data-warga.index'); 
 
     Route::prefix('admin')->middleware(['role:admin'])->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
@@ -59,6 +59,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/edit/{id}', [DataWargaController::class, 'edit'])->name('datawarga.edit');
         Route::post('/update/{id}', [DataWargaController::class, 'update'])->name('datawarga.update');
         Route::delete('/{id}', [DataWargaController::class, 'destroy'])->name('datawarga.destroy');
+        
     });
 
     Route::prefix('surat')->group(function () {
