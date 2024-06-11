@@ -106,11 +106,10 @@ class DataWargaController extends Controller
 
     public function update(Request $request, $nik)
     {
-        
+
         // Validasi data
         $request->validate([
-            'nik' => 'required|unique:data_warga|string|max:16',
-            'no_kk' => 'required|unique:data_warga|string|max:16',
+            'no_kk' => 'required|string|max:16',
             'nama' => 'required|string|max:100',
             'alamat_rumah' => 'required|string|max:200',
             'RT' => 'required|string|max:255',
