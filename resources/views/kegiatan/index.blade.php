@@ -1,54 +1,66 @@
 @extends('layout.app')
 
 @section('content_body')
-<main id="main" class="main">
-    <nav>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item active">Home/Kegiatan dan Iuran/ Iuran Warga</li>
-        </ol>
-    </nav>
-    <div class="pagetitle text-center">
-        <h2 class="welcome-message-surat">Kegiatan Warga</h2>
-    </div><!-- End Page Title -->
-
-    <section class="section dashboard">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Nama Kegiatan</th>
-                                <th>Tanggal Pelaksanaan</th>
-                                <th>Tempat</th>
-                                <th>Penanggung Jawab</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($kegiatan as $index => $item)
-                            <tr>
-                                <td>{{ $index + 1 }}</td>
-                                <td>{{ $item->nama }}</td>
-                                <td>{{ $item->tanggal_pelaksanaan }}</td>
-                                <td>{{ $item->tempat }}</td>
-                                <td>{{ $item->penanggung_jawab }}</td>
-                                <td>
-                                    <!-- Form Delete -->
-                                    <form action="{{ route('kegiatan.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus kegiatan ini?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
-                                    </form>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+<div class="card">
+    <div class="card-header lin-gradient-light-primary text-primary-dark">
+        Kegiatan Warga
+    </div>
+    <div class="card-body">
+        <div>
+            @if($user->role == 'sekretaris_rw')
+            <a href="{{ route('kegiatan.create') }}" class="btn btn-primary float-right mb-3">Tambah Kegiatan</a>
+            @endif
         </div>
-    </section>
-</main><!-- End #main -->
+            <div class="table-responsive">
+
+            <table class="w-100">
+                <thead class="lin-gradient-light-primary">
+                    <tr>
+                        <th class="cell">No</th>
+                        <th class="cell">Nama Kegiatan</th>
+                        <th class="cell">Tanggal Pelaksanaan</th>
+                        <th class="cell">Tempat Pelaksanaan</th>
+                        <th class="cell">Penanggung Jawab</th>
+            @if($user->role == 'sekretaris_rw')
+                        <th class="cell">Aksi</th>
+                        @endif
+                    </tr>
+                </thead>
+                <tbody>
+                    @if($kegiatanWarga->isEmpty())
+                        <tr>
+                            <td class="cell text-center" colspan="6">Tidak ada data kegiatan</td>
+                        </tr>
+                    @else
+                    @foreach ($kegiatanWarga as $key => $kegiatan)
+                    <tr>
+                        <td class="cell">{{ $key + 1 }}</td>
+                        <td class="cell">{{ $kegiatan->nama_kegiatan }}</td>
+                        <td class="cell">{{ $kegiatan->tanggal_pelaksanaan }}</td>
+                        <td class="cell">{{ $kegiatan->tempat_pelaksanaan }}</td>
+                        <td class="cell">{{ $kegiatan->penanggungJawab->nama ?? 'N/A' }}</td>
+                        <!-- Menampilkan nama penanggung jawab -->
+            @if($user->role == 'sekretaris_rw')
+                        <td class="cell">
+                            <a href="{{ route('kegiatan.edit', $kegiatan->id_kegiatan) }}" class="btn btn-sm btn-warning">
+                                <i class="bi bi-pencil"></i> Ubah
+                            </a>
+                            <!-- Form Delete -->
+                            <form action="{{ route('kegiatan.destroy', $kegiatan->id_kegiatan) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus kegiatan ini?');" style="display:inline-block;">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-sm btn-danger" type="submit">
+                                    <i class="bi bi-trash"></i> Delete
+                                </button>
+                            </form>
+                        </td>
+                        @endif
+                    </tr>
+                    @endforeach
+                    @endif
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 @endsection

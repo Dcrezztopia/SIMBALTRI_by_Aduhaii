@@ -15,6 +15,7 @@ use App\Http\Controllers\SuratController;
 // use App\Http\Controllers\KetuaController;
 use App\Http\Controllers\WargaController;
 use App\Http\Controllers\DataWargaController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
 
 /*
@@ -114,6 +115,16 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/pengajuan_bansos', [BansosController::class, 'store'])->name('pengajuan_bansos.store');
     });
 
+    Route::prefix('users')->group(function () {
+        Route::get('/', [UserController::class, 'index'])->name('users.index');
+        Route::get('/create', [UserController::class, 'createUser'])->name('users.create');
+        Route::post('/', [UserController::class, 'storeUser'])->name('users.store');
+        Route::get('{id}', [UserController::class, 'show'])->name('users.detail');
+        Route::get('/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
+        Route::put('/{id}', [UserController::class, 'update'])->name('users.update');
+        Route::delete('/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+    });
+
     // belum diatur
     // localhost/ketua-rt/
     // Route::group(['prefix' => 'ketua-rt', 'middleware' => ['role:ketua_rt']], function () {
@@ -135,4 +146,4 @@ Route::group(['middleware' => ['auth']], function () {
 // Route::get('/kegiatandaniuran/index', [KegiatandanIuranController::class, 'index'])->name('kegiatandaniuran.index');
 // Route::get('/iuranwarga', [KegiatandanIuranController::class, 'iuranwarga'])->name('iuranwarga.index');
 
-// Route::get('/placeholder', [AuthController::class, 'index'])->name('placeholder1');
+Route::get('/placeholder', [AuthController::class, 'index'])->name('placeholder1');

@@ -1,61 +1,67 @@
 @extends('layout.app')
 
 @section('content_body')
-<main id="main" class="main">
-    <nav>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('iuran.index') }}">Home</a></li>
-            <li class="breadcrumb-item active">Iuran dan Iuran / Iuran Warga</li>
-        </ol>
-    </nav>
-    <div class="pagetitle text-center">
-        <h2 class="welcome-message-surat">Iuran Warga</h2>
-    </div><!-- End Page Title -->
-
-    <section class="section dashboard">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Kegiatan</th>
-                                <th>Periode</th>
-                                <th>Interval</th>
-                                <th>Penanggung Jawab</th>
-                                <th>Total</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($iuranWarga as $index => $item)
-                            <tr>
-                                <td>{{ $index + 1 }}</td>
-                                <td>{{ $item->kegiatan->nama_kegiatan }}</td>
-                                <td>{{ $item->periode }}</td>
-                                <td>{{ $item->interval }}</td>
-                                <td>{{ $item->penanggung_jawab }}</td>
-                                <td>{{ number_format($item->total, 0, ',', '.') }}</td>
-                                <td>
-                                    <a href="{{ route('iuran.edit', $item->id_iuran) }}"
-                                        class="btn btn-warning btn-sm">Ubah</a>
-                                    <!-- Form Delete -->
-                                    <form action="{{ route('iuran.destroy', $item->id_iuran) }}" method="POST"
-                                        onsubmit="return confirm('Apakah Anda yakin ingin menghapus iuran ini?');"
-                                        style="display:inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
-                                    </form>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+<div class="card">
+    <div class="card-header lin-gradient-light-primary text-primary-dark">
+        Iuran Warga
+    </div>
+    <div class="card-body">
+        <div class="">
+            @if($user->role == 'sekretaris_rw')
+            <a href="{{ route('iuran.create') }}" class="btn btn-primary float-right mb-3">Tambah Iuran</a>
+            @endif
         </div>
-    </section>
-</main><!-- End #main -->
+        <div class="table-responsive">
+            <table class="w-100">
+                <thead>
+                    <tr>
+                        <th class="cell">ID</th>
+                        <th class="cell">Kegiatan</th>
+                        <th class="cell">Periode</th>
+                        <th class="cell">Interval</th>
+                        <th class="cell">Penanggung Jawab</th>
+                        <th class="cell">Total</th>
+            @if($user->role == 'sekretaris_rw')
+                        <th class="cell">Aksi</th>
+                        @endif
+                    </tr>
+                </thead>
+                <tbody>
+                    @if($iuranWarga->isEmpty())
+                        <tr>
+                            <td class="cell text-center" colspan="7">Tidak ada data iuran</td>
+                        </tr>
+                    @else
+                    @foreach ($iuranWarga as $iuran)
+                        <tr>
+                            <td class="cell">{{ $iuran->id_iuran }}</td>
+                            <td class="cell">{{ $iuran->kegiatan->nama_kegiatan }}</td>
+                            <td class="cell">{{ $iuran->periode }}</td>
+                            <td class="cell">{{ $iuran->interval }}</td>
+                            <td class="cell">{{ $iuran->warga->nama }}</td>
+                            <td class="cell">{{ number_format($iuran->total, 0, ',', '.') }}</td>
+            @if($user->role == 'sekretaris_rw')
+                            <td class="cell">
+                                <a href="{{ route('iuran.edit', $iuran->id_iuran) }}" class="btn btn-sm btn-warning">
+                                    <i class="bi bi-pencil"></i>
+                                    Ubah
+                                </a>
+                                <form method="post" action="{{ route('iuran.destroy', $iuran->id_iuran) }}" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus iuran ini?')">
+                                    <i class="bi bi-trash"></i>
+                                    Hapus
+                                    </button>
+                                </form>
+                            </td>
+                            @endif
+                        </tr>
+                    @endforeach
+                    @endif
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 @endsection

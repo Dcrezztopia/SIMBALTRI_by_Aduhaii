@@ -71,6 +71,7 @@
                                                     data-bs-toggle="tooltip" data-bs-placement="top"
                                                     title="Terima surat untuk diproses">
                                                     <i class="bi bi-check"></i>
+                                                    Setujui
                                                 </button>
                                             </form>
                                             <form
@@ -81,6 +82,7 @@
                                                 <button class="btn btn-sm btn-danger" type="submit" data-bs-toggle="tooltip"
                                                     data-bs-placement="top" title="Tolak surat">
                                                     <i class="bi bi-x"></i>
+                                                    Tolak
                                                 </button>
                                             </form>
                                             @endif
@@ -88,11 +90,13 @@
                                                 class="btn btn-sm btn-info" data-bs-toggle="tooltip"
                                                 title="Lihat detail surat">
                                                 <i class="bi bi-eye"></i>
+                                                Detail
                                             </a>
                                             @if($user->role == "sekretaris_rw" || $user->role == "sekretaris_rt")
                                             <a href="{{ route('surat.edit', $surat->id_surat) }}"
                                                 class="btn btn-sm btn-warning" data-bs-toggle="tooltip" title="Edit surat">
                                                 <i class="bi bi-pencil"></i>
+                                                Edit
                                             </a>
                                             <form action="{{ route('surat.destroy', $surat->id_surat) }}" method="POST"
                                                 onsubmit="return confirm('Apakah Anda yakin ingin menghapus surat ini?');"
@@ -102,6 +106,7 @@
                                                 <button class="btn btn-sm btn-danger" type="submit" data-bs-toggle="tooltip"
                                                     data-bs-placement="top" title="Hapus surat">
                                                     <i class="bi bi-trash"></i>
+                                                    Hapus
                                                 </button>
                                             </form>
                                             @endif

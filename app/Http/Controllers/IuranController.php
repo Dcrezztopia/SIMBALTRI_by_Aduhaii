@@ -47,7 +47,7 @@ class IuranController extends Controller
         $this->sidebarItems->for($this->user->role);
         $this->activeSidebarItem = ['kegiatan-dan-iuran', 'iuran'];
         $iuranWarga = IuranWarga::all(); // Ambil data iuran warga dari database
-        return view('iuran.warga')
+        return view('iuran.index')
             ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem)
@@ -59,7 +59,7 @@ class IuranController extends Controller
         $this->sidebarItems->for($this->user->role);
         $this->activeSidebarItem = ['kegiatan-dan-iuran', 'iuran'];
         $iuranWarga = IuranWarga::all(); // Ambil data iuran warga dari database
-        return view('iuran.admin')
+        return view('iuran.index')
             ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem)

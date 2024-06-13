@@ -47,7 +47,7 @@ class KegiatanController extends Controller
         $this->sidebarItems->for($this->user->role);
         $this->activeSidebarItem = ['kegiatan-dan-iuran', 'kegiatan'];
         $kegiatanWarga = KegiatanWarga::all(); // Ambil data kegiatan warga dari database
-        return view('kegiatan.warga')
+        return view('kegiatan.index')
             ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem)
@@ -59,7 +59,7 @@ class KegiatanController extends Controller
         $this->sidebarItems->for($this->user->role);
         $this->activeSidebarItem = ['kegiatan-dan-iuran', 'kegiatan'];
         $kegiatanWarga = KegiatanWarga::all(); // Ambil data kegiatan warga dari database
-        return view('kegiatan.admin')
+        return view('kegiatan.index')
             ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem)

@@ -21,7 +21,7 @@
                         <th class="cell">Interval</th>
                         <th class="cell">Penanggung Jawab</th>
                         <th class="cell">Total</th>
-            @if($user->role == 'sekretaris_rw' && $user->role == 'sekretaris_rt')
+            @if($user->role == 'sekretaris_rw')
                         <th class="cell">Aksi</th>
                         @endif
                     </tr>
@@ -40,13 +40,19 @@
                             <td class="cell">{{ $iuran->interval }}</td>
                             <td class="cell">{{ $iuran->warga->nama }}</td>
                             <td class="cell">{{ number_format($iuran->total, 0, ',', '.') }}</td>
-            @if($user->role == 'sekretaris_rw' && $user->role == 'sekretaris_rt')
+            @if($user->role == 'sekretaris_rw')
                             <td class="cell">
-                                <a href="{{ route('iuran.edit', $iuran->id_iuran) }}" class="btn btn-sm btn-warning">Ubah</a>
+                                <a href="{{ route('iuran.edit', $iuran->id_iuran) }}" class="btn btn-sm btn-warning">
+                                    <i class="bi bi-pencil"></i>
+                                    Ubah
+                                </a>
                                 <form method="post" action="{{ route('iuran.destroy', $iuran->id_iuran) }}" class="d-inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus iuran ini?')">Hapus</button>
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus iuran ini?')">
+                                    <i class="bi bi-trash"></i>
+                                    Hapus
+                                    </button>
                                 </form>
                             </td>
                             @endif

@@ -51,12 +51,14 @@
                                             class="btn btn-sm btn-info" data-bs-toggle="tooltip" data-bs-placement="top"
                                             title="Lihat detail pelaporan">
                                             <i class="bi bi-eye"></i>
+                                            Detail
                                         </a>
                                         @if($user->role == "sekretaris_rw" || $user->role == "sekretaris_rt")
                                         <a href="{{ route('pelaporan.edit', $pelaporan->id_pelaporan) }}"
                                             class="btn btn-sm btn-warning" data-bs-toggle="tooltip"
                                             data-bs-placement="top" title="Edit pelaporan">
                                             <i class="bi bi-pencil"></i>
+                                            Edit
                                         </a>
                                         <form action="{{ route('pelaporan.destroy', $pelaporan->id_pelaporan) }}"
                                             method="POST"
@@ -67,6 +69,7 @@
                                             <button class="btn btn-sm btn-danger" type="submit" data-bs-toggle="tooltip"
                                                 data-bs-placement="top" title="Hapus laporan">
                                                 <i class="bi bi-trash"></i>
+                                                Hapus
                                             </button>
                                         </form>
                                         @endif

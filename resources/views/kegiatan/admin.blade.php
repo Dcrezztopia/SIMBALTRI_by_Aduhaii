@@ -21,7 +21,7 @@
                         <th class="cell">Tanggal Pelaksanaan</th>
                         <th class="cell">Tempat Pelaksanaan</th>
                         <th class="cell">Penanggung Jawab</th>
-            @if($user->role == 'sekretaris_rw' && $user->role == 'sekretaris_rt')
+            @if($user->role == 'sekretaris_rw')
                         <th class="cell">Aksi</th>
                         @endif
                     </tr>
@@ -40,9 +40,11 @@
                         <td class="cell">{{ $kegiatan->tempat_pelaksanaan }}</td>
                         <td class="cell">{{ $kegiatan->penanggungJawab->nama ?? 'N/A' }}</td>
                         <!-- Menampilkan nama penanggung jawab -->
-            @if($user->role == 'sekretaris_rw' && $user->role == 'sekretaris_rt')
+            @if($user->role == 'sekretaris_rw')
                         <td class="cell">
-                            <a href="{{ route('kegiatan.edit', $kegiatan->id_kegiatan) }}" class="btn btn-sm btn-info">Ubah</a>
+                            <a href="{{ route('kegiatan.edit', $kegiatan->id_kegiatan) }}" class="btn btn-sm btn-warning">
+                                <i class="bi bi-pencil"></i> Ubah
+                            </a>
                             <!-- Form Delete -->
                             <form action="{{ route('kegiatan.destroy', $kegiatan->id_kegiatan) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus kegiatan ini?');" style="display:inline-block;">
                                 @csrf

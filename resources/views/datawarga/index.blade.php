@@ -44,10 +44,12 @@
                     class="btn btn-sm btn-info" data-bs-toggle="tooltip"
                     title="Lihat detail data warga">
                     <i class="bi bi-eye"></i>
+                    Detail
                 </a>
                 <a href="{{ route('datawarga.edit', $data->nik) }}"
                     class="btn btn-sm btn-warning" data-bs-toggle="tooltip" title="Edit datawarga">
                     <i class="bi bi-pencil"></i>
+                    Ubah
                 </a>
                 <form action="{{ route('datawarga.destroy', $data->nik) }}" method="POST"
                     onsubmit="return confirm('Apakah Anda yakin ingin menghapus data warga ini?');"
@@ -57,6 +59,7 @@
                     <button class="btn btn-sm btn-danger" type="submit" data-bs-toggle="tooltip"
                         data-bs-placement="top" title="Hapus data warga">
                         <i class="bi bi-trash"></i>
+                        Hapus
                     </button>
                 </form>
                 </td>

@@ -49,6 +49,7 @@ class Sidebar {
                 $this->removeItem('data-warga');
                 unset($this->items['bansos']['children']['evaluasi-penerima']);
                 unset($this->items['bansos']['children']['daftar_pengajuan']);
+                unset($this->items['users']);
                 break;
             default:
                 break;
@@ -210,6 +211,12 @@ class Sidebar {
                     //     'route' => 'bansos.penerima'
                     // ],
                 ]
+            ],
+            'users' => [
+                'icon' => 'bi bi-person',
+                'label' => 'Pengguna',
+                'route' => 'users.index',
+                'children' => []
             ],
             // 'data-warga' => [
             //     'icon' => 'bi bi-people-fill',
