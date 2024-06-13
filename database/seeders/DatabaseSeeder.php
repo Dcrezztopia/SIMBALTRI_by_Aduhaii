@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
                     'username' => 'warga2',
                     'nama' => 'warga2',
                     'no_telp' => '000010000',
-                    'role' => 'admin',
+                    'role' => 'warga',
                     'password' => bcrypt('12345')
                 ],
                 [

@@ -23,8 +23,7 @@ return new class extends Migration
             $table->string('agama', 10);
             $table->date('tanggal_lahir');
             $table->string('tempat_lahir', 25);
-            $table->enum('pendidikan', ['TIDAK/BELUM SEKOLAH, BELUM TAMAT SD, TAMAT SD, SLTP/SEDERAJAT ,SLTA/SEDERAJAT, 
-            DIPLOMA I/II,DIPLOMA III, DIPLOMA IV/STRATA I , STRATA II, STRATA III']);
+            $table->string('pendidikan');
             $table->string('pekerjaan', 25);
             $table->string('status_pernikahan');
             $table->enum('status_penduduk', ['T', 'P', 'A']);

@@ -6,8 +6,26 @@
         Dashboard
     </div>
     <div class="card-body pa-5">
-        <div class="row">
-            <div class="col">
+        <div class="row mt-2">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header lin-gradient-light-primary text-dark">
+                        Distribusi Umur Warga
+                    </div>
+                    <div class="card-body">
+                        <canvas id="umurChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header lin-gradient-light-primary text-dark">
+                        Distribusi Pendidikan
+                    </div>
+                    <div class="card-body">
+                        <canvas id="pendidikanChart"></canvas>
+                    </div>
+                </div>
                 <div class="card">
                     <div class="card-header lin-gradient-light-primary text-dark">
                         Data Warga
@@ -20,6 +38,10 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
                 <div class="card">
                     <div class="card-header lin-gradient-light-primary text-dark">
                         Kegiatan Berlangsung
@@ -95,28 +117,6 @@
             </div>
         </div>
         </div>
-        </div>
-        <div class="row mt-5">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header lin-gradient-light-primary text-dark">
-                        Distribusi Umur Warga
-                    </div>
-                    <div class="card-body">
-                        <canvas id="umurChart"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header lin-gradient-light-primary text-dark">
-                        Distribusi Pendidikan
-                    </div>
-                    <div class="card-body">
-                        <canvas id="pendidikanChart"></canvas>
-                    </div>
-                </div>
-            </div>
         </div>
 
 @endsection
