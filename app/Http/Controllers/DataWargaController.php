@@ -6,10 +6,7 @@ use App\Components\Sidebar;
 use App\Models\DataWarga;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-<<<<<<< HEAD
 use Illuminate\Support\Facades\DB;
-=======
->>>>>>> main
 
 class DataWargaController extends Controller
 {
@@ -23,16 +20,11 @@ class DataWargaController extends Controller
             $this->user = Auth::user();
             return $next($request);
         });
-<<<<<<< HEAD
         $this->sidebarItems = new Sidebar();
-=======
-        $this->sidebarItems = (new Sidebar())->getItems();
->>>>>>> main
     }
 
     public function index()
     {
-<<<<<<< HEAD
         // $user = Auth::user();
 
         // return match ($user->role) {
@@ -40,19 +32,10 @@ class DataWargaController extends Controller
         //     default => abort(404),
         // };
         return $this->admin();
-=======
-        $user = Auth::user();
-
-        return match ($user->role) {
-            'admin' => $this->admin($user),
-            default => abort(404),
-        };
->>>>>>> main
     }
 
     public function admin()
     {
-<<<<<<< HEAD
         $this->sidebarItems->for($this->user->role);
         $this->activeSidebarItem = ['data-warga'];
         if (str_ends_with($this->user->role, 'rt')) {
@@ -61,10 +44,6 @@ class DataWargaController extends Controller
         } else {
             $dataWarga = DataWarga::all();
         }
-=======
-        $this->activeSidebarItem = ['data-warga'];
-        $dataWarga = DataWarga::all();
->>>>>>> main
         return view('datawarga.index')
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem)
@@ -74,10 +53,7 @@ class DataWargaController extends Controller
 
     public function create()
     {
-<<<<<<< HEAD
         $this->sidebarItems->for($this->user->role);
-=======
->>>>>>> main
         $this->activeSidebarItem = ['data-warga'];
         return view('datawarga.create')
             ->with('user', $this->user)
@@ -90,11 +66,7 @@ class DataWargaController extends Controller
         // Validasi input
         $request->validate([
             'nik' => 'required|unique:data_warga|string|max:16',
-<<<<<<< HEAD
-            'no_kk' => 'required|unique:data_warga|string|max:16',
-=======
             'no_kk' => 'required|string|max:16',
->>>>>>> main
             'nama' => 'required|string|max:100',
             'alamat_rumah' => 'required|string|max:200',
             'RT' => 'required|string|max:255',
