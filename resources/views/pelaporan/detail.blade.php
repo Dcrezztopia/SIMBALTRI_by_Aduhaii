@@ -16,7 +16,7 @@
         <p>Tanggal Dibuat: {{ $pelaporan->tanggal_dibuat }}</p>
         @if($pelaporan->foto_bukti)
         <p>Foto Bukti:</p>
-        <img src="{{ asset('storage/' . session('foto_bukti')) }}" class="img-fluid" alt="Foto Bukti">
+        <img src="{{ asset('storage/' . $pelaporan->foto_bukti) }}" class="img-fluid" alt="Foto Bukti">
         @endif
     </div>
 </div>

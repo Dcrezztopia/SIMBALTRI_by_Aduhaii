@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Pelaporan;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class  PelaporanController extends Controller
 {
@@ -155,18 +156,25 @@ class  PelaporanController extends Controller
             'alamat_rumah' => 'required|string|max:100',
             'perihal' => 'required|string|max:100',
             'isi' => 'required|string|max:500',
-            'foto_bukti' => 'nullable|image|max:2048',
+            'foto_bukti' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-
+    
         $pelaporan = Pelaporan::findOrFail($id);
-        $pelaporan->update($request->all());
-
+        $pelaporan->update($request->except(['foto_bukti']));
+    
         if ($request->hasFile('foto_bukti')) {
-            $path = $request->file('foto_bukti')->store('public/foto_bukti');
-            $pelaporan->foto_bukti = basename($path);
+            if ($pelaporan->foto_bukti && Storage::disk('public')->exists('uploads/' . $pelaporan->foto_bukti)) {
+                Storage::disk('public')->delete('uploads/' . $pelaporan->foto_bukti);
+            }
+    
+            $fileName = time() . '.' . $request->foto_bukti->extension();
+            $path = $request->file('foto_bukti')->storeAs('uploads', $fileName, 'public');
+    
+            $pelaporan->foto_bukti = $path;
             $pelaporan->save();
         }
-
+    
         return redirect()->route('pelaporan.riwayat')->with('success', 'Pelaporan berhasil diperbarui.');
     }
+    
 }
