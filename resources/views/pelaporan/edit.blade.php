@@ -6,8 +6,7 @@
         Edit Pelaporan
     </div>
     <div class="card-body">
-        <form action="{{ route('pelaporan.update', $pelaporan->id_pelaporan) }}" method="POST"
-            enctype="multipart/form-data">
+        <form action="{{ route('pelaporan.update', $pelaporan->id_pelaporan) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -17,8 +16,7 @@
             </div>
             <div class="mb-3">
                 <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
-                <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir"
-                    value="{{ $pelaporan->tanggal_lahir }}" required>
+                <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" value="{{ $pelaporan->tanggal_lahir }}" required>
             </div>
             <div class="mb-3">
                 <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
@@ -29,18 +27,15 @@
             </div>
             <div class="mb-3">
                 <label for="kewarganegaraan" class="form-label">Kewarganegaraan</label>
-                <input type="text" class="form-control" id="kewarganegaraan" name="kewarganegaraan"
-                    value="{{ $pelaporan->kewarganegaraan }}" required>
+                <input type="text" class="form-control" id="kewarganegaraan" name="kewarganegaraan" value="{{ $pelaporan->kewarganegaraan }}" required>
             </div>
             <div class="mb-3">
                 <label for="alamat_rumah" class="form-label">Alamat Rumah</label>
-                <input type="text" class="form-control" id="alamat_rumah" name="alamat_rumah"
-                    value="{{ $pelaporan->alamat_rumah }}" required>
+                <input type="text" class="form-control" id="alamat_rumah" name="alamat_rumah" value="{{ $pelaporan->alamat_rumah }}" required>
             </div>
             <div class="mb-3">
                 <label for="perihal" class="form-label">Perihal</label>
-                <input type="text" class="form-control" id="perihal" name="perihal" value="{{ $pelaporan->perihal }}"
-                    required>
+                <input type="text" class="form-control" id="perihal" name="perihal" value="{{ $pelaporan->perihal }}" required>
             </div>
             <div class="mb-3">
                 <label for="isi" class="form-label">Isi</label>
@@ -50,11 +45,12 @@
                 <label for="foto_bukti" class="form-label">Foto Bukti</label>
                 <input type="file" class="form-control" id="foto_bukti" name="foto_bukti">
                 @if($pelaporan->foto_bukti)
-                <img src="{{ asset('storage/foto_bukti/' . $pelaporan->foto_bukti) }}" alt="Foto Bukti"
-                    class="img-fluid mt-3">
+                <img src="{{ asset('storage/foto_bukti/' . $pelaporan->foto_bukti) }}" alt="Foto Bukti" class="img-fluid mt-3">
                 @endif
+
             </div>
             <button type="submit" class="btn btn-primary">Update</button>
+            <a href="{{ route('pelaporan.riwayat') }}" class="btn btn-secondary">Kembali</a>
         </form>
     </div>
 </div>

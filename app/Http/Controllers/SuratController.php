@@ -147,15 +147,28 @@ class SuratController extends Controller
             'pekerjaan' => 'required|string|max:25',
             'alamat_rumah' => 'required|string|max:100',
             'kepentingan' => 'required|string|max:100',
-            'perihal' => 'required|in:pengantar_domisili,pembuatan_KTP,pengantar_kematian,keterangan_tidak_mampu',
+            'perihal' => 'required|in:pengantar_domisili,pembuatan_KTP,pengantar kematian,keterangan tidak mampu',
+        ], [
+            'nama.required' => 'Nama wajib diisi.',
+            'tanggal_lahir.required' => 'Tanggal lahir wajib diisi.',
+            'kewarganegaraan.required' => 'Kewarganegaraan wajib diisi.',
+            'pekerjaan.required' => 'Pekerjaan wajib diisi.',
+            'alamat_rumah.required' => 'Alamat rumah wajib diisi.',
+            'kepentingan.required' => 'Kepentingan wajib diisi.',
+            'perihal.required' => 'Perihal wajib diisi.',
+            'perihal.in' => 'Perihal yang dipilih tidak valid.',
         ]);
 
-        // Temukan surat berdasarkan ID
-        $surat = PengajuanSurat::findOrFail($id);
+        try {
+            // Temukan surat berdasarkan ID
+            $surat = PengajuanSurat::findOrFail($id);
 
-        // Perbarui data surat
-        $surat->update($request->all());
+            // Perbarui data surat
+            $surat->update($request->only(['nama', 'tanggal_lahir', 'kewarganegaraan', 'pekerjaan', 'alamat_rumah', 'kepentingan', 'perihal']));
 
-        return redirect()->route('surat.riwayat')->with('success', 'Surat berhasil diperbarui.');
+            return redirect()->route('surat.riwayat')->with('success', 'Surat berhasil diperbarui.');
+        } catch (\Exception $e) {
+            return back()->withErrors(['error' => 'Terjadi kesalahan saat memperbarui surat.']);
+        }
     }
 }

@@ -34,5 +34,8 @@
             </p>
         </div>
     </div>
+    <div class="form-group">
+        <a href="{{ route('surat.riwayat') }}" class="btn btn-secondary">Kembali</a>
+    </div>
 </div>
 @endsection
