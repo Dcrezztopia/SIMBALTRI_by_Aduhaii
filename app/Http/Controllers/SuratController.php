@@ -94,7 +94,7 @@ class SuratController extends Controller
         ]);
 
         // Redirect ke halaman hasil
-        return redirect()->route('surat.hasilform');
+        return redirect()->route('surat.hasilform')->with('success', 'Surat berhasil diajukan.');
     }
 
     public function updateStatus($id, $status)

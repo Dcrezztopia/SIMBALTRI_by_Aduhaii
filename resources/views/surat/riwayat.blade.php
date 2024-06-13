@@ -41,8 +41,12 @@
                                     <td class="cell">
                                         @if($surat->perihal == 'pengantar_domisili')
                                         Pengantar Domisili
+                                        @elseif($surat->perihal == 'pembuatan_KTP')
+                                        Pembuatan KTP
+                                        @elseif($surat->perihal == 'pengantar kematian')
+                                        Pengantar Kematian
                                         @else
-                                        {{ $surat->perihal }}
+                                        Keterangan Tidak Mampu
                                         @endif
                                     </td>
                                     <td class="cell">{{ $surat->created_at }}</td>
