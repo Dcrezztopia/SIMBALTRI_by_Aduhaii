@@ -83,9 +83,12 @@
                 </select>
             </div>
             <button type="submit" class="btn btn-success mt-3" style="float: right;">
-                <i class="bi bi-save"></i> Simpan
+                <i class="bi bi-save">Simpan</i>
             </button>
         </form>
+        <button type="back" class="btn btn-danger mt-3" style="float: right;">
+            <a  href="{{ route('datawarga.index') }}" class="bi bi-arrow-left-circle" style="color: white;">Kembali</a>
+        </button>
     </div>
 </div>
 @endsection

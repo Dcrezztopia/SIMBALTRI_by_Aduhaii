@@ -40,17 +40,25 @@
                 <td class="cell">{{ $data->tanggal_lahir }}</td>
         @if($user->role == 'sekretaris_rw' || $user->role == 'sekretaris_rt')
                 <td class="cell">
-                    {{-- Form Edit --}}
-                    <a href="{{ route('datawarga.edit', $data->nik) }}"
-                        class="btn btn-warning btn-sm">Ubah</a>
-                    <!-- Form Delete -->
-                    <form action="{{ route('datawarga.destroy', $data->nik) }}" method="POST"
-                        onsubmit="return confirm('Apakah Anda yakin ingin menghapus data warga ini?');"
-                        style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
-                    </form>
+                <a href="{{ route('datawarga.detail', $data->nik) }}"
+                    class="btn btn-sm btn-info" data-bs-toggle="tooltip"
+                    title="Lihat detail data warga">
+                    <i class="bi bi-eye"></i>
+                </a>
+                <a href="{{ route('datawarga.edit', $data->nik) }}"
+                    class="btn btn-sm btn-warning" data-bs-toggle="tooltip" title="Edit datawarga">
+                    <i class="bi bi-pencil"></i>
+                </a>
+                <form action="{{ route('datawarga.destroy', $data->nik) }}" method="POST"
+                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus data warga ini?');"
+                    class="d-inline">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-sm btn-danger" type="submit" data-bs-toggle="tooltip"
+                        data-bs-placement="top" title="Hapus data warga">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </form>
                 </td>
                 @endif
               </tr>

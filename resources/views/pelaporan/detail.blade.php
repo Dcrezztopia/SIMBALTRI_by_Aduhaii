@@ -1,26 +1,44 @@
 @extends('layout.app')
 
 @section('content_body')
-<div class="card">
-    <div class="card-header lin-gradient-light-primary text-dark">
-        Detail Pelaporan
+<div class="card shadow-sm">
+    <div class="card-header lin-gradient-light-primary text-dark d-flex justify-content-between align-items-center">
+        <h4 class="m-0">Detail Pelaporan</h4>
+        <a href="{{ route('pelaporan.riwayat') }}" class="btn btn-secondary btn-sm">
+            <i class="bi bi-arrow-left"></i> Kembali
+        </a>
     </div>
     <div class="card-body">
-        <h5>Nama: {{ $pelaporan->nama }}</h5>
-        <p>Tanggal Lahir: {{ $pelaporan->tanggal_lahir }}</p>
-        <p>Jenis Kelamin: {{ $pelaporan->jenis_kelamin }}</p>
-        <p>Kewarganegaraan: {{ $pelaporan->kewarganegaraan }}</p>
-        <p>Alamat Rumah: {{ $pelaporan->alamat_rumah }}</p>
-        <p>Perihal: {{ $pelaporan->perihal }}</p>
-        <p>Isi: {{ $pelaporan->isi }}</p>
-        <p>Tanggal Dibuat: {{ $pelaporan->tanggal_dibuat }}</p>
+        <div class="row">
+            <div class="col-md-6">
+                <h5 class="text-primary"><i class="bi bi-person-fill"></i> Nama:</h5>
+                <p>{{ $pelaporan->nama }}</p>
+                <h5 class="text-primary"><i class="bi bi-calendar-fill"></i> Tanggal Lahir:</h5>
+                <p>{{ $pelaporan->tanggal_lahir }}</p>
+                <h5 class="text-primary"><i class="bi bi-gender-{{ $pelaporan->jenis_kelamin == 'L' ? 'male' : 'female' }}"></i> Jenis Kelamin:</h5>
+                <p>{{ $pelaporan->jenis_kelamin == 'L' ? 'Laki-Laki' : 'Perempuan' }}</p>
+                <h5 class="text-primary"><i class="bi bi-flag-fill"></i> Kewarganegaraan:</h5>
+                <p>{{ $pelaporan->kewarganegaraan }}</p>
+            </div>
+            <div class="col-md-6">
+                <h5 class="text-primary"><i class="bi bi-house-door-fill"></i> Alamat Rumah:</h5>
+                <p>{{ $pelaporan->alamat_rumah }}</p>
+                <h5 class="text-primary"><i class="bi bi-exclamation-circle-fill"></i> Perihal:</h5>
+                <p>{{ $pelaporan->perihal }}</p>
+                <h5 class="text-primary"><i class="bi bi-file-text-fill"></i> Isi:</h5>
+                <p>{{ $pelaporan->isi }}</p>
+                <h5 class="text-primary"><i class="bi bi-clock-fill"></i> Tanggal Dibuat:</h5>
+                <p>{{ $pelaporan->tanggal_dibuat }}</p>
+            </div>
+        </div>
         @if($pelaporan->foto_bukti)
-        <p>Foto Bukti:</p>
-        <img src="{{ asset('storage/' . session('foto_bukti')) }}" class="img-fluid" alt="Foto Bukti">
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <h5 class="text-primary"><i class="bi bi-image-fill"></i> Foto Bukti:</h5>
+                <img src="{{ asset('storage/' . $pelaporan->foto_bukti) }}" class="img-fluid" style="width: 600px; height: 400px;" alt="Foto Bukti">
+            </div>
+        </div>
         @endif
     </div>
-</div>
-<div class="form-group">
-    <a href="{{ route('pelaporan.riwayat') }}" class="btn btn-secondary">Kembali</a>
 </div>
 @endsection

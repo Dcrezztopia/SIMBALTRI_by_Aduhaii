@@ -132,7 +132,12 @@
                 <small class="form-text text-danger">{{ $message }}</small>
             @enderror
         </div>
-        <button type="submit" class="btn btn-primary">Update</button>
+        <button type="submit" class="btn btn-success mt-3" style="float: left;">
+            <a  class="bi bi-arrow-up-square" style="color: white;">Update</a>
+        </button>
+        <button type="back" class="btn btn-danger mt-3" style="float: left;">
+            <a  href="{{ route('datawarga.index') }}" class="bi bi-arrow-left-circle" style="color: white;">Kembali</a>
+        </button>
     </form>
 </div>
 @endsection
