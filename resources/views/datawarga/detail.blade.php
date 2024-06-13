@@ -19,7 +19,7 @@
                 @endif
             </p>
             <p><strong>Tanggal Lahir:</strong> {{ $datawarga->tanggal_lahir }}</p>
-            <p><strong>Tempat Lahir:</strong> {{ $datawarga->nama }}</p>
+            <p><strong>Tempat Lahir:</strong> {{ $datawarga->tempat_lahir }}</p>
             <p><strong>Pendidikan:</strong> {{ $datawarga->pendidikan }}</p>
             <p><strong>Pekerjaan:</strong> {{ $datawarga->pekerjaan }}</p>
             <p><strong>Status Pernikahan:</strong> {{ $datawarga->status_pernikahan }}</p>
