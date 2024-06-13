@@ -34,4 +34,7 @@ Route::prefix('bansos')->group(function () {
     Route::post('perbandingan', [BansosController::class, 'set_perbandingan'])->name('bansos.perbandingan.post');
     Route::post('perbandingan/set-multiple', [BansosController::class, 'set_multiple_perbandingan'])->name('bansos.perbandingan.set-multiple');
     Route::get('evaluasi', [BansosController::class, 'evaluasi'])->name('bansos.evaluasi');
+    Route::put('set-kriteria-active/{id}/{active}', [BansosController::class, 'set_kriteria_active'])->name('bansos.kriteria.set-active');
+    Route::post('tambah-penerima/{id}', [BansosController::class, 'tambah_penerima'])->name('bansos.tambah-penerima');
+    Route::post('hapus-penerima/{id}', [BansosController::class, 'hapus_penerima'])->name('bansos.hapus-penerima');
 });

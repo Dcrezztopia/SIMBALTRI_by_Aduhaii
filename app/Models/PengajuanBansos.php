@@ -10,6 +10,7 @@ class PengajuanBansos extends Model
     use HasFactory;
 
     protected $table = 'pengajuan_bansos';
+    protected $primaryKey = 'id_pBansos';
     protected $fillable = [
         'nama',
         'nik',

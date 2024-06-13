@@ -7,6 +7,7 @@ use App\Models\KriteriaBansos;
 use App\Models\KriteriaMappedScore;
 use App\Models\PengajuanBansos;
 use App\Models\DataWarga;
+use App\Models\PenerimaBansos;
 use App\Models\PerbandinganKriteriaBansos;
 use App\Models\PerhitunganAhp;
 use Illuminate\Http\Request;
@@ -113,7 +114,9 @@ class BansosController extends Controller
     {
         $this->sidebarItems->for($this->user->role);
         $this->activeSidebarItem = ['bansos', 'penerima'];
+        $penerima_bansos = PenerimaBansos::with('pengajuan')->get();
         return view('bansos.penerima')
+            ->with('penerima_bansos', $penerima_bansos)
             ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem);
@@ -286,7 +289,7 @@ class BansosController extends Controller
 
     public function evaluasi_kriteria()
     {
-        $ids = KriteriaBansos::select('id')->get();
+        $ids = KriteriaBansos::select('id')->where(['active' => 'true'])->get();
         $perbandingan = PerbandinganKriteriaBansos::all();
         $input = array(
             'ids' => $ids->pluck('id'),
@@ -347,7 +350,10 @@ class BansosController extends Controller
     }
 
     private function raw_mapped_value() {
-        $kriteria = KriteriaBansos::select('id', 'nama', 'jenis', 'jenis_score', 'weight', 'column_name', 'weight')->get();
+        $kriteria =
+            KriteriaBansos::select('id', 'nama', 'jenis', 'jenis_score', 'weight', 'column_name', 'weight')
+                ->where(['active' => 'true'])
+                ->get();
         $mapper = KriteriaMappedScore::all();
         $data = PengajuanBansos::all();
         $input2 = [
@@ -403,7 +409,10 @@ class BansosController extends Controller
     }
 
     public function mapped_value() {
-        $kriteria = KriteriaBansos::select('id', 'nama', 'jenis', 'jenis_score', 'weight', 'column_name', 'weight')->get();
+        $kriteria =
+            KriteriaBansos::select('id', 'nama', 'jenis', 'jenis_score', 'weight', 'column_name', 'weight')
+                ->where(['active' => 'true'])
+                ->get();
         $mapper = KriteriaMappedScore::all();
         $data = PengajuanBansos::all();
         $input = [
@@ -503,14 +512,23 @@ class BansosController extends Controller
             $output = json_decode($output, true);
 
             $data = [];
-            $pengajuanBansos = PengajuanBansos::all();
+            $pengajuanBansos = DB::table('pengajuan_bansos')->leftJoin('penerima_bansos', 'pengajuan_bansos.id_pBansos', '=', 'penerima_bansos.id_pengajuan')
+                ->select(
+                    'pengajuan_bansos.id_pBansos',
+                    'pengajuan_bansos.nik',
+                    'pengajuan_bansos.nama',
+                    DB::raw("CASE WHEN penerima_bansos.id_pengajuan IS NOT NULL THEN 'true' ELSE 'false' END AS penerima_bansos")
+                )
+                ->get();
 
             foreach ($output['nilai_akhir'] as $i => $value) {
                 $data[] = [
+                    'id' => $pengajuanBansos[$i]->id_pBansos,
                     'ranking' => $output['ranking'][$i],
                     'nik' => $pengajuanBansos[$i]->nik,
                     'nama' => $pengajuanBansos[$i]->nama,
-                    'nilai' => $value
+                    'nilai' => $value,
+                    'penerima_bansos' => $pengajuanBansos[$i]->penerima_bansos
                 ];
             }
 
@@ -560,5 +578,29 @@ class BansosController extends Controller
 
         // Redirect ke halaman sukses atau daftar pengajuan
         return redirect()->route('bansos.daftar_pengajuan')->with('success', 'Pengajuan bansos berhasil disimpan.');
+    }
+
+    public function set_kriteria_active($id, $active) {
+        $kriteria = KriteriaBansos::findOrFail($id);
+        $kriteria->active = $active;
+        $kriteria->save();
+        return response()->json(['message' => 'Kriteria updated successfully'], 200);
+    }
+
+    public function tambah_penerima($id)
+    {
+        $pengajuan = PengajuanBansos::findOrFail($id);
+        $penerima = PenerimaBansos::create([
+            'id_pengajuan' => $id,
+            'nik' => $pengajuan->nik,
+            'no_kk' => $pengajuan->no_kk,
+        ]);
+        return response()->json(['message' => 'Penerima bansos berhasil ditambahkan', 'data' => $penerima], 200);
+    }
+    public function hapus_penerima($id)
+    {
+        $penerima = PenerimaBansos::where(['id_pengajuan' => $id])->firstOrFail();
+        $penerima->delete();
+        return response()->json(['message' => 'Penerima bansos berhasil dihapus'], 200);
     }
 }

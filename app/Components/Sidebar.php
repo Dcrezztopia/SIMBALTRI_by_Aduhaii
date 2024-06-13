@@ -204,12 +204,12 @@ class Sidebar {
                         'icon' => 'bi bi-circle',
                         'label' => 'Daftar Pengajuan',
                         'route' => 'bansos.daftar_pengajuan'
-                    ]
-                    // 'penerima' => [
-                    //     'icon' => 'bi bi-circle',
-                    //     'label' => 'Penerima Bansos',
-                    //     'route' => 'bansos.penerima'
-                    // ],
+                    ],
+                    'penerima' => [
+                        'icon' => 'bi bi-circle',
+                        'label' => 'Penerima Bansos',
+                        'route' => 'bansos.penerima'
+                    ],
                 ]
             ],
             'users' => [

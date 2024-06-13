@@ -85,6 +85,7 @@
                                     <th class="cell identifier">Nik</th>
                                     <th class="cell identifier">Nama</th>
                                     <th class="cell identifier rounded-top-right">Nilai Evaluasi</th>
+                                    <th class="cell identifier">Aksi</th>
                                </tr>
                             </thead>
                             <tbody id="hasil-evaluasi-body">
@@ -119,13 +120,17 @@
                         // console.log(kriteria);
                         $('#kriterias').append(`
                             <div class="kriteria-badge bg-primary rounded text-light" id="kriteria-${kriteria.id}">
-                                ${kriteria.nama}
-                                <span class="badge bg-light text-dark">${kriteria.weight}</span>
-                                <i class="bi bi-x delete-kriteria-btn"></i>
+                                <strong>${kriteria.nama}</strong>
+                                <div class="float-right">
+                                <span class="badge bg-light text-dark mr-4">Weight: ${kriteria.weight}</span>
+                                <!--<i class="bi bi-x delete-kriteria-btn"></i>-->
+                                <input type="checkbox" class="form-check-input checkbox-kriteria-btn" ${kriteria.active == 'true' ? "checked" : ""}>
+                                </div>
                             </div>
                         `);
                     }
                     enableDeleteKriteriaBtn();
+                    enableCheckboxKriteriaBtnn();
                 }
             });
         }
@@ -212,6 +217,29 @@
             // console.log('delete');
             var id = $(this).parent().attr('id').split('-')[1];
             deleteKriteria(id);
+            });
+        }
+
+        function enableCheckboxKriteriaBtnn() {
+            $('.checkbox-kriteria-btn').click(function() {
+                isActive = $(this).is(':checked');
+                if (isActive) {
+                    isActive = 'true';
+                } else {
+                    isActive = 'false';
+                }
+                $.ajax({
+                    url: '/api/bansos/set-kriteria-active/' + $(this).parent().parent().attr('id').split('-')[1] + '/' + isActive,
+                    method: 'PUT',
+                    success: function(data) {
+                        console.log(data);
+                        refreshKriteria();
+                    },
+                    error: function(data) {
+                        console.log(data);
+                    }
+                });
+
             });
         }
 
@@ -392,15 +420,59 @@
                             <td class="cell">${singeData.nik}</td>
                             <td class="cell">${singeData.nama}</td>
                             <td class="cell">${singeData.nilai}</td>
+                            <td class="cell">${singeData.penerima_bansos == 'true' ? `
+                                <a id="hapus-penerima-${singeData.id}" href="#" class="btn btn-sm btn-danger btn-hapus-penerima" data-bs-toggle="tooltip" title="Cabut">
+                                    <i class="bi bi-dash"></i>
+                                </a>
+                            ` : `
+                                <a id="tambah-penerima-${singeData.id}" href="#" class="btn btn-sm btn-success btn-tambah-penerima" data-bs-toggle="tooltip" title="Masukkan Ke Penerima Bansos">
+                                    <i class="bi bi-plus"></i>
+                                </a>
+                            `}</td>
                         </tr>
                     `);
                 }
+
+                enableTambahHapusPenerima();
             },
             error: function(data) {
                 console.log(data);
             }
             });
         }
+
+        function enableTambahHapusPenerima() {
+            $('.btn-tambah-penerima').click(function() {
+                var id = $(this).attr('id').split('-')[2];
+                $.ajax({
+                    url: '/api/bansos/tambah-penerima/' + id,
+                    method: 'POST',
+                    success: function(data) {
+                        console.log(data);
+                        refreshHasilEvaluasi();
+                    },
+                    error: function(data) {
+                        console.log(data);
+                    }
+                });
+            });
+
+            $('.btn-hapus-penerima').click(function() {
+                var id = $(this).attr('id').split('-')[2];
+                $.ajax({
+                    url: '/api/bansos/hapus-penerima/' + id,
+                    method: 'POST',
+                    success: function(data) {
+                        console.log(data);
+                        refreshHasilEvaluasi();
+                    },
+                        error: function(data) {
+                        console.log(data);
+                    }
+                });
+            });
+        }
+
 
 
     </script>
@@ -465,5 +537,11 @@
             overflow-y: scroll;
         }
 
+        .checkbox-kriteria-btn {
+            margin-left: 20px;
+            width: 20px;
+            height: 20px;
+            /* float: right !important; */
+        }
     </style>
 @endpush
