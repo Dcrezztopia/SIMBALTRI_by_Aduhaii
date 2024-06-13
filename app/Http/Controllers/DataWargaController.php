@@ -57,7 +57,7 @@ class DataWargaController extends Controller
         // Validasi input
         $request->validate([
             'nik' => 'required|unique:data_warga|string|max:16',
-            'no_kk' => 'required|unique:data_warga|string|max:16',
+            'no_kk' => 'required|string|max:16',
             'nama' => 'required|string|max:100',
             'alamat_rumah' => 'required|string|max:200',
             'RT' => 'required|string|max:255',
@@ -98,6 +98,18 @@ class DataWargaController extends Controller
 
         $this->activeSidebarItem = ['data-warga'];
         return view('datawarga.edit')
+            ->with('user', $this->user)
+            ->with('sidebarItems', $this->sidebarItems)
+            ->with('activeSidebarItem', $this->activeSidebarItem)
+            ->with('datawarga', $datawarga);
+    }
+
+    public function show($id)
+    {
+        $datawarga = DataWarga::findOrFail($id);
+
+        $this->activeSidebarItem = ['data-warga'];
+        return view('datawarga.detail')
             ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem)
