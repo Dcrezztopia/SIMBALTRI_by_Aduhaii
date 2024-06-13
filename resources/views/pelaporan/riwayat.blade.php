@@ -48,7 +48,7 @@
                                             <i class="bi bi-eye"></i>
                                         </a>
                                         <a href="{{ route('pelaporan.edit', $pelaporan->id_pelaporan) }}"
-                                            class="btn btn-sm btn-primary" data-bs-toggle="tooltip"
+                                            class="btn btn-sm btn-warning" data-bs-toggle="tooltip"
                                             data-bs-placement="top" title="Edit pelaporan">
                                             <i class="bi bi-pencil"></i>
                                         </a>
