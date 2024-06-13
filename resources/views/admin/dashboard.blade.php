@@ -26,25 +26,30 @@
                         <canvas id="pendidikanChart"></canvas>
                     </div>
                 </div>
+                <a href="{{ route('datawarga.index') }}" class="">
                 <div class="card">
                     <div class="card-header lin-gradient-light-primary text-dark">
                         Data Warga
+                        <span class="kindof-btn float-right">Lihat Semua</span>
                     </div>
                     <div class="card-body">
                         <!--total warga dll-->
                         <div>
-                            Total RT: 12<br>
-                            Total warga: 123<br>
+                            Total RT: {{ $datawarga['jumlah-rt'] }}<br>
+                            Total warga: {{ $datawarga['jumlah-warga'] }}<br>
                         </div>
                     </div>
                 </div>
+                </a>
             </div>
         </div>
         <div class="row">
             <div class="col">
+                <a href="{{ route('kegiatan.index') }}" class="">
                 <div class="card">
                     <div class="card-header lin-gradient-light-primary text-dark">
                         Kegiatan Berlangsung
+                        <span class="kindof-btn float-right">Lihat Semua</span>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -56,20 +61,29 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="cell">Kerja Bakti</td>
-                                        <td class="cell">Minggu, 09-07-2024</td>
-                                    </tr>
+                                    <!-- <tr> -->
+                                    <!--     <td class="cell">Kerja Bakti</td> -->
+                                    <!--     <td class="cell">Minggu, 09-07-2024</td> -->
+                                    <!-- </tr> -->
+                                    @foreach($kegiatanWarga as $kegiatan)
+                                        <tr>
+                                            <td class="cell">{{ $kegiatan->nama_kegiatan }}</td>
+                                            <td class="cell">{{ $kegiatan->tanggal_pelaksanaan }}</td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
+                </a>
             </div>
-            <div class="col-8">
+            <div class="col-7">
+                <a href="{{ route('surat.riwayat') }}" class="">
                 <div class="card">
                     <div class="card-header lin-gradient-light-primary text-dark">
                         Surat Menunggu Persetujuan
+                        <span class="kindof-btn float-right">Lihat Semua</span>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -79,41 +93,53 @@
                                         <td class="cell">Nama Peminta</td>
                                         <td class="cell">Tanggal</td>
                                         <td class="cell">Perihal</td>
-                                        <td class="cell">Actions</td>
+                                        <!-- <td class="cell">Actions</td> -->
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="cell">Budi</td>
-                                        <td class="cell">24-04-2024</td>
-                                        <td class="cell">Pengantar Domisili</td>
-                                        <td class="cell">
-                                            <button class="btn btn-success">
-                                                <i class="fa-solid fa-check"></i>
-                                            </button>
-                                            <button class="btn btn-danger">
-                                                <i class="fa-solid fa-x"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="cell">Anto</td>
-                                        <td class="cell">21-04-2024</td>
-                                        <td class="cell">Pembuatan KTP</td>
-                                        <td class="cell">
-                                            <button class="btn btn-success">
-                                                <i class="fa-solid fa-check"></i>
-                                            </button>
-                                            <button class="btn btn-danger">
-                                                <i class="fa-solid fa-x"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
+                                    <!-- <tr> -->
+                                    <!--     <td class="cell">Budi</td> -->
+                                    <!--     <td class="cell">24-04-2024</td> -->
+                                    <!--     <td class="cell">Pengantar Domisili</td> -->
+                                    <!--     <td class="cell"> -->
+                                    <!--         <button class="btn btn-success"> -->
+                                    <!--             <i class="fa-solid fa-check"></i> -->
+                                    <!--         </button> -->
+                                    <!--         <button class="btn btn-danger"> -->
+                                    <!--             <i class="fa-solid fa-x"></i> -->
+                                    <!--         </button> -->
+                                    <!--     </td> -->
+                                    <!-- </tr> -->
+                                    <!-- <tr> -->
+                                    <!--     <td class="cell">Anto</td> -->
+                                    <!--     <td class="cell">21-04-2024</td> -->
+                                    <!--     <td class="cell">Pembuatan KTP</td> -->
+                                    <!--     <td class="cell"> -->
+                                    <!--         <button class="btn btn-success"> -->
+                                    <!--             <i class="fa-solid fa-check"></i> -->
+                                    <!--         </button> -->
+                                    <!--         <button class="btn btn-danger"> -->
+                                    <!--             <i class="fa-solid fa-x"></i> -->
+                                    <!--         </button> -->
+                                    <!--     </td> -->
+                                    <!-- </tr> -->
+                                    @foreach($surats as $surat)
+                                        <tr>
+                                            <td class="cell">{{ $surat->nama }}</td>
+                                            <td class="cell">{{ $surat->created_at }}</td>
+                                            @if($surat->perihal == 'pengantar_domisili')
+                                                <td class="cell">Pengantar Domisili</td>
+                                            @elseif($surat->perihal == 'pembuatan_KTP')
+                                                <td class="cell">Pembuatan KTP</td>
+                                            @endif
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
+                </a>
             </div>
         </div>
         </div>
@@ -153,10 +179,11 @@
         var pendidikanChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['SLTA/Sederajat', 'SLTP/Sederajat', 'Tidak / Belum Sekolah', 'Belum Tamat SD/Sederajat', 'DIPLOMA I / II', 'DIPLOMA IV/STRATA I', 'Tidak Memiliki Pendidikan'],
+                labels: ['SLTA/Sederajat', 'SLTP/Sederajat', 'Tidak/Belum Sekolah', 'Belum Tamat SD/Sederajat', 'TAMAT SD/SEDERAJAT', 'DIPLOMA I/II', 'DIPLOMA IV/STRATA I'],
                 datasets: [{
+                    label: 'Pendidikan',
                     data: @json(array_values($pendidikanKelompok)),
-                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#FF6384']
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40']
                 }]
             },
             options: {
@@ -181,6 +208,17 @@
         #pendidikanChart {
             width: 430px !important;
             height: 430px !important;
+        }
+        a {
+            text-decoration: none !important;
+        }
+
+        .kindof-btn {
+            background-color: #5fc5bd;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
         }
     </style>
 @endpush

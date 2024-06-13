@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Components\Sidebar;
 use App\Models\DataWarga;
+use App\Models\KegiatanWarga;
+use App\Models\PengajuanSurat;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -26,7 +28,7 @@ class AdminController extends Controller
 
     public function index()
     {
-        $this->sidebarItems->for('admin');
+        $this->sidebarItems->for($this->user->role);
         // $dataWarga = DB::table('data_warga')->select('tanggal_lahir')->get();
         $dataWarga = DataWarga::select(['tanggal_lahir', 'pendidikan'])->get();
         // $pendidikanDistribusi = DataWarga::select('pendidikan')->get();
@@ -95,21 +97,48 @@ class AdminController extends Controller
                 $pendidikanKelompok['TIDAK/BELUM SEKOLAH']++;
             } elseif ($pendidikan == 'BELUM TAMAT SD/SEDERAJAT') {
                 $pendidikanKelompok['BELUM TAMAT SD/SEDERAJAT']++;
-            } elseif ($pendidikan == 'DIPLOMA I/II') {
             } elseif ($pendidikan == 'TAMAT SD/SEDERAJAT') {
                 $pendidikanKelompok['TAMAT SD/SEDERAJAT']++;
             } elseif ($pendidikan == 'DIPLOMA I/II') {
                 $pendidikanKelompok['DIPLOMA I/II']++;
             } elseif ($pendidikan == 'DIPLOMA IV/STRATA I') {
                 $pendidikanKelompok['DIPLOMA IV/STRATA I']++;
-            } else {
-                dd($pendidikan);
-                $pendidikanKelompok['Tidak Memiliki Pendidikan']++;
             }
+            // else {
+            //     $pendidikanKelompok['Tidak Memiliki Pendidikan']++;
+            // }
         }
+
+        $datawarga = [];
+        $datawarga['jumlah-rt'] = DataWarga::select(DB::raw('count(distinct RT) as jumlah_rt'))->first()->jumlah_rt;
+        $datawarga['jumlah-warga'] = DataWarga::count();
+
+        $kegiatanWarga = KegiatanWarga::all();
+
+        switch ($this->user->role) {
+            case 'ketua_rt':
+            case 'sekretaris_rt':
+            case 'bendahara_rt':
+                $surats = PengajuanSurat::with('user')->where(['status' => 'menunggu'])->get()->filter(function ($surat) {
+                    return $surat->user->RT === $this->user->RT;
+                });
+            case 'admin':
+            case 'ketua_rw':
+            case 'sekretaris_rw':
+            case 'bendahara_rw':
+                $surats = PengajuanSurat::where(['status' => 'menunggu'])->get();
+                break;
+            default:
+                abort(404);
+                break;
+        }
+
 
         $this->activeSidebarItem = ['dashboard', ''];
         return view('admin.dashboard')
+            ->with('surats', $surats)
+            ->with('kegiatanWarga', $kegiatanWarga)
+            ->with('datawarga', $datawarga)
             ->with('umurKelompok', $umurKelompok)
             ->with('pendidikanKelompok', $pendidikanKelompok)
             ->with('user', $this->user)

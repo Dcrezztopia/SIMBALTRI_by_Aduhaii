@@ -9,7 +9,14 @@
         height: 300;"> -->--}}
 
         @isset($user)
-        @if($user->role == 'admin')
+        @if(
+            $user->role == 'ketua_rw' ||
+            $user->role == 'ketua_rt' ||
+            $user->role == 'sekretaris_rw' ||
+            $user->role == 'sekretaris_rt' ||
+            $user->role == 'bendahara_rw' ||
+            $user->role == 'bendahara_rt'
+        )
         <li class="nav-item">
             <a class="nav-link @if($activeSidebarItem[0] == 'dashboard') active @else collapsed @endif"
                 href="{{ route('dashboard') }}">
@@ -28,7 +35,7 @@
         @endif
         @endisset
 
-        <li class="nav-heading">Pages</li>
+        <!-- <li class="nav-heading">Pages</li> -->
 
         @foreach ($sidebarItems->getItems() as $key => $item)
         <li class="nav-item">
