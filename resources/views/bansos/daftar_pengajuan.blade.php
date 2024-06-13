@@ -25,7 +25,6 @@
                                     <th class="cell identifier">Jumlah Pendapatan</th>
                                     <th class="cell identifier">Tagihan Listrik</th>
                                     <th class="cell identifier">Tagihan Air</th>
-                                    <th class="cell identifier">Tanggal Dibuat</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,7 +42,6 @@
                                     <td class="cell">{{ $pengajuan->jml_pendapatan }}</td>
                                     <td class="cell">{{ $pengajuan->tag_listrik }}</td>
                                     <td class="cell">{{ $pengajuan->tag_air }}</td>
-                                    <td class="cell">{{ $pengajuan->created_at }}</td>
                                 </tr>
                                 @endforeach
                                 <!-- Akhir data tabel -->

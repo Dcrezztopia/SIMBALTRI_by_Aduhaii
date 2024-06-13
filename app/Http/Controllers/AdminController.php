@@ -21,11 +21,12 @@ class AdminController extends Controller
             $this->user = Auth::user();
             return $next($request);
         });
-        $this->sidebarItems = (new Sidebar())->getItems();
+        $this->sidebarItems = new Sidebar();
     }
 
     public function index()
     {
+        $this->sidebarItems->for('admin');
         // $dataWarga = DB::table('data_warga')->select('tanggal_lahir')->get();
         $dataWarga = DataWarga::select(['tanggal_lahir', 'pendidikan'])->get();
         // $pendidikanDistribusi = DataWarga::select('pendidikan')->get();

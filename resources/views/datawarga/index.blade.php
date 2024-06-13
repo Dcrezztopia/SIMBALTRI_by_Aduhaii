@@ -9,12 +9,9 @@
   <section class="section dashboard">
     <div class="row">
       <div class="col-md-12">
-        <div class="card">
-            <div class="card-header">
-                <div class="card-title">Daftar Warga</div>
-                <a href="{{ route('datawarga.create') }}" class="btn btn-primary float-right">Tambah Data</a>
-            </div>
-        </div>
+        @if($user->role == 'sekretaris_rw' || $user->role == 'sekretaris_rt')
+        <a href="{{ route('datawarga.create') }}" class="btn btn-primary float-right mb-3">Tambah Data</a>
+        @endif
         <div class="table-responsive">
           <table class="w-100">
             <thead>
@@ -23,7 +20,9 @@
                 <th class="cell">Nama</th>
                 <th class="cell">Jenis Kelamin</th>
                 <th class="cell">Tanggal Lahir</th>
+        @if($user->role == 'sekretaris_rw' || $user->role == 'sekretaris_rt')
                 <th class="cell">Action</th>
+                @endif
               </tr>
             </thead>
             <tbody>
@@ -39,6 +38,7 @@
                     @endif
                 </td>
                 <td class="cell">{{ $data->tanggal_lahir }}</td>
+        @if($user->role == 'sekretaris_rw' || $user->role == 'sekretaris_rt')
                 <td class="cell">
                     {{-- Form Edit --}}
                     <a href="{{ route('datawarga.edit', $data->nik) }}"
@@ -52,6 +52,7 @@
                         <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
                     </form>
                 </td>
+                @endif
               </tr>
               @endforeach
               <!-- Akhir data tabel -->

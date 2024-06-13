@@ -5,6 +5,7 @@
     <h2>Edit Data Warga</h2>
     <form action="{{ route('datawarga.update', $datawarga->nik) }}" method="POST">
         @csrf
+        @method('PUT')
         <div class="mb-3">
             <label for="no_kk" class="form-label">No. Kartu Keluarga</label>
             <input type="text" class="form-control" id="no_kk" name="no_kk" value="{{ $datawarga->no_kk }}">

@@ -24,11 +24,6 @@ class DatabaseSeeder extends Seeder
                     'role' => 'admin',
                     'password' => bcrypt('12345')
                 ],
-                // [
-                //     'username' => 'budi',
-                //     'role' => 'user',
-                //     'password' => bcrypt('12345')
-                // ],
                 [
                     'username' => 'warga',
                     'nama' => 'warga',
@@ -37,10 +32,59 @@ class DatabaseSeeder extends Seeder
                     'password' => bcrypt('12345')
                 ],
                 [
+                    'username' => 'warga2',
+                    'nama' => 'warga2',
+                    'no_telp' => '000010000',
+                    'role' => 'admin',
+                    'password' => bcrypt('12345')
+                ],
+                [
                     'username' => 'admin',
                     'nama' => 'Pengguna Terhormat',
                     'no_telp' => '1',
                     'role' => 'admin',
+                    'password' => bcrypt('12345')
+                ],
+                [
+                    'username' => 'ketuarw',
+                    'nama' => 'Ketua RW',
+                    'no_telp' => '12',
+                    'role' => 'ketua_rw',
+                    'password' => bcrypt('12345')
+                ],
+                [
+                    'username' => 'ketuart',
+                    'nama' => 'Ketua RT',
+                    'no_telp' => '13',
+                    'role' => 'ketua_rt',
+                    'password' => bcrypt('12345')
+                ],
+                [
+                    'username' => 'sekretarisrw',
+                    'nama' => 'Sekretaris RW',
+                    'no_telp' => '14',
+                    'role' => 'sekretaris_rw',
+                    'password' => bcrypt('12345')
+                ],
+                [
+                    'username' => 'sekretarisrt',
+                    'nama' => 'Sekretaris RT',
+                    'no_telp' => '15',
+                    'role' => 'sekretaris_rt',
+                    'password' => bcrypt('12345')
+                ],
+                [
+                    'username' => 'bendahararw',
+                    'nama' => 'Bendahara RW',
+                    'no_telp' => '16',
+                    'role' => 'bendahara_rw',
+                    'password' => bcrypt('12345')
+                ],
+                [
+                    'username' => 'bendaharart',
+                    'nama' => 'Bendahara RT',
+                    'no_telp' => '17',
+                    'role' => 'bendahara_rt',
                     'password' => bcrypt('12345')
                 ],
             [

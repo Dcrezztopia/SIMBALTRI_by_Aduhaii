@@ -6,6 +6,7 @@ use App\Components\Sidebar;
 use App\Models\PengajuanSurat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SuratController extends Controller
 {
@@ -19,12 +20,14 @@ class SuratController extends Controller
             $this->user = Auth::user();
             return $next($request);
         });
-        $this->sidebarItems = (new Sidebar())->getItems();
+        $this->sidebarItems = new Sidebar();
     }
 
     public function pengajuan()
     {
+        $this->sidebarItems->for($this->user->role);
         $this->activeSidebarItem = ['surat', 'pengajuan-surat'];
+        $this->sidebarItems->for('warga');
         return view('surat.pengajuan')
             ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
@@ -33,8 +36,31 @@ class SuratController extends Controller
 
     public function riwayat()
     {
+        $this->sidebarItems->for($this->user->role);
         $this->activeSidebarItem = ['surat', 'riwayat'];
-        $surats = PengajuanSurat::all(); // Mengambil semua data dari tabel surat dengan menggunakan model surat
+        switch ($this->user->role) {
+            case 'admin':
+            case 'ketua_rw':
+            case 'sekretaris_rw':
+            case 'bendahara_rw':
+                $surats =  PengajuanSurat::all();
+                break;
+            case 'ketua_rt':
+            case 'sekretaris_rt':
+            case 'bendahara_rt':
+                $rt_user = DB::table('rt_user')->where('user_id', $this->user->id)->first();
+                $surats =  PengajuanSurat::with('user')->get()->filter(function ($surat) use ($rt_user) {
+                    if ($surat->user == null) {
+                        return false;
+                    } else {
+                        return $surat->user->RT === $rt_user->RT;
+                    }
+                });
+                break;
+            default:
+                $surats = PengajuanSurat::where('id_pembuat', Auth::id())->get();
+                break;
+        };
         return view('surat.riwayat')
             ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
@@ -44,6 +70,7 @@ class SuratController extends Controller
 
     public function hasilform()
     {
+        $this->sidebarItems->for($this->user->role);
         $this->activeSidebarItem = ['surat', 'pengajuan-surat'];
         return view('surat.hasilform')
             ->with('user', $this->user)
@@ -81,6 +108,7 @@ class SuratController extends Controller
             'alamat_rumah' => $request->alamat_rumah,
             'kepentingan' => $request->kepentingan,
             'perihal' => $request->perihal,
+            'id_pembuat' => Auth::id(),
         ]);
 
         session([
@@ -99,6 +127,7 @@ class SuratController extends Controller
 
     public function updateStatus($id, $status)
     {
+        $this->sidebarItems->for('admin');
         // Validasi status
         if (!in_array($status, ['diterima', 'ditolak'])) {
             return redirect()->back()->withErrors(['Status tidak valid.']);
@@ -116,6 +145,7 @@ class SuratController extends Controller
 
     public function show($id)
     {
+        $this->sidebarItems->for($this->user->role);
         $surat = PengajuanSurat::findOrFail($id);
 
         $this->activeSidebarItem = ['surat', 'pengajuan-surat'];
@@ -127,6 +157,7 @@ class SuratController extends Controller
     }
     public function edit($id)
     {
+        $this->sidebarItems->for($this->user->role);
         $surat = PengajuanSurat::findOrFail($id);
 
         $this->activeSidebarItem = ['surat', 'pengajuan-surat'];
@@ -139,6 +170,7 @@ class SuratController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->sidebarItems->for($this->user->role);
         // Validasi data
         $request->validate([
             'nama' => 'required|string|max:100',

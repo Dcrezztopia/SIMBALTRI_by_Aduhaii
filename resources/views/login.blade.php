@@ -103,20 +103,20 @@
                         }
                 </style>
             </div>
-            <div class="card-footer ">
-                <p class="my-0">
-                    <a href="/register" class="text-primary-dark">
-                        Register a new membership
-                    </a>
-                </p>
-            </div>
+            <!-- <div class="card-footer "> -->
+            <!--     <p class="my-0"> -->
+            <!--         <a href="/register" class="text-primary-dark"> -->
+            <!--             Register a new membership -->
+            <!--         </a> -->
+            <!--     </p> -->
+            <!-- </div> -->
         </div>
 
 
-        <script src="/vendor/jquery/jquery.min.js"></script>
-        <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="/vendor/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-        <script src="/vendor/adminlte/dist/js/adminlte.min.js"></script>
+        <!-- <script src="/vendor/jquery/jquery.min.js"></script> -->
+        <!-- <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+        <!-- <script src="/vendor/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script> -->
+        <!-- <script src="/vendor/adminlte/dist/js/adminlte.min.js"></script> -->
 
     </div>
     @vite([

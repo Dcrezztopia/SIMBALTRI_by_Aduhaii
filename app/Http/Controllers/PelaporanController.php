@@ -20,13 +20,13 @@ class  PelaporanController extends Controller
             $this->user = Auth::user();
             return $next($request);
         });
-        $this->sidebarItems = (new Sidebar())
-            ->getItems();
+        $this->sidebarItems = new Sidebar();
     }
 
     public function index()
     {
-        $pelaporans = Pelaporan::all();
+        $this->sidebarItems->for($this->user->role);
+        // $pelaporans = Pelaporan::all();
         return view('pelaporan.index');
     }
 
@@ -37,11 +37,13 @@ class  PelaporanController extends Controller
 
     public function riwayatpelaporan()
     {
+        $this->sidebarItems->for($this->user->role);
         return view('pelaporan.riwayatpelaporan.index');
     }
 
     public function lapor()
     {
+        $this->sidebarItems->for($this->user->role);
         $this->activeSidebarItem = ['pelaporan', 'lapor'];
         return view('pelaporan.lapor')
             ->with('user', $this->user)
@@ -51,8 +53,22 @@ class  PelaporanController extends Controller
 
     public function riwayat()
     {
+        $this->sidebarItems->for($this->user->role);
+        switch ($this->user->role) {
+            case 'admin':
+            case 'ketua_rw':
+            case 'ketua_rt':
+            case 'sekretaris_rt':
+            case 'sekretaris_rw':
+            case 'bendahara_rt':
+            case 'bendahara_rw':
+                $pelaporans = Pelaporan::all();
+                break;
+            default:
+                $pelaporans = Pelaporan::where('id_pembuat', $this->user->id)->get();
+                break;
+        };
         $this->activeSidebarItem = ['pelaporan', 'riwayat'];
-        $pelaporans = Pelaporan::all(); // Mengambil semua data dari tabel pelaporan dengan menggunakan model pelaporan
         return view('pelaporan.riwayat')
             ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
@@ -62,6 +78,7 @@ class  PelaporanController extends Controller
 
     public function hasilform()
     {
+        $this->sidebarItems->for($this->user->role);
         $this->activeSidebarItem = ['pelaporan', 'hasilform'];
         return view('pelaporan.hasilform')
             ->with('user', $this->user)
@@ -71,6 +88,7 @@ class  PelaporanController extends Controller
 
     public function destroy($id)
     {
+        $this->sidebarItems->for($this->user->role);
         $pelaporan = Pelaporan::findOrFail($id);
         $pelaporan->delete();
 
@@ -78,7 +96,7 @@ class  PelaporanController extends Controller
     }
     public function store(Request $request)
     {
-
+        $this->sidebarItems->for($this->user->role);
         $request->validate([
             'nama' => 'required|string|max:100',
             'tanggal_lahir' => 'required|date',
@@ -107,7 +125,8 @@ class  PelaporanController extends Controller
             'perihal' => $request->perihal,
             'isi' => $request->isi,
             'foto_bukti' => $path,
-            'tanggal_dibuat' => new DateTime()
+            'tanggal_dibuat' => new DateTime(),
+            'id_pembuat' => Auth::id(),
         ]);
 
         session([
@@ -126,6 +145,7 @@ class  PelaporanController extends Controller
     }
     public function show($id)
     {
+        $this->sidebarItems->for($this->user->role);
         $pelaporan = Pelaporan::findOrFail($id);
         $this->activeSidebarItem = ['pelaporan', 'lapor'];
         return view('pelaporan.detail', compact('pelaporan'))
@@ -136,6 +156,7 @@ class  PelaporanController extends Controller
 
     public function edit($id)
     {
+        $this->sidebarItems->for($this->user->role);
         $pelaporan = Pelaporan::findOrFail($id);
         $this->activeSidebarItem = ['pelaporan', 'lapor'];
 
@@ -147,6 +168,7 @@ class  PelaporanController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->sidebarItems->for($this->user->role);
         $request->validate([
             'nama' => 'required|string|max:100',
             'tanggal_lahir' => 'required|date',

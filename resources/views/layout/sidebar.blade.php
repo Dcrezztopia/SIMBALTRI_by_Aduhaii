@@ -12,7 +12,7 @@
         @if($user->role == 'admin')
         <li class="nav-item">
             <a class="nav-link @if($activeSidebarItem[0] == 'dashboard') active @else collapsed @endif"
-                href="{{ route('admin.dashboard') }}">
+                href="{{ route('dashboard') }}">
                 <i class="bi bi-house"></i>
                 <span>Dashboard</span>
             </a>
@@ -30,7 +30,7 @@
 
         <li class="nav-heading">Pages</li>
 
-        @foreach ($sidebarItems as $key => $item)
+        @foreach ($sidebarItems->getItems() as $key => $item)
         <li class="nav-item">
             @if(isset($item['route']))
             {{-- WARNA PERLU DIBENARKAN AKU GAK NGERTI KUDU WARNA OPO --}}

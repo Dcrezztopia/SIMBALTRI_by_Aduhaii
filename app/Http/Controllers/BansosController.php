@@ -28,7 +28,7 @@ class BansosController extends Controller
             $this->user = Auth::user();
             return $next($request);
         });
-        $this->sidebarItems = (new Sidebar())->getItems();
+        $this->sidebarItems = new Sidebar();
     }
 
 
@@ -38,6 +38,7 @@ class BansosController extends Controller
 
     public function riwayat()
     {
+        $this->sidebarItems->for($this->user->role);
         $this->activeSidebarItem = ['bansos', 'riwayat'];
         return view('bansos.riwayat')
             ->with('user', $this->user)
@@ -47,6 +48,7 @@ class BansosController extends Controller
 
     public function permintaan()
     {
+        $this->sidebarItems->for($this->user->role);
         $this->activeSidebarItem = ['bansos', 'permintaan'];
         return view('bansos.permintaan')
             ->with('user', $this->user)
@@ -56,6 +58,7 @@ class BansosController extends Controller
 
     public function pengajuan()
     {
+        $this->sidebarItems->for($this->user->role);
         $this->activeSidebarItem = ['bansos', 'pengajuan'];
         return view('bansos.pengajuan')
             ->with('user', $this->user)
@@ -65,6 +68,7 @@ class BansosController extends Controller
 
     public function data()
     {
+        $this->sidebarItems->for($this->user->role);
         $this->activeSidebarItem = ['bansos', 'data'];
         return view('bansos.data')
             ->with('user', $this->user)
@@ -74,6 +78,7 @@ class BansosController extends Controller
 
     public function evaluasi_penerima()
     {
+        $this->sidebarItems->for($this->user->role);
         $this->activeSidebarItem = ['bansos', 'evaluasi-penerima'];
         return view('bansos.evaluasi-penerima')
             ->with('user', $this->user)
@@ -82,6 +87,7 @@ class BansosController extends Controller
     }
     public function pengajuan_bansos()
     {
+        $this->sidebarItems->for($this->user->role);
         $this->activeSidebarItem = ['bansos', 'pengajuan-bansos'];
         return view('bansos.pengajuan-bansos')
             ->with('user', $this->user)
@@ -90,20 +96,22 @@ class BansosController extends Controller
     }
     public function daftar_pengajuan()
     {
+        $this->sidebarItems->for($this->user->role);
         $this->activeSidebarItem = ['bansos', 'daftar_pengajuan'];
         $pengajuan_bansos = PengajuanBansos::all();
-        $dataWarga = DataWarga::all(); 
+        $dataWarga = DataWarga::all();
         return view('bansos.daftar_pengajuan')
             ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem)
-            ->with('pengajuan_bansos', $pengajuan_bansos) 
-            ->with('dataWarga', $dataWarga); 
+            ->with('pengajuan_bansos', $pengajuan_bansos)
+            ->with('dataWarga', $dataWarga);
 
     }
 
     public function penerima()
     {
+        $this->sidebarItems->for($this->user->role);
         $this->activeSidebarItem = ['bansos', 'penerima'];
         return view('bansos.penerima')
             ->with('user', $this->user)

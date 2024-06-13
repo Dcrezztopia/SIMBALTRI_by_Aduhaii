@@ -23,7 +23,7 @@ class IuranController extends Controller
             $this->user = Auth::user();
             return $next($request);
         });
-        $this->sidebarItems = (new Sidebar())->getItems();
+        $this->sidebarItems = new Sidebar();
     }
 
     public function index()
@@ -31,13 +31,20 @@ class IuranController extends Controller
         $user = Auth::user();
         return match ($user->role) {
             'warga' => $this->warga(),
-            'admin' => $this->admin(),
+            'admin'
+            , 'ketua_rw'
+            , 'ketua_rt'
+            , 'sekretaris_rw'
+            , 'sekretaris_rt'
+            , 'bendahara_rw'
+            , 'bendahara_rt' => $this->admin(),
             default => abort(404),
         };
     }
 
     public function warga()
     {
+        $this->sidebarItems->for($this->user->role);
         $this->activeSidebarItem = ['kegiatan-dan-iuran', 'iuran'];
         $iuranWarga = IuranWarga::all(); // Ambil data iuran warga dari database
         return view('iuran.warga')
@@ -49,6 +56,7 @@ class IuranController extends Controller
 
     public function admin()
     {
+        $this->sidebarItems->for($this->user->role);
         $this->activeSidebarItem = ['kegiatan-dan-iuran', 'iuran'];
         $iuranWarga = IuranWarga::all(); // Ambil data iuran warga dari database
         return view('iuran.admin')
@@ -60,6 +68,7 @@ class IuranController extends Controller
     // Action CRUD untuk Kegiatan Warga
     public function createIuranWarga()
     {
+        $this->sidebarItems->for($this->user->role);
         $this->activeSidebarItem = ['kegiatan-dan-iuran', 'iuran'];
         $kegiatanWarga = KegiatanWarga::all();
         $data_warga = DataWarga::all(); // Fetch all warga data
@@ -97,6 +106,7 @@ class IuranController extends Controller
 
     public function editIuranWarga($id)
     {
+        $this->sidebarItems->for($this->user->role);
         $iuranWarga = IuranWarga::findOrFail($id);
         $kegiatanWarga = KegiatanWarga::all();
         $data_warga = DataWarga::all(); // Tambahkan baris ini untuk mengambil data warga

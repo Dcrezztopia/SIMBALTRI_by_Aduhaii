@@ -22,10 +22,22 @@ class RoleCheck
 
         $user = Auth::user();
 
+        if ($role == "admin") {
+            switch ($user->role) {
+                case 'admin':
+                case 'ketua_rw':
+                case 'ketua_rt':
+                case 'sekretaris_rw':
+                case 'sekretaris_rt':
+                case 'bendahara_rw':
+                case 'bendahara_rw':
+                    return $next($request);
+            }
+        }
+
         if ($user->role == $role) {
             return $next($request);
         }
-
 
         return redirect("login")->with("error", "Maaf, Anda tidak memiliki akses");
     }

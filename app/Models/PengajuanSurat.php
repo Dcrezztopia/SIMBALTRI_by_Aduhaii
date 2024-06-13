@@ -22,5 +22,11 @@ class PengajuanSurat extends Model
         'alamat_rumah',
         'kepentingan',
         'perihal',
+        'id_pembuat',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(RTUser::class, 'id_pembuat');
+    }
 }

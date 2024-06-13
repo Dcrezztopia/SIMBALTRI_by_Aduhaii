@@ -38,11 +38,9 @@ Route::post('/proses_register', [AuthController::class, 'proses_register'])->nam
 Route::group(['middleware' => ['auth']], function () {
     // Route::get('/', [AuthController::class, 'index'])->name('dashboard');
     // Route::get('home', [AuthController::class, 'index'])->name('home');
-    Route::get('data-warga', [AdminController::class, 'data_warga'])->name('data-warga.index'); 
+    Route::get('data-warga', [AdminController::class, 'data_warga'])->name('data-warga.index');
 
-    Route::prefix('admin')->middleware(['role:admin'])->group(function () {
-        Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
-    });
+    Route::get('dashboard', [AdminController::class, 'index'])->name('dashboard')->middleware(['role:admin']);
 
     Route::prefix('warga')->middleware(['role:warga'])->group(function () {
         Route::get('/', [WargaController::class, 'index'])->name('warga.dashboard');
@@ -59,7 +57,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/edit/{nik}', [DataWargaController::class, 'edit'])->name('datawarga.edit');
         Route::put('/{nik}', [DataWargaController::class, 'update'])->name('datawarga.update');
         Route::delete('/{id}', [DataWargaController::class, 'destroy'])->name('datawarga.destroy');
-        
+
     });
 
     Route::prefix('surat')->group(function () {
@@ -68,7 +66,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('hasilform', [SuratController::class, 'hasilform'])->name('surat.hasilform');
         Route::delete('{id}', [SuratController::class, 'destroy'])->name('surat.destroy');
         Route::post('surat/store', [SuratController::class, 'store'])->name('surat.store');
-        Route::put('updateStatus/{id}/{status}', [SuratController::class, 'updateStatus'])->name('surat.updateStatus');
+        Route::put('surat/updateStatus/{id}/{status}', [SuratController::class, 'updateStatus'])->name('surat.updateStatus');
         Route::get('{id}', [SuratController::class, 'show'])->name('surat.detail');
         Route::get('edit/{id}', [SuratController::class, 'edit'])->name('surat.edit');
         Route::put('{id}', [SuratController::class, 'update'])->name('surat.update');

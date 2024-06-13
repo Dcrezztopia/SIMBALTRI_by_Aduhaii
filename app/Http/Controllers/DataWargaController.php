@@ -6,6 +6,7 @@ use App\Components\Sidebar;
 use App\Models\DataWarga;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DataWargaController extends Controller
 {
@@ -19,23 +20,30 @@ class DataWargaController extends Controller
             $this->user = Auth::user();
             return $next($request);
         });
-        $this->sidebarItems = (new Sidebar())->getItems();
+        $this->sidebarItems = new Sidebar();
     }
 
     public function index()
     {
-        $user = Auth::user();
+        // $user = Auth::user();
 
-        return match ($user->role) {
-            'admin' => $this->admin($user),
-            default => abort(404),
-        };
+        // return match ($user->role) {
+        //     'admin' => $this->admin($user),
+        //     default => abort(404),
+        // };
+        return $this->admin();
     }
 
     public function admin()
     {
+        $this->sidebarItems->for($this->user->role);
         $this->activeSidebarItem = ['data-warga'];
-        $dataWarga = DataWarga::all();
+        if (str_ends_with($this->user->role, 'rt')) {
+            $rt_user = DB::table('rt_user')->where('user_id', $this->user->id)->first();
+            $dataWarga = DataWarga::where('RT', $rt_user->RT)->get();
+        } else {
+            $dataWarga = DataWarga::all();
+        }
         return view('datawarga.index')
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem)
@@ -45,6 +53,7 @@ class DataWargaController extends Controller
 
     public function create()
     {
+        $this->sidebarItems->for($this->user->role);
         $this->activeSidebarItem = ['data-warga'];
         return view('datawarga.create')
             ->with('user', $this->user)
@@ -94,6 +103,7 @@ class DataWargaController extends Controller
 
     public function edit($nik)
     {
+        $this->sidebarItems->for($this->user->role);
         $datawarga = DataWarga::findOrFail($nik);
 
         $this->activeSidebarItem = ['data-warga'];

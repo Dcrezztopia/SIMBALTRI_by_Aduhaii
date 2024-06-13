@@ -13,7 +13,7 @@
                         <table class="w-100">
                             <thead>
                                 <tr>
-                                    <th class="cell">ID</th>
+                                    <!-- <th class="cell">ID</th> -->
                                     <th class="cell">Nama</th>
                                     <!-- <th class="cell">Tanggal Lahir</th> -->
                                     <!-- <th class="cell">Jenis Kelamin</th> -->
@@ -27,9 +27,14 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @if($pelaporans->isEmpty())
+                                    <tr>
+                                        <td class="cell text-center" colspan="6">Tidak ada data pelaporan</td>
+                                    </tr>
+                                @else
                                 @foreach($pelaporans as $pelaporan)
                                 <tr>
-                                    <td class="cell">{{ $pelaporan->id_pelaporan }}</td>
+                                    <!-- <td class="cell">{{ $pelaporan->id_pelaporan }}</td> -->
                                     <td class="cell">{{ $pelaporan->nama }}</td>
                                     <!-- <td class="cell">{{ $pelaporan->tanggal_lahir }}</td> -->
                                     <!-- <td class="cell">{{ $pelaporan->jenis_kelamin }}</td> -->
@@ -47,6 +52,7 @@
                                             title="Lihat detail pelaporan">
                                             <i class="bi bi-eye"></i>
                                         </a>
+                                        @if($user->role == "sekretaris_rw" || $user->role == "sekretaris_rt")
                                         <a href="{{ route('pelaporan.edit', $pelaporan->id_pelaporan) }}"
                                             class="btn btn-sm btn-warning" data-bs-toggle="tooltip"
                                             data-bs-placement="top" title="Edit pelaporan">
@@ -63,10 +69,12 @@
                                                 <i class="bi bi-trash"></i>
                                             </button>
                                         </form>
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach
                                 <!-- Akhir data tabel -->
+                                @endif
                             </tbody>
                         </table>
                     </div>

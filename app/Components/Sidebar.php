@@ -6,11 +6,111 @@ class Sidebar {
     private $items;
 
     public function __construct() {
-        $this->items = [
+        $this->items = $this->default();
+    }
+
+    public function for(String $role) {
+        $this->items = $this->default();
+        $roleGroup = match ($role) {
+            'admin',
+            'ketua_rw',
+            'ketua_rt',
+            'sekretaris_rw',
+            'sekretaris_rt',
+            'bendahara_rw',
+            'bendahara_rt'
+                    => 'admin',
+            'warga' => 'warga',
+        };
+        if ($roleGroup === 'admin') {
+                $this->items['surat']['route'] = 'surat.riwayat';
+                $this->items['pelaporan']['route'] = 'pelaporan.riwayat';
+                unset($this->items['bansos']['children']['pengajuan-bansos']);
+        }
+        switch ($role) {
+            case 'admin':
+                break;
+            case 'ketua_rw':
+                break;
+            case 'ketua_rt':
+                unset($this->items['bansos']);
+                break;
+            case 'sekretaris_rw':
+                break;
+            case 'sekretaris_rt':
+                unset($this->items['bansos']);
+                break;
+            case 'bendahara_rw':
+                break;
+            case 'bendahara_rt':
+                unset($this->items['bansos']);
+                break;
+            case 'warga':
+                $this->removeItem('data-warga');
+                unset($this->items['bansos']['children']['evaluasi-penerima']);
+                unset($this->items['bansos']['children']['daftar_pengajuan']);
+                break;
+            default:
+                break;
+        };
+    }
+
+    public function getItem($key) {
+        return $this->items[$key];
+    }
+
+    public function getItems() {
+        return $this->items;
+    }
+
+    public function addItem($key, $item) {
+        if (isset($this->items[$key])) {
+            throw new \Exception("Item {$key} already exists.");
+        }
+        if (!isset($item['icon']) && !isset($item['label']) && !isset($item['route']) && !isset($item['children'])) {
+            throw new \Exception("Item is not valid.");
+        }
+        foreach ($item['children'] as $childKey => $childItem) {
+            ($childKey); //unused, remove this line if used later
+            if (!isset($childItem['icon']) && !isset($childItem['label']) && !isset($childItem['route'])) {
+                throw new \Exception("Child item is not valid.");
+            }
+        }
+        $this->items[$key] = $item;
+        return $this;
+    }
+
+    // public function addItems($items) {
+    //     foreach ($items as $key => $item) {
+    //         $this = $this->addItem($key, $item);
+    //     }
+    //     return $this;
+    // }
+
+    public function removeItem($key) {
+        unset($this->items[$key]);
+        return $this;
+    }
+
+    // public function removeItems($keys) {
+    //     foreach ($keys as $key) {
+    //         $this = $this->removeItem($key);
+    //     }
+    //     return $this;
+    // }
+
+    public static function default() {
+        return [
+            // 'data-warga' => [
+            //     'icon' => 'bi bi-people-fill',
+            //     'label' => 'Data Warga',
+            //     'route' => 'data-warga.index',
+            //     'children' => []
+            // ],
             'data-warga' => [
                 'icon' => 'bi bi-people-fill',
                 'label' => 'Data Warga',
-                'route' => 'data-warga.index',
+                'route' => 'datawarga.index',
                 'children' => []
             ],
             'surat' => [
@@ -111,12 +211,12 @@ class Sidebar {
                     // ],
                 ]
             ],
-            'data-warga' => [
-                'icon' => 'bi-menu-button-wide',
-                'label' => 'Data Warga',
-                'route' => 'datawarga.index',
-                'children' => []
-            ]
+            // 'data-warga' => [
+            //     'icon' => 'bi bi-people-fill',
+            //     'label' => 'Data Warga',
+            //     'route' => 'datawarga.index',
+            //     'children' => []
+            // ]
             // 'contoh-dengan-route' => [
             //     'icon' => 'bi bi-menu-button-wide',
             //     'label' => 'Contoh dengan Route',
@@ -125,48 +225,4 @@ class Sidebar {
             // ]
         ];
     }
-
-    public function getItem($key) {
-        return $this->items[$key];
-    }
-
-    public function getItems() {
-        return $this->items;
-    }
-
-    public function addItem($key, $item) {
-        if (isset($this->items[$key])) {
-            throw new \Exception("Item {$key} already exists.");
-        }
-        if (!isset($item['icon']) && !isset($item['label']) && !isset($item['route']) && !isset($item['children'])) {
-            throw new \Exception("Item is not valid.");
-        }
-        foreach ($item['children'] as $childKey => $childItem) {
-            ($childKey); //unused, remove this line if used later
-            if (!isset($childItem['icon']) && !isset($childItem['label']) && !isset($childItem['route'])) {
-                throw new \Exception("Child item is not valid.");
-            }
-        }
-        $this->items[$key] = $item;
-        return $this;
-    }
-
-    // public function addItems($items) {
-    //     foreach ($items as $key => $item) {
-    //         $this = $this->addItem($key, $item);
-    //     }
-    //     return $this;
-    // }
-
-    public function removeItem($key) {
-        unset($this->items[$key]);
-        return $this;
-    }
-
-    // public function removeItems($keys) {
-    //     foreach ($keys as $key) {
-    //         $this = $this->removeItem($key);
-    //     }
-    //     return $this;
-    // }
 }

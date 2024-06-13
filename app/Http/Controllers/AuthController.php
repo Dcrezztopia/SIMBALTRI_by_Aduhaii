@@ -17,13 +17,13 @@ class AuthController extends Controller
 
         if ($user) {
             return match ($user->role) {
-                'admin' => redirect()->route('admin.dashboard'),
-                'ketua_rt' => redirect()->intended('ketua_rt'),
-                'ketua_rw' => redirect()->intended('ketua_rw'),
-                'sekretaris_rw' => redirect()->intended('sekretaris'),
-                'sekretaris_rt' => redirect()->intended('sekretaris'),
-                'bendahara_rw' => redirect()->intended('bendahara'),
-                'bendahara_rt' => redirect()->intended('bendahara'),
+                'admin' => redirect()->route('dashboard'),
+                'ketua_rt' => redirect()->route('dashboard'),
+                'ketua_rw' => redirect()->route('dashboard'),
+                'sekretaris_rw' => redirect()->route('dashboard'),
+                'sekretaris_rt' => redirect()->route('dashboard'),
+                'bendahara_rw' => redirect()->route('dashboard'),
+                'bendahara_rt' => redirect()->route('dashboard'),
                 'warga' => redirect()->route('warga.home'),
                 default => redirect()->intended('login'),
             };
@@ -37,13 +37,13 @@ class AuthController extends Controller
 
         if ($user) {
             return match ($user->role) {
-                'admin' => redirect()->route('admin.dashboard'),
-                'ketua_rt' => redirect()->intended('ketua_rt'),
-                'ketua_rw' => redirect()->intended('ketua_rw'),
-                'sekretaris_rw' => redirect()->intended('sekretaris'),
-                'sekretaris_rt' => redirect()->intended('sekretaris'),
-                'bendahara_rw' => redirect()->intended('bendahara'),
-                'bendahara_rt' => redirect()->intended('bendahara'),
+                'admin' => redirect()->route('dashboard'),
+                'ketua_rt' => redirect()->route('dashboard'),
+                'ketua_rw' => redirect()->route('dashboard'),
+                'sekretaris_rw' => redirect()->route('dashboard'),
+                'sekretaris_rt' => redirect()->route('dashboard'),
+                'bendahara_rw' => redirect()->route('dashboard'),
+                'bendahara_rt' => redirect()->route('dashboard'),
                 'warga' => redirect()->intended('warga'),
                 default => redirect()->intended('login'),
             };
@@ -59,18 +59,18 @@ class AuthController extends Controller
         ]);
 
         $credential = $request->only('username', 'password');
-        if (Auth::attempt($credential)) {
+        if (Auth::attempt($credential, $request->remember)) {
 
             $user = Auth::user();
 
             return match ($user->role) {
-                'admin' => redirect()->route('admin.dashboard'),
-                'ketua_rt' => redirect()->intended('ketua_rt'),
-                'ketua_rw' => redirect()->intended('ketua_rw'),
-                'sekretaris_rw' => redirect()->intended('sekretaris'),
-                'sekretaris_rt' => redirect()->intended('sekretaris'),
-                'bendahara_rw' => redirect()->intended('bendahara'),
-                'bendahara_rt' => redirect()->intended('bendahara'),
+                'admin' => redirect()->route('dashboard'),
+                'ketua_rt' => redirect()->route('dashboard'),
+                'ketua_rw' => redirect()->route('dashboard'),
+                'sekretaris_rw' => redirect()->route('dashboard'),
+                'sekretaris_rt' => redirect()->route('dashboard'),
+                'bendahara_rw' => redirect()->route('dashboard'),
+                'bendahara_rt' => redirect()->route('dashboard'),
                 'warga' => redirect()->intended('warga'),
                 default => redirect()->intended('login'),
             };
@@ -90,13 +90,13 @@ class AuthController extends Controller
         }
 
         return match ($user->role) {
-            'admin' => redirect()->route('admin.dashboard'),
-            'ketua_rt' => redirect()->intended('ketua_rt'),
-            'ketua_rw' => redirect()->intended('ketua_rw'),
-            'sekretaris_rw' => redirect()->intended('sekretaris'),
-            'sekretaris_rt' => redirect()->intended('sekretaris'),
-            'bendahara_rw' => redirect()->intended('bendahara'),
-            'bendahara_rt' => redirect()->intended('bendahara'),
+            'admin' => redirect()->route('dashboard'),
+            'ketua_rt' => redirect()->route('dashboard'),
+            'ketua_rw' => redirect()->route('dashboard'),
+            'sekretaris_rw' => redirect()->route('dashboard'),
+            'sekretaris_rt' => redirect()->route('dashboard'),
+            'bendahara_rw' => redirect()->route('dashboard'),
+            'bendahara_rt' => redirect()->route('dashboard'),
             'warga' => redirect()->intended('warga'),
             default => redirect()->intended('login'),
         };

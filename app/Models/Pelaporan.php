@@ -23,5 +23,6 @@ class Pelaporan extends Model
         'isi',
         'foto_bukti',
         'tanggal_dibuat',
+        'id_pembuat',
     ];
 }

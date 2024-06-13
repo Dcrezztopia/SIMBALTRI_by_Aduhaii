@@ -22,7 +22,7 @@ class KegiatanController extends Controller
             $this->user = Auth::user();
             return $next($request);
         });
-        $this->sidebarItems = (new Sidebar())->getItems();
+        $this->sidebarItems = new Sidebar();
     }
 
     public function index()
@@ -31,13 +31,20 @@ class KegiatanController extends Controller
 
         return match ($user->role) {
             'warga' => $this->warga(),
-            'admin' => $this->admin(),
+            'admin'
+            , 'ketua_rw'
+            , 'ketua_rt'
+            , 'sekretaris_rw'
+            , 'sekretaris_rt'
+            , 'bendahara_rw'
+            , 'bendahara_rt' => $this->admin(),
             default => abort(404),
         };
     }
 
     public function warga()
     {
+        $this->sidebarItems->for($this->user->role);
         $this->activeSidebarItem = ['kegiatan-dan-iuran', 'kegiatan'];
         $kegiatanWarga = KegiatanWarga::all(); // Ambil data kegiatan warga dari database
         return view('kegiatan.warga')
@@ -49,6 +56,7 @@ class KegiatanController extends Controller
 
     public function admin()
     {
+        $this->sidebarItems->for($this->user->role);
         $this->activeSidebarItem = ['kegiatan-dan-iuran', 'kegiatan'];
         $kegiatanWarga = KegiatanWarga::all(); // Ambil data kegiatan warga dari database
         return view('kegiatan.admin')
@@ -61,6 +69,7 @@ class KegiatanController extends Controller
     // Action CRUD untuk Kegiatan Warga
     public function createKegiatanWarga()
     {
+        $this->sidebarItems->for($this->user->role);
         $this->activeSidebarItem = ['kegiatan-dan-iuran', 'kegiatan'];
         $data_warga = DataWarga::all();
         return view('kegiatan.create', compact('data_warga'))
@@ -93,6 +102,7 @@ class KegiatanController extends Controller
 
     public function editKegiatanWarga($id)
     {
+        $this->sidebarItems->for($this->user->role);
         $kegiatanWarga = KegiatanWarga::find($id);
 
         if (!$kegiatanWarga) {

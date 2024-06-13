@@ -1,8 +1,8 @@
 <div class="kindof-navbar d-flex">
     <i class="bi bi-list toggle-sidebar-btn text-primary-dark"></i>
-    <div class="kindof-breadcrumb text-primary-dark">
-            Home > Surat > Pengajuan
-    </div>
+    <!-- <div class="kindof-breadcrumb text-primary-dark"> -->
+    <!--         Home > Surat > Pengajuan -->
+    <!-- </div> -->
 
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
