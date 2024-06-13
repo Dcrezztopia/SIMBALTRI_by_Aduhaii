@@ -14,6 +14,10 @@
             <label for="username" class="form-label">Username</label>
             <input type="text" class="form-control" id="username" name="username" value="{{ $userToShow->username }}" readonly>
         </div>
+        <div class="mb-3">
+            <label for="no_telp" class="form-label">No. Telp</label>
+            <input type="text" class="form-control" id="no_telp" name="no_telp" value="{{ $userToShow->no_telp }}" readonly>
+        </div>
         <!-- <div class="mb-3"> -->
         <!--     <label for="RT" class="form-label">RT</label> -->
         <!--     <input type="text" class="form-control" id="RT" name="RT" value="{{ $userToShow->RT }}" readonly> -->

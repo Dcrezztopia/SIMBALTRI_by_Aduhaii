@@ -18,11 +18,18 @@
             </div>
             {{-- username --}}
             <div class="mb-3">
-            <label for="username" class="form-label">Username</label>
-            <input type="text" class="form-control" id="username" name="username" value="{{ $userToEdit->username }}">
-            @error('username')
-                <small class="form-text text-danger">{{ $message }}</small>
-            @enderror
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" name="username" value="{{ $userToEdit->username }}">
+                @error('username')
+                    <small class="form-text text-danger">{{ $message }}</small>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="no_telp" class="form-label">No. Telp</label>
+                <input type="text" class="form-control" id="no_telp" name="no_telp" value="{{ $userToEdit->no_telp }}">
+                @error('no_telp')
+                    <small class="form-text text-danger">{{ $message }}</small>
+                @enderror
             </div>
             {{--
             <!-- <div class="mb-3"> -->

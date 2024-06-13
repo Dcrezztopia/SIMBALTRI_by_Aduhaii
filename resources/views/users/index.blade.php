@@ -13,7 +13,8 @@
                 <tr>
                     <th class="cell identifier">ID</th>
                     <th class="cell identifier">Nama</th>
-                    <th class="cell identifier">username</th>
+                    <th class="cell identifier">Username</th>
+                    <th class="cell identifier">No. Telp</th>
                     <!-- <th class="cell identifier">RT</th> -->
                     <!-- <th class="cell identifier">Email</th> -->
                     <th class="cell identifier">Role</th>
@@ -26,6 +27,7 @@
                     <td class="cell">{{ $user->id }}</td>
                     <td class="cell">{{ $user->nama }}</td>
                     <td class="cell">{{ $user->username }}</td>
+                    <td class="cell">{{ $user->no_telp }}</td>
                     <!-- <td class="cell">{{ $user->RT }}</td> -->
                     <td class="cell">{{ $user->role }}</td>
                     <td class="cell">
