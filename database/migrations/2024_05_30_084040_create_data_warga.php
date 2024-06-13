@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('tempat_lahir', 25);
             $table->string('pendidikan', 25);
             $table->string('pekerjaan', 25);
-            $table->enum('status_pernikahan', ['BELUM/TIDAK', 'MENIKAH', 'JANDA/DUDA']);
+            $table->string('status_pernikahan');
             $table->enum('status_penduduk', ['T', 'P', 'A']);
             $table->timestamps();
 
