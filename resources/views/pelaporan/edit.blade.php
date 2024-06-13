@@ -45,7 +45,7 @@
                 <label for="foto_bukti" class="form-label">Foto Bukti</label>
                 <input type="file" class="form-control" id="foto_bukti" name="foto_bukti">
                 @if($pelaporan->foto_bukti)
-                <img src="{{ asset('storage/foto_bukti/' . $pelaporan->foto_bukti) }}" alt="Foto Bukti" class="img-fluid mt-3">
+                <img src="{{ asset('storage/' . $pelaporan->foto_bukti) }}" class="img-fluid" alt="Foto Bukti">
                 @endif
 
             </div>
