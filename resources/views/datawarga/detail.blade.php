@@ -2,8 +2,10 @@
 
 @section('content_body')
 <div class="container">
-    <h2>Detail Data Warga</h2>
     <div class="card">
+        <div class="card-header lin-gradient-light-primary">
+            Detail Data Warga
+        </div>
         <div class="card-body">
             <p><strong>NIK:</strong> {{ $datawarga->nik }}</p>
             <p><strong>No Kartu Keluarga:</strong> {{ $datawarga->no_kk }}</p>
@@ -32,12 +34,12 @@
                 WARGA ASING
                 @endif
             </p>
-        </div>
-    </div>
     <div class="form-group">
         <button type="back" class="btn btn-danger mt-3" style="float: left;">
             <a  href="{{ route('datawarga.index') }}" class="bi bi-arrow-left-circle" style="color: white;">Kembali</a>
         </button>
+    </div>
+        </div>
     </div>
 </div>
 @endsection

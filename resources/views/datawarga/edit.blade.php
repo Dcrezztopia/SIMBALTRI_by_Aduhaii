@@ -1,8 +1,11 @@
 @extends('layout.app')
 
 @section('content_body')
-<div class="container">
-    <h2>Edit Data Warga</h2>
+<div class="card">
+    <div class="card-header lin-gradient-light-primary">
+        Edit Data Warga
+    </div>
+    <div class="card-header">
     <form action="{{ route('datawarga.update', $datawarga->nik) }}" method="POST">
         @csrf
         @method('PUT')
@@ -139,5 +142,6 @@
             <a  href="{{ route('datawarga.index') }}" class="bi bi-arrow-left-circle" style="color: white;">Kembali</a>
         </button>
     </form>
+    </div>
 </div>
 @endsection
