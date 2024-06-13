@@ -87,13 +87,13 @@ class  PelaporanController extends Controller
             'alamat_rumah' => 'required|string|max:100',
             'perihal' => 'required|string|max:100',
             'isi' => 'required|string|max:500',
-            'foto_bukti' => 'required|image|max:2048', // Validasi foto bukti
+            'foto_bukti' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi file gambar
         ]);
 
 
         if ($request->hasFile('foto_bukti')) {
-            $file = $request->file('foto_bukti');
-            $path = $file->store('public/foto_bukti');
+            $fileName = time() . '.' . $request->foto_bukti->extension();
+            $path = $request->file('foto_bukti')->storeAs('uploads', $fileName, 'public');
         }
 
 
