@@ -110,7 +110,14 @@
                                                 </button>
                                             </form>
                                             @endif
-
+                                            {{--generate pdf --}}
+                                            @if($surat->status == 'diterima')
+                                            <a href="{{ route('surat.generate', $surat->id_surat) }}"
+                                                class="btn btn-sm btn-primary" data-bs-toggle="tooltip" title="Generate PDF">
+                                                <i class="bi bi-file-earmark-fill"></i>
+                                                Cetak
+                                            </a>
+                                            @endif
                                         </td>
                                     </tr>
                                     @endforeach

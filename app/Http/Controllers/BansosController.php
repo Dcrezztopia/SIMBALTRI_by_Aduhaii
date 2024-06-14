@@ -112,10 +112,18 @@ class BansosController extends Controller
 
     public function penerima()
     {
+        if ($this->user->role == 'warga') {
+            $view = 'bansos.warga-penerima';
+            $termasuk_penerima_bansos = PenerimaBansos::where('id_pengajuan', Auth::user()->id)->first();
+        } else {
+            $view = 'bansos.penerima';
+            $termasuk_penerima_bansos = null;
+        }
         $this->sidebarItems->for($this->user->role);
         $this->activeSidebarItem = ['bansos', 'penerima'];
         $penerima_bansos = PenerimaBansos::with('pengajuan')->get();
-        return view('bansos.penerima')
+        return view($view)
+            ->with('termasuk_penerima_bansos', $termasuk_penerima_bansos)
             ->with('penerima_bansos', $penerima_bansos)
             ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)

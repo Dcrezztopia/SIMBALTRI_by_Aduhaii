@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BansosController;
+use App\Http\Controllers\SuratController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -38,3 +39,7 @@ Route::prefix('bansos')->group(function () {
     Route::post('tambah-penerima/{id}', [BansosController::class, 'tambah_penerima'])->name('bansos.tambah-penerima');
     Route::post('hapus-penerima/{id}', [BansosController::class, 'hapus_penerima'])->name('bansos.hapus-penerima');
 });
+
+// Route::prefix('surat')->group(function () {
+//     Route::get('generate-surat', [SuratController::class, 'generate_surat'])->name('bansos.generate-surat');
+// });
