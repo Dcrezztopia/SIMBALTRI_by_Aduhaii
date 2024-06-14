@@ -6,6 +6,7 @@ use App\Components\Sidebar;
 use App\Models\DataWarga;
 use App\Models\KegiatanWarga;
 use App\Models\PengajuanSurat;
+use App\Models\RTUser;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -119,8 +120,15 @@ class AdminController extends Controller
             case 'ketua_rt':
             case 'sekretaris_rt':
             case 'bendahara_rt':
-                $surats = PengajuanSurat::with('user')->where(['status' => 'menunggu'])->get()->filter(function ($surat) {
-                    return $surat->user->RT === $this->user->RT;
+                $rt_user = RTUser::find($this->user->id);
+                $surats = PengajuanSurat::with('user')->where(['status' => 'menunggu'])->get()->filter(function ($surat) use ($rt_user) {
+                    if (!isset($surat->user->RT)) {
+                        return false;
+                    }
+                    return
+                        $surat->user->RT
+                            ===
+                        $rt_user->RT;
                 });
             case 'admin':
             case 'ketua_rw':

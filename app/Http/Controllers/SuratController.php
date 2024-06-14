@@ -203,4 +203,7 @@ class SuratController extends Controller
             return back()->withErrors(['error' => 'Terjadi kesalahan saat memperbarui surat.']);
         }
     }
+
+    public function generate_surat() {
+    }
 }
