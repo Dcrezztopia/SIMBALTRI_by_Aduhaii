@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Components\Sidebar;
+use App\Models\KegiatanWarga;
 use Illuminate\Support\Facades\Auth;
 
 // use Illuminate\Http\Request;
@@ -26,7 +27,9 @@ class WargaController extends Controller
     public function index()
     {
         $this->activeSidebarItem = ['home', ''];
+        $kegiatanWarga = KegiatanWarga::all();
         return view('warga.home')
+            ->with('kegiatanWarga', $kegiatanWarga)
             ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
             ->with('activeSidebarItem', $this->activeSidebarItem);

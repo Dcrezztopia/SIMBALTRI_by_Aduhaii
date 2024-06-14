@@ -3,7 +3,7 @@
 @section('content_body')
 <div class="card">
     <div class="card-header lin-gradient-light-primary text-dark">
-        <!-- Dashboard -->
+        Home
     </div>
     <div class="card-body pa-5">
         <div class="text-center mt-3">
@@ -26,23 +26,67 @@
         <!-- Add the new big box here -->
         <!-- <div class="big-box"> -->
         <!-- Content inside the box can go here if needed -->
+        <div class="row mt-5">
+            <div class="col">
+                <button class="btn lin-gradient-light-primary w-100">
+                    <a href="{{ route('surat.pengajuan') }}" class="text-primary-dark">
+                        <h6 class="text-dark">
+                            Pengajuan Surat
+                        </h6>
+                    </a>
+                </button>
+            </div>
+            <div class="col-3">
+                <button class="btn lin-gradient-light-primary w-100">
+                    <a href="{{ route('surat.riwayat') }}" class="text-white">
+                        <h6 class="text-dark">
+                            Riwayat Pengajuan Surat
+                        </h6>
+                    </a>
+                </button>
+            </div>
+            <div class="col">
+                <button class="btn lin-gradient-light-primary w-100">
+                    <a href="{{ route('pelaporan.lapor') }}" class="text-white">
+                        <h6 class="text-dark">
+                            Pengajuan Laporan
+                        </h6>
+                    </a>
+                </button>
+            </div>
+            <div class="col-4">
+                <button class="btn lin-gradient-light-primary w-100">
+                    <a href="{{ route('pelaporan.riwayat') }}" class="text-white">
+                        <h6 class="text-dark">
+                            Riwayat Pengajuan Laporan
+                        </h6>
+                    </a>
+                </button>
+            </div>
         </div>
-        <div class="row ma-5">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header lin-gradient-light-primary text-dark">
-                        News & Updates
-                    </div>
-                    <div class="card-body">
-                        <div class="news">
-                            <div class="news-item">
-                                <div class="news-title">
-                                    <h4>News Title</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="card mt-3">
+            <div class="card-header lin-gradient-light-primary">
+                Kegiatan Berlangsung
+            </div>
+            <div class="card-body">
+                <table class="w-100">
+                    <thead>
+                        <tr>
+                            <th class="cell">Nama Kegiatan</th>
+                            <th class="cell">Tanggal Kegiatan</th>
+                            <th class="cell">Tempat Kegiatan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($kegiatanWarga as $kegiatan)
+                        <tr>
+                            <td class="cell">{{ $kegiatan->nama_kegiatan }}</td>
+                            <td class="cell">{{ $kegiatan->tanggal_pelaksanaan }}</td>
+                            <td class="cell">{{ $kegiatan->tempat_pelaksanaan }}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -60,6 +104,13 @@
 
 @push('css')
     <style>
+        a {
+                text-decoration: none !important;
+            }
+        /* button { */
+        /*         width: 90px !important; */
+        /*         height: 40px !important; */
+        /*     } */
     </style>
 @endpush
 
