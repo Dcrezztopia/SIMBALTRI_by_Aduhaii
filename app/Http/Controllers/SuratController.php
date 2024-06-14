@@ -27,7 +27,6 @@ class SuratController extends Controller
     {
         $this->sidebarItems->for($this->user->role);
         $this->activeSidebarItem = ['surat', 'pengajuan-surat'];
-        $this->sidebarItems->for('warga');
         return view('surat.pengajuan')
             ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
@@ -127,7 +126,7 @@ class SuratController extends Controller
 
     public function updateStatus($id, $status)
     {
-        $this->sidebarItems->for('admin');
+        $this->sidebarItems->for($this->user->role);
         // Validasi status
         if (!in_array($status, ['diterima', 'ditolak'])) {
             return redirect()->back()->withErrors(['Status tidak valid.']);

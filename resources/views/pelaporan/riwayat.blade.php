@@ -53,7 +53,7 @@
                                             <i class="bi bi-eye"></i>
                                             Detail
                                         </a>
-                                        @if($user->role == "sekretaris_rw" || $user->role == "sekretaris_rt")
+                                        @if($user->role == "sekretaris_rw" || $user->role == "sekretaris_rt" || $user->role == "admin")
                                         <a href="{{ route('pelaporan.edit', $pelaporan->id_pelaporan) }}"
                                             class="btn btn-sm btn-warning" data-bs-toggle="tooltip"
                                             data-bs-placement="top" title="Edit pelaporan">
