@@ -1,0 +1,53 @@
+#align(center)[*RUKUN WARGA 03 BALEARJOSARI*]
+#align(center)[*KELURAHAN BALEARJOSARI, KECAMATAN BLIMBING*]
+#align(center)[*KOTA MALANG*]
+#line(
+  length: 17cm,
+  stroke: 2pt + black,
+)
+\
+  #align(center)[*#underline(stroke:1pt)[SURAT PENGANTAR PEMBUATAN KARTU TANDA PENDUDUK (KTP)]*]
+  #align(center)[No : 04/13/06/2024]
+\
+Yang bertanda tangan dibawah ini Ketua RT {{RT}} RW 03 Kelurahan Balearjosari Kecamatan Belimbing Kota Malang, Menerangkan bahwa :
+\
+#set raw(tab-size: 1)
+#show par: set block(spacing :1.5em )
+#set text(font: "PT Sans")
+
+#table(
+  stroke: white,
+  columns: (auto, 2em, auto),
+  inset: 7pt,
+  [Nama                ],[:],[{{nama}}],
+  [Tempat Tanggal Lahir],[:],[{{tempat_lahir}}, {{tanggal_lahir}}],
+  [Jenis Kelamin       ],[:],[{{jenis_kelamin}}],
+  [Agama               ],[:],[{{agama}}],
+  [Alamat              ],[:], [{{alamat}}],
+  [Keperluan           ],[:],[Surat Pengantar Pembuatan Pembuatan artu Tanda Penduduk (KTP)]
+)
+Demikian surat ini dibuat untuk dipergunakan sesuai dengan keperluannya.\
+
+#v(1cm)
+#align(center)[Mengetahui]
+
+#set table(
+  stroke: white,
+)
+#let a = table.cell(
+  fill: white
+)[A]
+#let b = table.cell(
+  fill: white,
+)[B]
+
+#table(
+  columns: (1fr, 1fr, 1fr),
+  align: center,
+  inset: 10pt,
+  [Ketua RT {{RT}}],[], [Ketua RW 03],
+  [],[],[],
+  [], [],[],
+  [],[],[],
+  [Supardi Sujoko], [],[Dennis Parulian]
+)

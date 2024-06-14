@@ -7,7 +7,7 @@
     </div>
     <div class="card-body">
         <div class="">
-            @if($user->role == 'sekretaris_rw')
+            @if($user->role == 'bendahara_rw')
             <a href="{{ route('iuran.create') }}" class="btn btn-primary float-right mb-3">Tambah Iuran</a>
             @endif
         </div>
