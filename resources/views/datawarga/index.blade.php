@@ -9,7 +9,7 @@
   <section class="section dashboard">
     <div class="row">
       <div class="col-md-12">
-        @if($user->role == 'sekretaris_rw' || $user->role == 'sekretaris_rt')
+        @if($user->role == 'sekretaris_rw' || $user->role == 'sekretaris_rt' || $user->role == 'admin')
         <a href="{{ route('datawarga.create') }}" class="btn btn-primary float-right mb-3">Tambah Data</a>
         @endif
         <div class="table-responsive">
@@ -20,7 +20,7 @@
                 <th class="cell">Nama</th>
                 <th class="cell">Jenis Kelamin</th>
                 <th class="cell">Tanggal Lahir</th>
-        @if($user->role == 'sekretaris_rw' || $user->role == 'sekretaris_rt')
+        @if($user->role == 'sekretaris_rw' || $user->role == 'sekretaris_rt' || $user->role == 'admin')
                 <th class="cell">Action</th>
                 @endif
               </tr>
@@ -38,7 +38,7 @@
                     @endif
                 </td>
                 <td class="cell">{{ $data->tanggal_lahir }}</td>
-        @if($user->role == 'sekretaris_rw' || $user->role == 'sekretaris_rt')
+        @if($user->role == 'sekretaris_rw' || $user->role == 'sekretaris_rt' || $user->role == 'admin')
                 <td class="cell">
                 <a href="{{ route('datawarga.detail', $data->nik) }}"
                     class="btn btn-sm btn-info" data-bs-toggle="tooltip"

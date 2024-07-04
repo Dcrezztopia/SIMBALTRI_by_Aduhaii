@@ -33,7 +33,7 @@ class SuratDanLaporan extends Seeder
                 'alamat_rumah' => 'Jalan Raya',
                 'kepentingan' => 'Penting',
                 'perihal' => 'pembuatan_KTP',
-                'id_pembuat' => 2,
+                'id_pembuat' => 3,
                 'created_at' => '2024-08-01'
             ],
             [

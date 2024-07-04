@@ -74,6 +74,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('{id}/status/{status}', [SuratController::class, 'updateStatus'])->name('surat.updateStatus');
     });
 
+
+    Route::get('generate/{id}', [SuratController::class, 'generate_surat'])->name('surat.generate');
+
     Route::prefix('pelaporan')->group(function () {
         Route::get('lapor', [PelaporanController::class, 'lapor'])->name('pelaporan.lapor');
         Route::post('lapor', [PelaporanController::class, 'store'])->name('pelaporan.store');

@@ -10,9 +10,8 @@ class Sidebar {
     }
 
     public function for(String $role) {
-        $this->items = $this->default();
+        $this->items = Sidebar::default();
         $roleGroup = match ($role) {
-            'admin',
             'ketua_rw',
             'ketua_rt',
             'sekretaris_rw',
@@ -21,6 +20,8 @@ class Sidebar {
             'bendahara_rt'
                     => 'admin',
             'warga' => 'warga',
+            'admin' => null,
+            default => null
         };
         if ($roleGroup === 'admin') {
                 $this->items['surat']['route'] = 'surat.riwayat';

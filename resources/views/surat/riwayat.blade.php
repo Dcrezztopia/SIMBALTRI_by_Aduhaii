@@ -61,7 +61,7 @@
                                             @endif
                                         </td>
                                         <td class="cell">
-                                            @if($user->role == "ketua_rw" || $user->role == "ketua_rt")
+                                            @if($user->role == "ketua_rw" || $user->role == "ketua_rt" || $user->role == "admin")
                                             <form
                                                 action="{{ route('surat.updateStatus', ['id' => $surat->id_surat, 'status' => 'diterima']) }}"
                                                 method="POST" class="d-inline">
@@ -92,7 +92,7 @@
                                                 <i class="bi bi-eye"></i>
                                                 Detail
                                             </a>
-                                            @if($user->role == "sekretaris_rw" || $user->role == "sekretaris_rt")
+                                            @if($user->role == "sekretaris_rw" || $user->role == "sekretaris_rt" || $user->role == "admin")
                                             <a href="{{ route('surat.edit', $surat->id_surat) }}"
                                                 class="btn btn-sm btn-warning" data-bs-toggle="tooltip" title="Edit surat">
                                                 <i class="bi bi-pencil"></i>
@@ -110,7 +110,14 @@
                                                 </button>
                                             </form>
                                             @endif
-
+                                            {{--generate pdf --}}
+                                            @if($surat->status == 'diterima')
+                                            <a href="{{ route('surat.generate', $surat->id_surat) }}"
+                                                class="btn btn-sm btn-primary" data-bs-toggle="tooltip" title="Generate PDF">
+                                                <i class="bi bi-file-earmark-fill"></i>
+                                                Cetak
+                                            </a>
+                                            @endif
                                         </td>
                                     </tr>
                                     @endforeach

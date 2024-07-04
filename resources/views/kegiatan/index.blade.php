@@ -7,7 +7,7 @@
     </div>
     <div class="card-body">
         <div>
-            @if($user->role == 'sekretaris_rw')
+            @if($user->role == 'sekretaris_rw' || $user->role == "admin")
             <a href="{{ route('kegiatan.create') }}" class="btn btn-primary float-right mb-3">Tambah Kegiatan</a>
             @endif
         </div>
@@ -21,7 +21,7 @@
                         <th class="cell">Tanggal Pelaksanaan</th>
                         <th class="cell">Tempat Pelaksanaan</th>
                         <th class="cell">Penanggung Jawab</th>
-            @if($user->role == 'sekretaris_rw')
+            @if($user->role == 'sekretaris_rw' || $user->role == "admin")
                         <th class="cell">Aksi</th>
                         @endif
                     </tr>
@@ -40,7 +40,7 @@
                         <td class="cell">{{ $kegiatan->tempat_pelaksanaan }}</td>
                         <td class="cell">{{ $kegiatan->penanggungJawab->nama ?? 'N/A' }}</td>
                         <!-- Menampilkan nama penanggung jawab -->
-            @if($user->role == 'sekretaris_rw')
+            @if($user->role == 'sekretaris_rw' || $user->role == "admin")
                         <td class="cell">
                             <a href="{{ route('kegiatan.edit', $kegiatan->id_kegiatan) }}" class="btn btn-sm btn-warning">
                                 <i class="bi bi-pencil"></i> Ubah

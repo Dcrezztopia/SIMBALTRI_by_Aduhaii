@@ -7,7 +7,7 @@
     </div>
     <div class="card-body">
         <div class="">
-            @if($user->role == 'bendahara_rw')
+            @if($user->role == 'bendahara_rw' || $user->role == "admin")
             <a href="{{ route('iuran.create') }}" class="btn btn-primary float-right mb-3">Tambah Iuran</a>
             @endif
         </div>
@@ -21,7 +21,7 @@
                         <th class="cell">Interval</th>
                         <th class="cell">Penanggung Jawab</th>
                         <th class="cell">Total</th>
-            @if($user->role == 'sekretaris_rw')
+            @if($user->role == 'sekretaris_rw' || $user->role == "admin")
                         <th class="cell">Aksi</th>
                         @endif
                     </tr>
@@ -40,7 +40,7 @@
                             <td class="cell">{{ $iuran->interval }}</td>
                             <td class="cell">{{ $iuran->warga->nama }}</td>
                             <td class="cell">{{ number_format($iuran->total, 0, ',', '.') }}</td>
-            @if($user->role == 'sekretaris_rw')
+            @if($user->role == 'sekretaris_rw' || $user->role == "admin")
                             <td class="cell">
                                 <a href="{{ route('iuran.edit', $iuran->id_iuran) }}" class="btn btn-sm btn-warning">
                                     <i class="bi bi-pencil"></i>

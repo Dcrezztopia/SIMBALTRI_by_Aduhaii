@@ -7,6 +7,8 @@ use App\Models\PengajuanSurat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Response;
 
 class SuratController extends Controller
 {
@@ -27,7 +29,6 @@ class SuratController extends Controller
     {
         $this->sidebarItems->for($this->user->role);
         $this->activeSidebarItem = ['surat', 'pengajuan-surat'];
-        $this->sidebarItems->for('warga');
         return view('surat.pengajuan')
             ->with('user', $this->user)
             ->with('sidebarItems', $this->sidebarItems)
@@ -127,7 +128,7 @@ class SuratController extends Controller
 
     public function updateStatus($id, $status)
     {
-        $this->sidebarItems->for('admin');
+        $this->sidebarItems->for($this->user->role);
         // Validasi status
         if (!in_array($status, ['diterima', 'ditolak'])) {
             return redirect()->back()->withErrors(['Status tidak valid.']);
@@ -204,6 +205,29 @@ class SuratController extends Controller
         }
     }
 
-    public function generate_surat() {
+    public function generate_surat($id) {
+        $pengajuanSurat = PengajuanSurat::with('user')->findOrFail($id);
+        $fileTemplate = Storage::get('surat-template/surat1.typst');
+        $placeholders = [
+            '{{RT}}' => $pengajuanSurat->user->RT,
+            '{{nama}}' => $pengajuanSurat->nama,
+            '{{tempat_lahir}}' => 'Jakarta', // Hardcoded
+            '{{tanggal_lahir}}' => $pengajuanSurat->tanggal_lahir,
+            '{{jenis_kelamin}}' => 'Laki-laki', // Hardcoded
+            '{{agama}}' => 'Agama', // Hardcoded
+            '{{alamat}}' => $pengajuanSurat->alamat_rumah,
+            ''
+        ];
+
+            foreach ($placeholders as $placeholder => $replacement) {
+                $fileTemplate = str_replace($placeholder, $replacement, $fileTemplate);
+            }
+
+            dd($fileTemplate);
+
+        return Response::make($fileTemplate, 200, [
+            'Content-Type' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            'Content-Disposition' => 'attachment; filename="surat.typst"'
+        ]);
     }
 }

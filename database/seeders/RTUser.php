@@ -15,6 +15,10 @@ class RTUser extends Seeder
     {
         DB::table('rt_user')->insert([
             [
+                'user_id' => 3,
+                'RT' => '01'
+            ],
+            [
                 'user_id' => 14,
                 'RT' => '01'
             ],
