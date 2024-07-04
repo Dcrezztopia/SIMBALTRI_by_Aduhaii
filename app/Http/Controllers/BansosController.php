@@ -577,7 +577,7 @@ class BansosController extends Controller
         ]);
 
         // Redirect ke halaman sukses atau daftar pengajuan
-        return redirect()->route('bansos.daftar_pengajuan')->with('success', 'Pengajuan bansos berhasil disimpan.');
+        return redirect()->route('bansos.pengajuan-bansos')->with('success', 'Pengajuan bansos berhasil disimpan.');
     }
 
     public function set_kriteria_active($id, $active) {
